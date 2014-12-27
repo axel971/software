@@ -1,0 +1,31 @@
+#ifndef Pyramide_h
+#define Pyramide_h
+
+#include <vector>
+
+#include "LevelPyramide.h"
+
+
+class Pyramide {
+
+ public:
+
+    void build();
+
+
+ private:
+    int m_nLevel;
+    int m_nOctave;
+    double m_sigma0;
+    double m_k;
+
+
+ private:
+
+    /**
+     * @element-type LevelPyramide
+     */
+    std::vector< LevelPyramide > levels;
+};
+
+#endif // Pyramide_h

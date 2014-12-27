@@ -1,0 +1,36 @@
+#IncludeRegexLine: ^[ 	]*#[ 	]*(include|import)[ 	]*[<"]([^">]+)([">])
+
+#IncludeRegexScan: ^.*$
+
+#IncludeRegexComplain: ^$
+
+#IncludeRegexTransform: 
+
+/home/axel/Documents/travail/code/imagePyramide/implementation/source/LevelPyramide.h
+opencv2/core/core.hpp
+-
+opencv2/imgproc/imgproc.hpp
+-
+opencv2/highgui/highgui.hpp
+-
+
+/home/axel/Documents/travail/code/imagePyramide/implementation/source/Pyramide.cpp
+Pyramide.h
+/home/axel/Documents/travail/code/imagePyramide/implementation/source/Pyramide.h
+
+/home/axel/Documents/travail/code/imagePyramide/implementation/source/Pyramide.h
+vector
+-
+opencv2/core/core.hpp
+-
+iostream
+-
+LevelPyramide.h
+/home/axel/Documents/travail/code/imagePyramide/implementation/source/LevelPyramide.h
+
+/home/axel/Documents/travail/code/imagePyramide/implementation/source/main.cpp
+Pyramide.h
+/home/axel/Documents/travail/code/imagePyramide/implementation/source/Pyramide.h
+iostream
+-
+

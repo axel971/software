@@ -1,0 +1,32 @@
+#include "Pyramide.h"
+#include <iostream>
+
+
+using namespace std;
+using namespace cv;
+
+main(int argc, char* argv[])
+{
+
+  Mat image;
+
+  //load image
+  image = imread("racoon.jpg", CV_LOAD_IMAGE_COLOR);
+
+  //construct pyramide
+  Pyramide pyramid(image, 3, 5,  sqrt(2), 1.6);  
+  pyramid.build();
+
+  namedWindow( "Display window", WINDOW_AUTOSIZE );// Create a window for display.
+  
+  for(int i = 0; i < 3; ++i)
+    for(int j= 0; j < 5; ++j)
+      {
+	imshow( "Display window", pyramid.getImage(i,j)); // Show our image inside it.
+	waitKey(0);   
+	cout << pyramid.getSigma(i,j) << endl;
+      }
+
+  return 0;
+
+}
