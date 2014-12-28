@@ -19,8 +19,8 @@
 
 QT_BEGIN_MOC_NAMESPACE
 struct qt_meta_stringdata_MainWindow_t {
-    QByteArrayData data[5];
-    char stringdata[51];
+    QByteArrayData data[9];
+    char stringdata[112];
 };
 #define QT_MOC_LITERAL(idx, ofs, len) \
     Q_STATIC_BYTE_ARRAY_DATA_HEADER_INITIALIZER_WITH_OFFSET(len, \
@@ -30,13 +30,19 @@ struct qt_meta_stringdata_MainWindow_t {
 static const qt_meta_stringdata_MainWindow_t qt_meta_stringdata_MainWindow = {
     {
 QT_MOC_LITERAL(0, 0, 10),
-QT_MOC_LITERAL(1, 11, 12),
-QT_MOC_LITERAL(2, 24, 0),
-QT_MOC_LITERAL(3, 25, 13),
-QT_MOC_LITERAL(4, 39, 10)
+QT_MOC_LITERAL(1, 11, 18),
+QT_MOC_LITERAL(2, 30, 0),
+QT_MOC_LITERAL(3, 31, 17),
+QT_MOC_LITERAL(4, 49, 12),
+QT_MOC_LITERAL(5, 62, 12),
+QT_MOC_LITERAL(6, 75, 13),
+QT_MOC_LITERAL(7, 89, 10),
+QT_MOC_LITERAL(8, 100, 10)
     },
-    "MainWindow\0setListFiles\0\0displayWindow\0"
-    "iListFiles\0"
+    "MainWindow\0listFilesIsChanged\0\0"
+    "listFilesIsLoaded\0getListFiles\0"
+    "setListFiles\0displayWindow\0iListFiles\0"
+    "enabledRun\0"
 };
 #undef QT_MOC_LITERAL
 
@@ -46,20 +52,32 @@ static const uint qt_meta_data_MainWindow[] = {
        7,       // revision
        0,       // classname
        0,    0, // classinfo
-       2,   14, // methods
+       6,   14, // methods
        0,    0, // properties
        0,    0, // enums/sets
        0,    0, // constructors
        0,       // flags
-       0,       // signalCount
+       2,       // signalCount
+
+ // signals: name, argc, parameters, tag, flags
+       1,    0,   44,    2, 0x06,
+       3,    0,   45,    2, 0x06,
 
  // slots: name, argc, parameters, tag, flags
-       1,    0,   24,    2, 0x0a,
-       3,    1,   25,    2, 0x0a,
+       4,    0,   46,    2, 0x0a,
+       5,    0,   47,    2, 0x0a,
+       6,    1,   48,    2, 0x0a,
+       8,    0,   51,    2, 0x0a,
+
+ // signals: parameters
+    QMetaType::Void,
+    QMetaType::Void,
 
  // slots: parameters
     QMetaType::Void,
-    QMetaType::Void, QMetaType::Int,    4,
+    QMetaType::Void,
+    QMetaType::Void, QMetaType::Int,    7,
+    QMetaType::Void,
 
        0        // eod
 };
@@ -69,9 +87,28 @@ void MainWindow::qt_static_metacall(QObject *_o, QMetaObject::Call _c, int _id, 
     if (_c == QMetaObject::InvokeMetaMethod) {
         MainWindow *_t = static_cast<MainWindow *>(_o);
         switch (_id) {
-        case 0: _t->setListFiles(); break;
-        case 1: _t->displayWindow((*reinterpret_cast< int(*)>(_a[1]))); break;
+        case 0: _t->listFilesIsChanged(); break;
+        case 1: _t->listFilesIsLoaded(); break;
+        case 2: _t->getListFiles(); break;
+        case 3: _t->setListFiles(); break;
+        case 4: _t->displayWindow((*reinterpret_cast< int(*)>(_a[1]))); break;
+        case 5: _t->enabledRun(); break;
         default: ;
+        }
+    } else if (_c == QMetaObject::IndexOfMethod) {
+        int *result = reinterpret_cast<int *>(_a[0]);
+        void **func = reinterpret_cast<void **>(_a[1]);
+        {
+            typedef void (MainWindow::*_t)();
+            if (*reinterpret_cast<_t *>(func) == static_cast<_t>(&MainWindow::listFilesIsChanged)) {
+                *result = 0;
+            }
+        }
+        {
+            typedef void (MainWindow::*_t)();
+            if (*reinterpret_cast<_t *>(func) == static_cast<_t>(&MainWindow::listFilesIsLoaded)) {
+                *result = 1;
+            }
         }
     }
 }
@@ -101,14 +138,26 @@ int MainWindow::qt_metacall(QMetaObject::Call _c, int _id, void **_a)
     if (_id < 0)
         return _id;
     if (_c == QMetaObject::InvokeMetaMethod) {
-        if (_id < 2)
+        if (_id < 6)
             qt_static_metacall(this, _c, _id, _a);
-        _id -= 2;
+        _id -= 6;
     } else if (_c == QMetaObject::RegisterMethodArgumentMetaType) {
-        if (_id < 2)
+        if (_id < 6)
             *reinterpret_cast<int*>(_a[0]) = -1;
-        _id -= 2;
+        _id -= 6;
     }
     return _id;
+}
+
+// SIGNAL 0
+void MainWindow::listFilesIsChanged()
+{
+    QMetaObject::activate(this, &staticMetaObject, 0, 0);
+}
+
+// SIGNAL 1
+void MainWindow::listFilesIsLoaded()
+{
+    QMetaObject::activate(this, &staticMetaObject, 1, 0);
 }
 QT_END_MOC_NAMESPACE

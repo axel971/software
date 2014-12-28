@@ -15,7 +15,6 @@ class MainWindow : public QMainWindow
   explicit MainWindow(QWidget *parent = 0);
   ~MainWindow();
 
-  bool  getOpenFiles();
   void initWidget();
   
  private:
@@ -23,8 +22,14 @@ class MainWindow : public QMainWindow
     QStringList m_listFiles;
 
     public slots :
+      void getListFiles();
       void setListFiles();
       void displayWindow(int iListFiles);
+      void enabledRun();
+
+ signals:
+      void listFilesIsChanged();
+      void listFilesIsLoaded();
 };
 
 #endif // MAINWINDOW_H

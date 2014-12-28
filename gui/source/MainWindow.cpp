@@ -9,12 +9,14 @@ MainWindow::MainWindow(QWidget *parent) : QMainWindow(parent), ui(new Ui::MainWi
 {
     ui->setupUi(this);
 
-    //init some widgets
+    //init the widgets
     initWidget();
 
     //manage the events
-    connect(ui->openFiles, SIGNAL(triggered()), this, SLOT(setListFiles()));
+    connect(ui->openFiles, SIGNAL(triggered()), this, SLOT(getListFiles()));
+    connect(this, SIGNAL(listFilesIsChanged()), this, SLOT(setListFiles()));
     connect(ui->listFiles, SIGNAL(currentRowChanged(int)), this, SLOT(displayWindow(int)));
+    connect(this, SIGNAL(listFilesIsLoaded()), this, SLOT(enabledRun()));
 }
 
 MainWindow::~MainWindow()
@@ -23,12 +25,12 @@ MainWindow::~MainWindow()
 }
 
 
-bool MainWindow::getOpenFiles()
+void MainWindow::getListFiles()
 {
   m_listFiles.clear();
   m_listFiles =  QFileDialog::getOpenFileNames(this, "ouvrir un fichier",  QString(),"All Files (*.*)");
 
-  return !( m_listFiles.isEmpty());
+  emit listFilesIsChanged();
 }
 
 void MainWindow::initWidget()
@@ -40,33 +42,27 @@ void MainWindow::initWidget()
 
 void MainWindow::setListFiles()
 {
-
-  if(getOpenFiles());
-  {
-    //check if listFiles is empty
-    if(ui->listFiles->count() > 0)
-      ui->listFiles->clear(); //if m_listFile isn't empty so clear listFiles 
+  //clear thelistFiles
+  ui->listFiles->clear(); //if m_listFile isn't empty so clear listFiles 
   
-    //add item (list elements) inside the liste
-    ui->listFiles->addItems(m_listFiles);
+  //add item (list elements) inside the liste
+  ui->listFiles->addItems(m_listFiles);
 
-    //Make the first item like selected
-    if(ui->listFiles->count()>= 0)
-      ui->listFiles->setCurrentRow(0);
+  //Init the current item at the first item
+  if(ui->listFiles->count()> 0)
+    ui->listFiles->setCurrentRow(0);
 
-    //Creat  checkboxes for each item
-    for(int i = 0; i < ui->listFiles->count(); ++i)
+  //Creat  checkboxes for each item
+  for(int i = 0; i < ui->listFiles->count(); ++i)
     {
       ui->listFiles->item(i)->setFlags(ui->listFiles->item(i)->flags()|Qt::ItemIsUserCheckable);
       ui->listFiles->item(i)->setCheckState(Qt::Unchecked);
     }
 
-    //Make enable the process widget
-    ui->run->setEnabled(true);
-  }
-
   // display list and check boxes
   ui->listFiles->show();
+
+  emit listFilesIsLoaded();
 }
 
 void MainWindow::displayWindow(int iListFiles)
@@ -77,3 +73,7 @@ void MainWindow::displayWindow(int iListFiles)
     ui->displayImage->clear();
 }
 
+void MainWindow::enabledRun()
+{
+  ui->run->setEnabled(true);
+}

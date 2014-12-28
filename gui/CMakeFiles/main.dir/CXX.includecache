@@ -6,39 +6,39 @@
 
 #IncludeRegexTransform: 
 
-/home/axel/Documents/travail/code/imagePyramide/IHM/main_automoc.cpp
+/home/axel/Documents/travail/code/software/gui/main_automoc.cpp
 moc_MainWindow.cpp
-/home/axel/Documents/travail/code/imagePyramide/IHM/moc_MainWindow.cpp
+/home/axel/Documents/travail/code/software/gui/moc_MainWindow.cpp
 
-/home/axel/Documents/travail/code/imagePyramide/IHM/moc_MainWindow.cpp
+/home/axel/Documents/travail/code/software/gui/moc_MainWindow.cpp
 source/MainWindow.h
-/home/axel/Documents/travail/code/imagePyramide/IHM/source/MainWindow.h
+/home/axel/Documents/travail/code/software/gui/source/MainWindow.h
 QtCore/qbytearray.h
 -
 QtCore/qmetatype.h
 -
 
-/home/axel/Documents/travail/code/imagePyramide/IHM/source/MainWindow.cpp
+/home/axel/Documents/travail/code/software/gui/source/MainWindow.cpp
 MainWindow.h
-/home/axel/Documents/travail/code/imagePyramide/IHM/source/MainWindow.h
+/home/axel/Documents/travail/code/software/gui/source/MainWindow.h
 ui_MainWindow.h
-/home/axel/Documents/travail/code/imagePyramide/IHM/source/ui_MainWindow.h
+/home/axel/Documents/travail/code/software/gui/source/ui_MainWindow.h
 QFileDialog
 -
 iostream
 -
 
-/home/axel/Documents/travail/code/imagePyramide/IHM/source/MainWindow.h
+/home/axel/Documents/travail/code/software/gui/source/MainWindow.h
 QMainWindow
 -
 
-/home/axel/Documents/travail/code/imagePyramide/IHM/source/main.cpp
+/home/axel/Documents/travail/code/software/gui/source/main.cpp
 QApplication
 -
 QtWidgets
 -
 MainWindow.h
-/home/axel/Documents/travail/code/imagePyramide/IHM/source/MainWindow.h
+/home/axel/Documents/travail/code/software/gui/source/MainWindow.h
 
 /usr/include/qt5/QtCore/QEvent
 qcoreevent.h
