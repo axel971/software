@@ -1,4 +1,4 @@
-#include "Pyramide.h"
+#include "DOGPyramid.h"
 #include <iostream>
 
 
@@ -14,18 +14,21 @@ main(int argc, char* argv[])
   image = imread("racoon.jpg", CV_LOAD_IMAGE_COLOR);
 
   //construct pyramide
-  Pyramide pyramid(image, 3, 5, sqrt(2), 1.6);  
-  pyramid.build();
+  //GaussianPyramid pyramid(image, 3, 5, sqrt(2), 1.6);  
+  //pyramid.build();
 
+  DOGPyramid dogPyramid(image,3, 4, sqrt(2), 1.6);
+  dogPyramid.build();
+  
   namedWindow( "Display window", WINDOW_AUTOSIZE );// Create a window for display.
   
   for(int i = 0; i < 3; ++i)
-    for(int j= 0; j < 5; ++j)
+    for(int j= 0; j < 4; ++j)
       {
-	imshow( "Display window", pyramid.getImage(i,j)); // Show our image inside it.
+	imshow( "Display window", dogPyramid.getLevelImage(i,j)); // Show our image inside it.
 	waitKey(0);   
       }
-
+ 
   return 0;
 
 }

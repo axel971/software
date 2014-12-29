@@ -1,8 +1,8 @@
 FILE(REMOVE_RECURSE
   "CMakeFiles/main.dir/source/main.cpp.o"
-  "CMakeFiles/main.dir/source/DOGPyramide.cpp.o"
-  "CMakeFiles/main.dir/source/Pyramide.cpp.o"
-  "CMakeFiles/main.dir/source/LevelPyramide.cpp.o"
+  "CMakeFiles/main.dir/source/DOGPyramid.cpp.o"
+  "CMakeFiles/main.dir/source/GaussianLevelPyramid.cpp.o"
+  "CMakeFiles/main.dir/source/GaussianPyramid.cpp.o"
   "main.pdb"
   "main"
 )

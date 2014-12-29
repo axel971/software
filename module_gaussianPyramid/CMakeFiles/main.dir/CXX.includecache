@@ -6,7 +6,15 @@
 
 #IncludeRegexTransform: 
 
-/home/axel/Documents/travail/code/imagePyramide/implementation/source/LevelPyramide.h
+/home/axel/Documents/travail/code/software/module_gaussianPyramid/source/DOGPyramid.cpp
+DOGPyramid.h
+/home/axel/Documents/travail/code/software/module_gaussianPyramid/source/DOGPyramid.h
+
+/home/axel/Documents/travail/code/software/module_gaussianPyramid/source/DOGPyramid.h
+GaussianPyramid.h
+/home/axel/Documents/travail/code/software/module_gaussianPyramid/source/GaussianPyramid.h
+
+/home/axel/Documents/travail/code/software/module_gaussianPyramid/source/GaussianLevelPyramid.h
 opencv2/core/core.hpp
 -
 opencv2/imgproc/imgproc.hpp
@@ -14,23 +22,13 @@ opencv2/imgproc/imgproc.hpp
 opencv2/highgui/highgui.hpp
 -
 
-/home/axel/Documents/travail/code/imagePyramide/implementation/source/Pyramide.cpp
-Pyramide.h
-/home/axel/Documents/travail/code/imagePyramide/implementation/source/Pyramide.h
-
-/home/axel/Documents/travail/code/imagePyramide/implementation/source/Pyramide.h
+/home/axel/Documents/travail/code/software/module_gaussianPyramid/source/GaussianPyramid.h
 vector
 -
 opencv2/core/core.hpp
 -
 iostream
 -
-LevelPyramide.h
-/home/axel/Documents/travail/code/imagePyramide/implementation/source/LevelPyramide.h
-
-/home/axel/Documents/travail/code/imagePyramide/implementation/source/main.cpp
-Pyramide.h
-/home/axel/Documents/travail/code/imagePyramide/implementation/source/Pyramide.h
-iostream
--
+GaussianLevelPyramid.h
+/home/axel/Documents/travail/code/software/module_gaussianPyramid/source/GaussianLevelPyramid.h
 

@@ -39,10 +39,10 @@ RM = /usr/bin/cmake -E remove -f
 EQUALS = =
 
 # The top-level source directory on which CMake was run.
-CMAKE_SOURCE_DIR = /home/axel/Documents/travail/code/imagePyramide/implementation
+CMAKE_SOURCE_DIR = /home/axel/Documents/travail/code/software/module_gaussianPyramid
 
 # The top-level build directory on which CMake was run.
-CMAKE_BINARY_DIR = /home/axel/Documents/travail/code/imagePyramide/implementation
+CMAKE_BINARY_DIR = /home/axel/Documents/travail/code/software/module_gaussianPyramid
 
 #=============================================================================
 # Targets provided globally by CMake.
@@ -69,9 +69,9 @@ rebuild_cache/fast: rebuild_cache
 
 # The main all target
 all: cmake_check_build_system
-	$(CMAKE_COMMAND) -E cmake_progress_start /home/axel/Documents/travail/code/imagePyramide/implementation/CMakeFiles /home/axel/Documents/travail/code/imagePyramide/implementation/CMakeFiles/progress.marks
+	$(CMAKE_COMMAND) -E cmake_progress_start /home/axel/Documents/travail/code/software/module_gaussianPyramid/CMakeFiles /home/axel/Documents/travail/code/software/module_gaussianPyramid/CMakeFiles/progress.marks
 	$(MAKE) -f CMakeFiles/Makefile2 all
-	$(CMAKE_COMMAND) -E cmake_progress_start /home/axel/Documents/travail/code/imagePyramide/implementation/CMakeFiles 0
+	$(CMAKE_COMMAND) -E cmake_progress_start /home/axel/Documents/travail/code/software/module_gaussianPyramid/CMakeFiles 0
 .PHONY : all
 
 # The main clean target
@@ -111,77 +111,77 @@ main/fast:
 	$(MAKE) -f CMakeFiles/main.dir/build.make CMakeFiles/main.dir/build
 .PHONY : main/fast
 
-source/DOGPyramide.o: source/DOGPyramide.cpp.o
-.PHONY : source/DOGPyramide.o
+source/DOGPyramid.o: source/DOGPyramid.cpp.o
+.PHONY : source/DOGPyramid.o
 
 # target to build an object file
-source/DOGPyramide.cpp.o:
-	$(MAKE) -f CMakeFiles/main.dir/build.make CMakeFiles/main.dir/source/DOGPyramide.cpp.o
-.PHONY : source/DOGPyramide.cpp.o
+source/DOGPyramid.cpp.o:
+	$(MAKE) -f CMakeFiles/main.dir/build.make CMakeFiles/main.dir/source/DOGPyramid.cpp.o
+.PHONY : source/DOGPyramid.cpp.o
 
-source/DOGPyramide.i: source/DOGPyramide.cpp.i
-.PHONY : source/DOGPyramide.i
+source/DOGPyramid.i: source/DOGPyramid.cpp.i
+.PHONY : source/DOGPyramid.i
 
 # target to preprocess a source file
-source/DOGPyramide.cpp.i:
-	$(MAKE) -f CMakeFiles/main.dir/build.make CMakeFiles/main.dir/source/DOGPyramide.cpp.i
-.PHONY : source/DOGPyramide.cpp.i
+source/DOGPyramid.cpp.i:
+	$(MAKE) -f CMakeFiles/main.dir/build.make CMakeFiles/main.dir/source/DOGPyramid.cpp.i
+.PHONY : source/DOGPyramid.cpp.i
 
-source/DOGPyramide.s: source/DOGPyramide.cpp.s
-.PHONY : source/DOGPyramide.s
+source/DOGPyramid.s: source/DOGPyramid.cpp.s
+.PHONY : source/DOGPyramid.s
 
 # target to generate assembly for a file
-source/DOGPyramide.cpp.s:
-	$(MAKE) -f CMakeFiles/main.dir/build.make CMakeFiles/main.dir/source/DOGPyramide.cpp.s
-.PHONY : source/DOGPyramide.cpp.s
+source/DOGPyramid.cpp.s:
+	$(MAKE) -f CMakeFiles/main.dir/build.make CMakeFiles/main.dir/source/DOGPyramid.cpp.s
+.PHONY : source/DOGPyramid.cpp.s
 
-source/LevelPyramide.o: source/LevelPyramide.cpp.o
-.PHONY : source/LevelPyramide.o
+source/GaussianLevelPyramid.o: source/GaussianLevelPyramid.cpp.o
+.PHONY : source/GaussianLevelPyramid.o
 
 # target to build an object file
-source/LevelPyramide.cpp.o:
-	$(MAKE) -f CMakeFiles/main.dir/build.make CMakeFiles/main.dir/source/LevelPyramide.cpp.o
-.PHONY : source/LevelPyramide.cpp.o
+source/GaussianLevelPyramid.cpp.o:
+	$(MAKE) -f CMakeFiles/main.dir/build.make CMakeFiles/main.dir/source/GaussianLevelPyramid.cpp.o
+.PHONY : source/GaussianLevelPyramid.cpp.o
 
-source/LevelPyramide.i: source/LevelPyramide.cpp.i
-.PHONY : source/LevelPyramide.i
+source/GaussianLevelPyramid.i: source/GaussianLevelPyramid.cpp.i
+.PHONY : source/GaussianLevelPyramid.i
 
 # target to preprocess a source file
-source/LevelPyramide.cpp.i:
-	$(MAKE) -f CMakeFiles/main.dir/build.make CMakeFiles/main.dir/source/LevelPyramide.cpp.i
-.PHONY : source/LevelPyramide.cpp.i
+source/GaussianLevelPyramid.cpp.i:
+	$(MAKE) -f CMakeFiles/main.dir/build.make CMakeFiles/main.dir/source/GaussianLevelPyramid.cpp.i
+.PHONY : source/GaussianLevelPyramid.cpp.i
 
-source/LevelPyramide.s: source/LevelPyramide.cpp.s
-.PHONY : source/LevelPyramide.s
+source/GaussianLevelPyramid.s: source/GaussianLevelPyramid.cpp.s
+.PHONY : source/GaussianLevelPyramid.s
 
 # target to generate assembly for a file
-source/LevelPyramide.cpp.s:
-	$(MAKE) -f CMakeFiles/main.dir/build.make CMakeFiles/main.dir/source/LevelPyramide.cpp.s
-.PHONY : source/LevelPyramide.cpp.s
+source/GaussianLevelPyramid.cpp.s:
+	$(MAKE) -f CMakeFiles/main.dir/build.make CMakeFiles/main.dir/source/GaussianLevelPyramid.cpp.s
+.PHONY : source/GaussianLevelPyramid.cpp.s
 
-source/Pyramide.o: source/Pyramide.cpp.o
-.PHONY : source/Pyramide.o
+source/GaussianPyramid.o: source/GaussianPyramid.cpp.o
+.PHONY : source/GaussianPyramid.o
 
 # target to build an object file
-source/Pyramide.cpp.o:
-	$(MAKE) -f CMakeFiles/main.dir/build.make CMakeFiles/main.dir/source/Pyramide.cpp.o
-.PHONY : source/Pyramide.cpp.o
+source/GaussianPyramid.cpp.o:
+	$(MAKE) -f CMakeFiles/main.dir/build.make CMakeFiles/main.dir/source/GaussianPyramid.cpp.o
+.PHONY : source/GaussianPyramid.cpp.o
 
-source/Pyramide.i: source/Pyramide.cpp.i
-.PHONY : source/Pyramide.i
+source/GaussianPyramid.i: source/GaussianPyramid.cpp.i
+.PHONY : source/GaussianPyramid.i
 
 # target to preprocess a source file
-source/Pyramide.cpp.i:
-	$(MAKE) -f CMakeFiles/main.dir/build.make CMakeFiles/main.dir/source/Pyramide.cpp.i
-.PHONY : source/Pyramide.cpp.i
+source/GaussianPyramid.cpp.i:
+	$(MAKE) -f CMakeFiles/main.dir/build.make CMakeFiles/main.dir/source/GaussianPyramid.cpp.i
+.PHONY : source/GaussianPyramid.cpp.i
 
-source/Pyramide.s: source/Pyramide.cpp.s
-.PHONY : source/Pyramide.s
+source/GaussianPyramid.s: source/GaussianPyramid.cpp.s
+.PHONY : source/GaussianPyramid.s
 
 # target to generate assembly for a file
-source/Pyramide.cpp.s:
-	$(MAKE) -f CMakeFiles/main.dir/build.make CMakeFiles/main.dir/source/Pyramide.cpp.s
-.PHONY : source/Pyramide.cpp.s
+source/GaussianPyramid.cpp.s:
+	$(MAKE) -f CMakeFiles/main.dir/build.make CMakeFiles/main.dir/source/GaussianPyramid.cpp.s
+.PHONY : source/GaussianPyramid.cpp.s
 
 source/main.o: source/main.cpp.o
 .PHONY : source/main.o
@@ -216,15 +216,15 @@ help:
 	@echo "... edit_cache"
 	@echo "... main"
 	@echo "... rebuild_cache"
-	@echo "... source/DOGPyramide.o"
-	@echo "... source/DOGPyramide.i"
-	@echo "... source/DOGPyramide.s"
-	@echo "... source/LevelPyramide.o"
-	@echo "... source/LevelPyramide.i"
-	@echo "... source/LevelPyramide.s"
-	@echo "... source/Pyramide.o"
-	@echo "... source/Pyramide.i"
-	@echo "... source/Pyramide.s"
+	@echo "... source/DOGPyramid.o"
+	@echo "... source/DOGPyramid.i"
+	@echo "... source/DOGPyramid.s"
+	@echo "... source/GaussianLevelPyramid.o"
+	@echo "... source/GaussianLevelPyramid.i"
+	@echo "... source/GaussianLevelPyramid.s"
+	@echo "... source/GaussianPyramid.o"
+	@echo "... source/GaussianPyramid.i"
+	@echo "... source/GaussianPyramid.s"
 	@echo "... source/main.o"
 	@echo "... source/main.i"
 	@echo "... source/main.s"

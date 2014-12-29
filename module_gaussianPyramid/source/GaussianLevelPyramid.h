@@ -1,15 +1,15 @@
-#ifndef LevelPyramide_h
-#define LevelPyramide_h
+#ifndef GaussianLevelPyramid_h
+#define GaussianLevelPyramid_h
 
 #include <opencv2/core/core.hpp>
 #include <opencv2/imgproc/imgproc.hpp>
 #include <opencv2/highgui/highgui.hpp>
 
-class LevelPyramide {
+class GaussianLevelPyramid {
 
  public:
 
-  LevelPyramide();
+  GaussianLevelPyramid();
 
   void build(cv::Mat image, double sigma, int octave, int level); 
   
@@ -29,4 +29,4 @@ class LevelPyramide {
 
 };
 
-#endif // LevelPyramide_h
+#endif // GaussianLevelPyramid_h
