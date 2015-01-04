@@ -40,8 +40,7 @@ void MainWindow::initWidget()
 void MainWindow::setPath()
 {
   QStringList listFiles;
-  listFiles =  QFileDialog::getOpenFileNames(this, "ouvrir un fichier",  QString(),"All Files (*.*)"
-);
+  listFiles =  QFileDialog::getOpenFileNames(this, "ouvrir un fichier",  QString(),"Images all (*.jpg  *.png *.jpeg)");
   emit setPathActived(listFiles);
 }
 
@@ -89,8 +88,6 @@ void MainWindow::listFiledSelectedAux(QListWidgetItem *ptrItem)
 {
    if(ptrItem->checkState())
     emit listFiledSelected();
-else
-   emit listFiledUnselected();
 }
 
 void MainWindow::enabledRun()
