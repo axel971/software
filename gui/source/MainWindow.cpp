@@ -1,22 +1,27 @@
 #include "MainWindow.h"
 #include "ui_MainWindow.h"
-#include <QFileDialog>
-#include <iostream>
 
 using namespace std;
 
-MainWindow::MainWindow(QWidget *parent) : QMainWindow(parent), ui(new Ui::MainWindow)
+MainWindow::MainWindow(Model *ptrModel, QWidget *parent) : m_ptrModel(ptrModel), QMainWindow(parent), ui(new Ui::MainWindow)
 {
     ui->setupUi(this);
 
     //init the widgets
     initWidget();
+    
+    /*-------- Manage the events ---------*/
+    //signals send of the controller
+    connect(ui->openFiles, SIGNAL(triggered()), this, SLOT(setPath()));
 
-    //manage the events
-    connect(ui->openFiles, SIGNAL(triggered()), this, SLOT(getListFiles()));
-    connect(this, SIGNAL(listFilesIsChanged()), this, SLOT(setListFiles()));
+    //listener toward the model
+    connect(m_ptrModel, SIGNAL(listFilesLoaded()), this, SLOT(setListFiles()));
+  
+    //signals send of the view
     connect(ui->listFiles, SIGNAL(currentRowChanged(int)), this, SLOT(displayWindow(int)));
-    connect(this, SIGNAL(listFilesIsLoaded()), this, SLOT(enabledRun()));
+    connect(ui->listFiles, SIGNAL(itemClicked(QListWidgetItem *)), this, SLOT(listFiledSelectedAux(QListWidgetItem *)));
+    connect(this, SIGNAL(listFiledSelected()), this, SLOT(enabledRun()));
+    connect(this, SIGNAL(listFiledUnselected()), this, SLOT(unabledRun())); 
 }
 
 MainWindow::~MainWindow()
@@ -25,19 +30,19 @@ MainWindow::~MainWindow()
 }
 
 
-void MainWindow::getListFiles()
-{
-  m_listFiles.clear();
-  m_listFiles =  QFileDialog::getOpenFileNames(this, "ouvrir un fichier",  QString(),"All Files (*.*)");
-
-  emit listFilesIsChanged();
-}
-
 void MainWindow::initWidget()
 {
   //making process widget disable
   ui->run->setEnabled(false);
   ui->overlay->setEnabled(false);
+}
+
+void MainWindow::setPath()
+{
+  QStringList listFiles;
+  listFiles =  QFileDialog::getOpenFileNames(this, "ouvrir un fichier",  QString(),"All Files (*.*)"
+);
+  emit setPathActived(listFiles);
 }
 
 void MainWindow::setListFiles()
@@ -46,7 +51,7 @@ void MainWindow::setListFiles()
   ui->listFiles->clear(); //if m_listFile isn't empty so clear listFiles 
   
   //add item (list elements) inside the liste
-  ui->listFiles->addItems(m_listFiles);
+  ui->listFiles->addItems(m_ptrModel->getListFiles());
 
   //Init the current item at the first item
   if(ui->listFiles->count()> 0)
@@ -59,21 +64,41 @@ void MainWindow::setListFiles()
       ui->listFiles->item(i)->setCheckState(Qt::Unchecked);
     }
 
-  // display list and check boxes
+  //display list and check boxes
   ui->listFiles->show();
 
-  emit listFilesIsLoaded();
 }
+
 
 void MainWindow::displayWindow(int iListFiles)
 {
+  QStringList listFiles;
+  listFiles = m_ptrModel->getListFiles();
+
   if(iListFiles >= 0) // This line avoid the bug when there aren't lisFile elements
-    ui->displayImage->setPixmap(QPixmap(m_listFiles.at(iListFiles).toLocal8Bit().constData()));
+    {
+      ui->displayImage->setPixmap(QPixmap(listFiles.at(iListFiles).toLocal8Bit().constData()));
+      ui->displayImage->setScaledContents(true);
+    }
   else
     ui->displayImage->clear();
+}
+
+
+void MainWindow::listFiledSelectedAux(QListWidgetItem *ptrItem)
+{
+   if(ptrItem->checkState())
+    emit listFiledSelected();
+else
+   emit listFiledUnselected();
 }
 
 void MainWindow::enabledRun()
 {
   ui->run->setEnabled(true);
+}
+
+void MainWindow::unabledRun()
+{
+  ui->run->setEnabled(false);
 }

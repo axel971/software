@@ -77,9 +77,55 @@ CMakeFiles/main.dir/source/main.cpp.o.provides: CMakeFiles/main.dir/source/main.
 
 CMakeFiles/main.dir/source/main.cpp.o.provides.build: CMakeFiles/main.dir/source/main.cpp.o
 
+CMakeFiles/main.dir/source/Controller.cpp.o: CMakeFiles/main.dir/flags.make
+CMakeFiles/main.dir/source/Controller.cpp.o: source/Controller.cpp
+	$(CMAKE_COMMAND) -E cmake_progress_report /home/axel/Documents/travail/code/software/gui/CMakeFiles $(CMAKE_PROGRESS_3)
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Building CXX object CMakeFiles/main.dir/source/Controller.cpp.o"
+	/usr/bin/c++   $(CXX_DEFINES) $(CXX_FLAGS) -o CMakeFiles/main.dir/source/Controller.cpp.o -c /home/axel/Documents/travail/code/software/gui/source/Controller.cpp
+
+CMakeFiles/main.dir/source/Controller.cpp.i: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/main.dir/source/Controller.cpp.i"
+	/usr/bin/c++  $(CXX_DEFINES) $(CXX_FLAGS) -E /home/axel/Documents/travail/code/software/gui/source/Controller.cpp > CMakeFiles/main.dir/source/Controller.cpp.i
+
+CMakeFiles/main.dir/source/Controller.cpp.s: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/main.dir/source/Controller.cpp.s"
+	/usr/bin/c++  $(CXX_DEFINES) $(CXX_FLAGS) -S /home/axel/Documents/travail/code/software/gui/source/Controller.cpp -o CMakeFiles/main.dir/source/Controller.cpp.s
+
+CMakeFiles/main.dir/source/Controller.cpp.o.requires:
+.PHONY : CMakeFiles/main.dir/source/Controller.cpp.o.requires
+
+CMakeFiles/main.dir/source/Controller.cpp.o.provides: CMakeFiles/main.dir/source/Controller.cpp.o.requires
+	$(MAKE) -f CMakeFiles/main.dir/build.make CMakeFiles/main.dir/source/Controller.cpp.o.provides.build
+.PHONY : CMakeFiles/main.dir/source/Controller.cpp.o.provides
+
+CMakeFiles/main.dir/source/Controller.cpp.o.provides.build: CMakeFiles/main.dir/source/Controller.cpp.o
+
+CMakeFiles/main.dir/source/Model.cpp.o: CMakeFiles/main.dir/flags.make
+CMakeFiles/main.dir/source/Model.cpp.o: source/Model.cpp
+	$(CMAKE_COMMAND) -E cmake_progress_report /home/axel/Documents/travail/code/software/gui/CMakeFiles $(CMAKE_PROGRESS_4)
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Building CXX object CMakeFiles/main.dir/source/Model.cpp.o"
+	/usr/bin/c++   $(CXX_DEFINES) $(CXX_FLAGS) -o CMakeFiles/main.dir/source/Model.cpp.o -c /home/axel/Documents/travail/code/software/gui/source/Model.cpp
+
+CMakeFiles/main.dir/source/Model.cpp.i: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/main.dir/source/Model.cpp.i"
+	/usr/bin/c++  $(CXX_DEFINES) $(CXX_FLAGS) -E /home/axel/Documents/travail/code/software/gui/source/Model.cpp > CMakeFiles/main.dir/source/Model.cpp.i
+
+CMakeFiles/main.dir/source/Model.cpp.s: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/main.dir/source/Model.cpp.s"
+	/usr/bin/c++  $(CXX_DEFINES) $(CXX_FLAGS) -S /home/axel/Documents/travail/code/software/gui/source/Model.cpp -o CMakeFiles/main.dir/source/Model.cpp.s
+
+CMakeFiles/main.dir/source/Model.cpp.o.requires:
+.PHONY : CMakeFiles/main.dir/source/Model.cpp.o.requires
+
+CMakeFiles/main.dir/source/Model.cpp.o.provides: CMakeFiles/main.dir/source/Model.cpp.o.requires
+	$(MAKE) -f CMakeFiles/main.dir/build.make CMakeFiles/main.dir/source/Model.cpp.o.provides.build
+.PHONY : CMakeFiles/main.dir/source/Model.cpp.o.provides
+
+CMakeFiles/main.dir/source/Model.cpp.o.provides.build: CMakeFiles/main.dir/source/Model.cpp.o
+
 CMakeFiles/main.dir/source/MainWindow.cpp.o: CMakeFiles/main.dir/flags.make
 CMakeFiles/main.dir/source/MainWindow.cpp.o: source/MainWindow.cpp
-	$(CMAKE_COMMAND) -E cmake_progress_report /home/axel/Documents/travail/code/software/gui/CMakeFiles $(CMAKE_PROGRESS_3)
+	$(CMAKE_COMMAND) -E cmake_progress_report /home/axel/Documents/travail/code/software/gui/CMakeFiles $(CMAKE_PROGRESS_5)
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Building CXX object CMakeFiles/main.dir/source/MainWindow.cpp.o"
 	/usr/bin/c++   $(CXX_DEFINES) $(CXX_FLAGS) -o CMakeFiles/main.dir/source/MainWindow.cpp.o -c /home/axel/Documents/travail/code/software/gui/source/MainWindow.cpp
 
@@ -102,7 +148,7 @@ CMakeFiles/main.dir/source/MainWindow.cpp.o.provides.build: CMakeFiles/main.dir/
 
 CMakeFiles/main.dir/main_automoc.cpp.o: CMakeFiles/main.dir/flags.make
 CMakeFiles/main.dir/main_automoc.cpp.o: main_automoc.cpp
-	$(CMAKE_COMMAND) -E cmake_progress_report /home/axel/Documents/travail/code/software/gui/CMakeFiles $(CMAKE_PROGRESS_4)
+	$(CMAKE_COMMAND) -E cmake_progress_report /home/axel/Documents/travail/code/software/gui/CMakeFiles $(CMAKE_PROGRESS_6)
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Building CXX object CMakeFiles/main.dir/main_automoc.cpp.o"
 	/usr/bin/c++   $(CXX_DEFINES) $(CXX_FLAGS) -o CMakeFiles/main.dir/main_automoc.cpp.o -c /home/axel/Documents/travail/code/software/gui/main_automoc.cpp
 
@@ -126,6 +172,8 @@ CMakeFiles/main.dir/main_automoc.cpp.o.provides.build: CMakeFiles/main.dir/main_
 # Object files for target main
 main_OBJECTS = \
 "CMakeFiles/main.dir/source/main.cpp.o" \
+"CMakeFiles/main.dir/source/Controller.cpp.o" \
+"CMakeFiles/main.dir/source/Model.cpp.o" \
 "CMakeFiles/main.dir/source/MainWindow.cpp.o" \
 "CMakeFiles/main.dir/main_automoc.cpp.o"
 
@@ -133,6 +181,8 @@ main_OBJECTS = \
 main_EXTERNAL_OBJECTS =
 
 main: CMakeFiles/main.dir/source/main.cpp.o
+main: CMakeFiles/main.dir/source/Controller.cpp.o
+main: CMakeFiles/main.dir/source/Model.cpp.o
 main: CMakeFiles/main.dir/source/MainWindow.cpp.o
 main: CMakeFiles/main.dir/main_automoc.cpp.o
 main: CMakeFiles/main.dir/build.make
@@ -149,6 +199,8 @@ CMakeFiles/main.dir/build: main
 .PHONY : CMakeFiles/main.dir/build
 
 CMakeFiles/main.dir/requires: CMakeFiles/main.dir/source/main.cpp.o.requires
+CMakeFiles/main.dir/requires: CMakeFiles/main.dir/source/Controller.cpp.o.requires
+CMakeFiles/main.dir/requires: CMakeFiles/main.dir/source/Model.cpp.o.requires
 CMakeFiles/main.dir/requires: CMakeFiles/main.dir/source/MainWindow.cpp.o.requires
 CMakeFiles/main.dir/requires: CMakeFiles/main.dir/main_automoc.cpp.o.requires
 .PHONY : CMakeFiles/main.dir/requires

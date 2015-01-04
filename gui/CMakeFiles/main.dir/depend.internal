@@ -5,6 +5,8 @@ CMakeFiles/main.dir/main_automoc.cpp.o
  /home/axel/Documents/travail/code/software/gui/main_automoc.cpp
  /home/axel/Documents/travail/code/software/gui/moc_MainWindow.cpp
  /home/axel/Documents/travail/code/software/gui/source/MainWindow.h
+ /home/axel/Documents/travail/code/software/gui/source/Model.h
+ /usr/include/qt5/QtCore/qabstractitemmodel.h
  /usr/include/qt5/QtCore/qalgorithms.h
  /usr/include/qt5/QtCore/qarraydata.h
  /usr/include/qt5/QtCore/qatomic.h
@@ -37,9 +39,11 @@ CMakeFiles/main.dir/main_automoc.cpp.o
  /usr/include/qt5/QtCore/qcoreevent.h
  /usr/include/qt5/QtCore/qdatastream.h
  /usr/include/qt5/QtCore/qdebug.h
+ /usr/include/qt5/QtCore/qdir.h
  /usr/include/qt5/QtCore/qfeatures.h
  /usr/include/qt5/QtCore/qfile.h
  /usr/include/qt5/QtCore/qfiledevice.h
+ /usr/include/qt5/QtCore/qfileinfo.h
  /usr/include/qt5/QtCore/qflags.h
  /usr/include/qt5/QtCore/qgenericatomic.h
  /usr/include/qt5/QtCore/qglobal.h
@@ -47,6 +51,7 @@ CMakeFiles/main.dir/main_automoc.cpp.o
  /usr/include/qt5/QtCore/qhash.h
  /usr/include/qt5/QtCore/qiodevice.h
  /usr/include/qt5/QtCore/qisenum.h
+ /usr/include/qt5/QtCore/qitemselectionmodel.h
  /usr/include/qt5/QtCore/qiterator.h
  /usr/include/qt5/QtCore/qline.h
  /usr/include/qt5/QtCore/qlist.h
@@ -68,6 +73,7 @@ CMakeFiles/main.dir/main_automoc.cpp.o
  /usr/include/qt5/QtCore/qrect.h
  /usr/include/qt5/QtCore/qrefcount.h
  /usr/include/qt5/QtCore/qregexp.h
+ /usr/include/qt5/QtCore/qregularexpression.h
  /usr/include/qt5/QtCore/qscopedpointer.h
  /usr/include/qt5/QtCore/qset.h
  /usr/include/qt5/QtCore/qshareddata.h
@@ -108,17 +114,179 @@ CMakeFiles/main.dir/main_automoc.cpp.o
  /usr/include/qt5/QtGui/qrgb.h
  /usr/include/qt5/QtGui/qtouchdevice.h
  /usr/include/qt5/QtGui/qtransform.h
+ /usr/include/qt5/QtGui/qvalidator.h
  /usr/include/qt5/QtGui/qvector2d.h
  /usr/include/qt5/QtGui/qwindowdefs.h
  /usr/include/qt5/QtGui/qwindowdefs_win.h
+ /usr/include/qt5/QtWidgets/QFileDialog
+ /usr/include/qt5/QtWidgets/QListWidgetItem
  /usr/include/qt5/QtWidgets/QMainWindow
+ /usr/include/qt5/QtWidgets/QWidget
+ /usr/include/qt5/QtWidgets/qabstractitemdelegate.h
+ /usr/include/qt5/QtWidgets/qabstractitemview.h
+ /usr/include/qt5/QtWidgets/qabstractscrollarea.h
+ /usr/include/qt5/QtWidgets/qabstractslider.h
+ /usr/include/qt5/QtWidgets/qabstractspinbox.h
+ /usr/include/qt5/QtWidgets/qdialog.h
+ /usr/include/qt5/QtWidgets/qfiledialog.h
+ /usr/include/qt5/QtWidgets/qframe.h
+ /usr/include/qt5/QtWidgets/qlistview.h
+ /usr/include/qt5/QtWidgets/qlistwidget.h
  /usr/include/qt5/QtWidgets/qmainwindow.h
+ /usr/include/qt5/QtWidgets/qrubberband.h
  /usr/include/qt5/QtWidgets/qsizepolicy.h
+ /usr/include/qt5/QtWidgets/qslider.h
+ /usr/include/qt5/QtWidgets/qstyle.h
+ /usr/include/qt5/QtWidgets/qstyleoption.h
+ /usr/include/qt5/QtWidgets/qtabbar.h
  /usr/include/qt5/QtWidgets/qtabwidget.h
  /usr/include/qt5/QtWidgets/qwidget.h
+CMakeFiles/main.dir/source/Controller.cpp.o
+ /home/axel/Documents/travail/code/software/gui/source/Controller.cpp
+ /home/axel/Documents/travail/code/software/gui/source/Controller.h
+ /home/axel/Documents/travail/code/software/gui/source/MainWindow.h
+ /home/axel/Documents/travail/code/software/gui/source/Model.h
+ /usr/include/qt5/QtCore/qabstractitemmodel.h
+ /usr/include/qt5/QtCore/qalgorithms.h
+ /usr/include/qt5/QtCore/qarraydata.h
+ /usr/include/qt5/QtCore/qatomic.h
+ /usr/include/qt5/QtCore/qatomic_alpha.h
+ /usr/include/qt5/QtCore/qatomic_armv5.h
+ /usr/include/qt5/QtCore/qatomic_armv6.h
+ /usr/include/qt5/QtCore/qatomic_armv7.h
+ /usr/include/qt5/QtCore/qatomic_bfin.h
+ /usr/include/qt5/QtCore/qatomic_bootstrap.h
+ /usr/include/qt5/QtCore/qatomic_cxx11.h
+ /usr/include/qt5/QtCore/qatomic_gcc.h
+ /usr/include/qt5/QtCore/qatomic_ia64.h
+ /usr/include/qt5/QtCore/qatomic_integrity.h
+ /usr/include/qt5/QtCore/qatomic_mips.h
+ /usr/include/qt5/QtCore/qatomic_msvc.h
+ /usr/include/qt5/QtCore/qatomic_power.h
+ /usr/include/qt5/QtCore/qatomic_s390.h
+ /usr/include/qt5/QtCore/qatomic_sh4a.h
+ /usr/include/qt5/QtCore/qatomic_sparc.h
+ /usr/include/qt5/QtCore/qatomic_unix.h
+ /usr/include/qt5/QtCore/qatomic_vxworks.h
+ /usr/include/qt5/QtCore/qatomic_x86.h
+ /usr/include/qt5/QtCore/qbasicatomic.h
+ /usr/include/qt5/QtCore/qbytearray.h
+ /usr/include/qt5/QtCore/qchar.h
+ /usr/include/qt5/QtCore/qcompilerdetection.h
+ /usr/include/qt5/QtCore/qconfig.h
+ /usr/include/qt5/QtCore/qcontainerfwd.h
+ /usr/include/qt5/QtCore/qcontiguouscache.h
+ /usr/include/qt5/QtCore/qcoreevent.h
+ /usr/include/qt5/QtCore/qdatastream.h
+ /usr/include/qt5/QtCore/qdebug.h
+ /usr/include/qt5/QtCore/qdir.h
+ /usr/include/qt5/QtCore/qfeatures.h
+ /usr/include/qt5/QtCore/qfile.h
+ /usr/include/qt5/QtCore/qfiledevice.h
+ /usr/include/qt5/QtCore/qfileinfo.h
+ /usr/include/qt5/QtCore/qflags.h
+ /usr/include/qt5/QtCore/qgenericatomic.h
+ /usr/include/qt5/QtCore/qglobal.h
+ /usr/include/qt5/QtCore/qglobalstatic.h
+ /usr/include/qt5/QtCore/qhash.h
+ /usr/include/qt5/QtCore/qiodevice.h
+ /usr/include/qt5/QtCore/qisenum.h
+ /usr/include/qt5/QtCore/qitemselectionmodel.h
+ /usr/include/qt5/QtCore/qiterator.h
+ /usr/include/qt5/QtCore/qline.h
+ /usr/include/qt5/QtCore/qlist.h
+ /usr/include/qt5/QtCore/qlocale.h
+ /usr/include/qt5/QtCore/qlogging.h
+ /usr/include/qt5/QtCore/qmap.h
+ /usr/include/qt5/QtCore/qmargins.h
+ /usr/include/qt5/QtCore/qmetatype.h
+ /usr/include/qt5/QtCore/qmutex.h
+ /usr/include/qt5/QtCore/qnamespace.h
+ /usr/include/qt5/QtCore/qobject.h
+ /usr/include/qt5/QtCore/qobject_impl.h
+ /usr/include/qt5/QtCore/qobjectdefs.h
+ /usr/include/qt5/QtCore/qobjectdefs_impl.h
+ /usr/include/qt5/QtCore/qoldbasicatomic.h
+ /usr/include/qt5/QtCore/qpair.h
+ /usr/include/qt5/QtCore/qpoint.h
+ /usr/include/qt5/QtCore/qprocessordetection.h
+ /usr/include/qt5/QtCore/qrect.h
+ /usr/include/qt5/QtCore/qrefcount.h
+ /usr/include/qt5/QtCore/qregexp.h
+ /usr/include/qt5/QtCore/qregularexpression.h
+ /usr/include/qt5/QtCore/qscopedpointer.h
+ /usr/include/qt5/QtCore/qset.h
+ /usr/include/qt5/QtCore/qshareddata.h
+ /usr/include/qt5/QtCore/qsharedpointer.h
+ /usr/include/qt5/QtCore/qsharedpointer_impl.h
+ /usr/include/qt5/QtCore/qsize.h
+ /usr/include/qt5/QtCore/qstring.h
+ /usr/include/qt5/QtCore/qstringbuilder.h
+ /usr/include/qt5/QtCore/qstringlist.h
+ /usr/include/qt5/QtCore/qstringmatcher.h
+ /usr/include/qt5/QtCore/qsysinfo.h
+ /usr/include/qt5/QtCore/qsystemdetection.h
+ /usr/include/qt5/QtCore/qtextstream.h
+ /usr/include/qt5/QtCore/qtypeinfo.h
+ /usr/include/qt5/QtCore/qtypetraits.h
+ /usr/include/qt5/QtCore/qurl.h
+ /usr/include/qt5/QtCore/qurlquery.h
+ /usr/include/qt5/QtCore/qvariant.h
+ /usr/include/qt5/QtCore/qvarlengtharray.h
+ /usr/include/qt5/QtCore/qvector.h
+ /usr/include/qt5/QtGui/qbrush.h
+ /usr/include/qt5/QtGui/qcolor.h
+ /usr/include/qt5/QtGui/qcursor.h
+ /usr/include/qt5/QtGui/qevent.h
+ /usr/include/qt5/QtGui/qfont.h
+ /usr/include/qt5/QtGui/qfontinfo.h
+ /usr/include/qt5/QtGui/qfontmetrics.h
+ /usr/include/qt5/QtGui/qicon.h
+ /usr/include/qt5/QtGui/qimage.h
+ /usr/include/qt5/QtGui/qkeysequence.h
+ /usr/include/qt5/QtGui/qmatrix.h
+ /usr/include/qt5/QtGui/qpaintdevice.h
+ /usr/include/qt5/QtGui/qpainterpath.h
+ /usr/include/qt5/QtGui/qpalette.h
+ /usr/include/qt5/QtGui/qpixmap.h
+ /usr/include/qt5/QtGui/qpolygon.h
+ /usr/include/qt5/QtGui/qregion.h
+ /usr/include/qt5/QtGui/qrgb.h
+ /usr/include/qt5/QtGui/qtouchdevice.h
+ /usr/include/qt5/QtGui/qtransform.h
+ /usr/include/qt5/QtGui/qvalidator.h
+ /usr/include/qt5/QtGui/qvector2d.h
+ /usr/include/qt5/QtGui/qwindowdefs.h
+ /usr/include/qt5/QtGui/qwindowdefs_win.h
+ /usr/include/qt5/QtWidgets/QFileDialog
+ /usr/include/qt5/QtWidgets/QListWidgetItem
+ /usr/include/qt5/QtWidgets/QMainWindow
+ /usr/include/qt5/QtWidgets/QWidget
+ /usr/include/qt5/QtWidgets/qabstractitemdelegate.h
+ /usr/include/qt5/QtWidgets/qabstractitemview.h
+ /usr/include/qt5/QtWidgets/qabstractscrollarea.h
+ /usr/include/qt5/QtWidgets/qabstractslider.h
+ /usr/include/qt5/QtWidgets/qabstractspinbox.h
+ /usr/include/qt5/QtWidgets/qdialog.h
+ /usr/include/qt5/QtWidgets/qfiledialog.h
+ /usr/include/qt5/QtWidgets/qframe.h
+ /usr/include/qt5/QtWidgets/qlistview.h
+ /usr/include/qt5/QtWidgets/qlistwidget.h
+ /usr/include/qt5/QtWidgets/qmainwindow.h
+ /usr/include/qt5/QtWidgets/qrubberband.h
+ /usr/include/qt5/QtWidgets/qsizepolicy.h
+ /usr/include/qt5/QtWidgets/qslider.h
+ /usr/include/qt5/QtWidgets/qstyle.h
+ /usr/include/qt5/QtWidgets/qstyleoption.h
+ /usr/include/qt5/QtWidgets/qtabbar.h
+ /usr/include/qt5/QtWidgets/qtabwidget.h
+ /usr/include/qt5/QtWidgets/qwidget.h
+ moc_Controller.cpp
+ source/Controller.h
 CMakeFiles/main.dir/source/MainWindow.cpp.o
  /home/axel/Documents/travail/code/software/gui/source/MainWindow.cpp
  /home/axel/Documents/travail/code/software/gui/source/MainWindow.h
+ /home/axel/Documents/travail/code/software/gui/source/Model.h
  /usr/include/qt5/QtCore/QVariant
  /usr/include/qt5/QtCore/qabstractitemmodel.h
  /usr/include/qt5/QtCore/qalgorithms.h
@@ -241,9 +409,11 @@ CMakeFiles/main.dir/source/MainWindow.cpp.o
  /usr/include/qt5/QtWidgets/QButtonGroup
  /usr/include/qt5/QtWidgets/QCheckBox
  /usr/include/qt5/QtWidgets/QFileDialog
+ /usr/include/qt5/QtWidgets/QHBoxLayout
  /usr/include/qt5/QtWidgets/QHeaderView
  /usr/include/qt5/QtWidgets/QLabel
  /usr/include/qt5/QtWidgets/QListWidget
+ /usr/include/qt5/QtWidgets/QListWidgetItem
  /usr/include/qt5/QtWidgets/QMainWindow
  /usr/include/qt5/QtWidgets/QMenu
  /usr/include/qt5/QtWidgets/QMenuBar
@@ -288,8 +458,123 @@ CMakeFiles/main.dir/source/MainWindow.cpp.o
  /usr/include/qt5/QtWidgets/qtabwidget.h
  /usr/include/qt5/QtWidgets/qwidget.h
  ui_MainWindow.h
+CMakeFiles/main.dir/source/Model.cpp.o
+ /home/axel/Documents/travail/code/software/gui/source/Model.cpp
+ /home/axel/Documents/travail/code/software/gui/source/Model.h
+ /usr/include/qt5/QtCore/qalgorithms.h
+ /usr/include/qt5/QtCore/qarraydata.h
+ /usr/include/qt5/QtCore/qatomic.h
+ /usr/include/qt5/QtCore/qatomic_alpha.h
+ /usr/include/qt5/QtCore/qatomic_armv5.h
+ /usr/include/qt5/QtCore/qatomic_armv6.h
+ /usr/include/qt5/QtCore/qatomic_armv7.h
+ /usr/include/qt5/QtCore/qatomic_bfin.h
+ /usr/include/qt5/QtCore/qatomic_bootstrap.h
+ /usr/include/qt5/QtCore/qatomic_cxx11.h
+ /usr/include/qt5/QtCore/qatomic_gcc.h
+ /usr/include/qt5/QtCore/qatomic_ia64.h
+ /usr/include/qt5/QtCore/qatomic_integrity.h
+ /usr/include/qt5/QtCore/qatomic_mips.h
+ /usr/include/qt5/QtCore/qatomic_msvc.h
+ /usr/include/qt5/QtCore/qatomic_power.h
+ /usr/include/qt5/QtCore/qatomic_s390.h
+ /usr/include/qt5/QtCore/qatomic_sh4a.h
+ /usr/include/qt5/QtCore/qatomic_sparc.h
+ /usr/include/qt5/QtCore/qatomic_unix.h
+ /usr/include/qt5/QtCore/qatomic_vxworks.h
+ /usr/include/qt5/QtCore/qatomic_x86.h
+ /usr/include/qt5/QtCore/qbasicatomic.h
+ /usr/include/qt5/QtCore/qbytearray.h
+ /usr/include/qt5/QtCore/qchar.h
+ /usr/include/qt5/QtCore/qcompilerdetection.h
+ /usr/include/qt5/QtCore/qconfig.h
+ /usr/include/qt5/QtCore/qcontainerfwd.h
+ /usr/include/qt5/QtCore/qcontiguouscache.h
+ /usr/include/qt5/QtCore/qcoreevent.h
+ /usr/include/qt5/QtCore/qdatastream.h
+ /usr/include/qt5/QtCore/qdebug.h
+ /usr/include/qt5/QtCore/qfeatures.h
+ /usr/include/qt5/QtCore/qfile.h
+ /usr/include/qt5/QtCore/qfiledevice.h
+ /usr/include/qt5/QtCore/qflags.h
+ /usr/include/qt5/QtCore/qgenericatomic.h
+ /usr/include/qt5/QtCore/qglobal.h
+ /usr/include/qt5/QtCore/qglobalstatic.h
+ /usr/include/qt5/QtCore/qhash.h
+ /usr/include/qt5/QtCore/qiodevice.h
+ /usr/include/qt5/QtCore/qisenum.h
+ /usr/include/qt5/QtCore/qiterator.h
+ /usr/include/qt5/QtCore/qline.h
+ /usr/include/qt5/QtCore/qlist.h
+ /usr/include/qt5/QtCore/qlocale.h
+ /usr/include/qt5/QtCore/qlogging.h
+ /usr/include/qt5/QtCore/qmap.h
+ /usr/include/qt5/QtCore/qmargins.h
+ /usr/include/qt5/QtCore/qmetatype.h
+ /usr/include/qt5/QtCore/qmutex.h
+ /usr/include/qt5/QtCore/qnamespace.h
+ /usr/include/qt5/QtCore/qobject.h
+ /usr/include/qt5/QtCore/qobject_impl.h
+ /usr/include/qt5/QtCore/qobjectdefs.h
+ /usr/include/qt5/QtCore/qobjectdefs_impl.h
+ /usr/include/qt5/QtCore/qoldbasicatomic.h
+ /usr/include/qt5/QtCore/qpair.h
+ /usr/include/qt5/QtCore/qpoint.h
+ /usr/include/qt5/QtCore/qprocessordetection.h
+ /usr/include/qt5/QtCore/qrect.h
+ /usr/include/qt5/QtCore/qrefcount.h
+ /usr/include/qt5/QtCore/qregexp.h
+ /usr/include/qt5/QtCore/qscopedpointer.h
+ /usr/include/qt5/QtCore/qset.h
+ /usr/include/qt5/QtCore/qshareddata.h
+ /usr/include/qt5/QtCore/qsharedpointer.h
+ /usr/include/qt5/QtCore/qsharedpointer_impl.h
+ /usr/include/qt5/QtCore/qsize.h
+ /usr/include/qt5/QtCore/qstring.h
+ /usr/include/qt5/QtCore/qstringbuilder.h
+ /usr/include/qt5/QtCore/qstringlist.h
+ /usr/include/qt5/QtCore/qstringmatcher.h
+ /usr/include/qt5/QtCore/qsysinfo.h
+ /usr/include/qt5/QtCore/qsystemdetection.h
+ /usr/include/qt5/QtCore/qtextstream.h
+ /usr/include/qt5/QtCore/qtypeinfo.h
+ /usr/include/qt5/QtCore/qtypetraits.h
+ /usr/include/qt5/QtCore/qurl.h
+ /usr/include/qt5/QtCore/qurlquery.h
+ /usr/include/qt5/QtCore/qvariant.h
+ /usr/include/qt5/QtCore/qvarlengtharray.h
+ /usr/include/qt5/QtCore/qvector.h
+ /usr/include/qt5/QtGui/qbrush.h
+ /usr/include/qt5/QtGui/qcolor.h
+ /usr/include/qt5/QtGui/qcursor.h
+ /usr/include/qt5/QtGui/qevent.h
+ /usr/include/qt5/QtGui/qfont.h
+ /usr/include/qt5/QtGui/qfontinfo.h
+ /usr/include/qt5/QtGui/qfontmetrics.h
+ /usr/include/qt5/QtGui/qimage.h
+ /usr/include/qt5/QtGui/qkeysequence.h
+ /usr/include/qt5/QtGui/qmatrix.h
+ /usr/include/qt5/QtGui/qpaintdevice.h
+ /usr/include/qt5/QtGui/qpainterpath.h
+ /usr/include/qt5/QtGui/qpalette.h
+ /usr/include/qt5/QtGui/qpixmap.h
+ /usr/include/qt5/QtGui/qpolygon.h
+ /usr/include/qt5/QtGui/qregion.h
+ /usr/include/qt5/QtGui/qrgb.h
+ /usr/include/qt5/QtGui/qtouchdevice.h
+ /usr/include/qt5/QtGui/qtransform.h
+ /usr/include/qt5/QtGui/qvector2d.h
+ /usr/include/qt5/QtGui/qwindowdefs.h
+ /usr/include/qt5/QtGui/qwindowdefs_win.h
+ /usr/include/qt5/QtWidgets/QWidget
+ /usr/include/qt5/QtWidgets/qsizepolicy.h
+ /usr/include/qt5/QtWidgets/qwidget.h
+ moc_Model.cpp
+ source/Model.h
 CMakeFiles/main.dir/source/main.cpp.o
+ /home/axel/Documents/travail/code/software/gui/source/Controller.h
  /home/axel/Documents/travail/code/software/gui/source/MainWindow.h
+ /home/axel/Documents/travail/code/software/gui/source/Model.h
  /home/axel/Documents/travail/code/software/gui/source/main.cpp
  /usr/include/qt5/QtCore/QEvent
  /usr/include/qt5/QtCore/QList
@@ -598,9 +883,12 @@ CMakeFiles/main.dir/source/main.cpp.o
  /usr/include/qt5/QtGui/qwindowdefs_win.h
  /usr/include/qt5/QtWidgets/QApplication
  /usr/include/qt5/QtWidgets/QCommonStyle
+ /usr/include/qt5/QtWidgets/QFileDialog
  /usr/include/qt5/QtWidgets/QLayout
+ /usr/include/qt5/QtWidgets/QListWidgetItem
  /usr/include/qt5/QtWidgets/QMainWindow
  /usr/include/qt5/QtWidgets/QScrollerProperties
+ /usr/include/qt5/QtWidgets/QWidget
  /usr/include/qt5/QtWidgets/QtWidgets
  /usr/include/qt5/QtWidgets/QtWidgetsDepends
  /usr/include/qt5/QtWidgets/qabstractbutton.h

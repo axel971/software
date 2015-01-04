@@ -14,6 +14,7 @@
 #include <QtWidgets/QApplication>
 #include <QtWidgets/QButtonGroup>
 #include <QtWidgets/QCheckBox>
+#include <QtWidgets/QHBoxLayout>
 #include <QtWidgets/QHeaderView>
 #include <QtWidgets/QLabel>
 #include <QtWidgets/QListWidget>
@@ -32,14 +33,13 @@ class Ui_MainWindow
 public:
     QAction *openFiles;
     QWidget *centralwidget;
-    QWidget *widget;
-    QVBoxLayout *verticalLayout_2;
-    QLabel *displayImage;
-    QCheckBox *overlay;
-    QWidget *widget1;
+    QHBoxLayout *horizontalLayout_2;
     QVBoxLayout *verticalLayout;
     QListWidget *listFiles;
     QPushButton *run;
+    QVBoxLayout *verticalLayout_2;
+    QLabel *displayImage;
+    QCheckBox *overlay;
     QMenuBar *menubar;
     QMenu *menu_Files;
     QStatusBar *statusbar;
@@ -48,50 +48,78 @@ public:
     {
         if (MainWindow->objectName().isEmpty())
             MainWindow->setObjectName(QStringLiteral("MainWindow"));
-        MainWindow->resize(830, 635);
+        MainWindow->resize(1022, 653);
+        QSizePolicy sizePolicy(QSizePolicy::Preferred, QSizePolicy::Preferred);
+        sizePolicy.setHorizontalStretch(0);
+        sizePolicy.setVerticalStretch(0);
+        sizePolicy.setHeightForWidth(MainWindow->sizePolicy().hasHeightForWidth());
+        MainWindow->setSizePolicy(sizePolicy);
         openFiles = new QAction(MainWindow);
         openFiles->setObjectName(QStringLiteral("openFiles"));
         centralwidget = new QWidget(MainWindow);
         centralwidget->setObjectName(QStringLiteral("centralwidget"));
-        widget = new QWidget(centralwidget);
-        widget->setObjectName(QStringLiteral("widget"));
-        widget->setGeometry(QRect(390, 10, 381, 501));
-        verticalLayout_2 = new QVBoxLayout(widget);
-        verticalLayout_2->setObjectName(QStringLiteral("verticalLayout_2"));
-        verticalLayout_2->setContentsMargins(0, 0, 0, 0);
-        displayImage = new QLabel(widget);
-        displayImage->setObjectName(QStringLiteral("displayImage"));
-
-        verticalLayout_2->addWidget(displayImage);
-
-        overlay = new QCheckBox(widget);
-        overlay->setObjectName(QStringLiteral("overlay"));
-
-        verticalLayout_2->addWidget(overlay);
-
-        widget1 = new QWidget(centralwidget);
-        widget1->setObjectName(QStringLiteral("widget1"));
-        widget1->setGeometry(QRect(9, 9, 271, 491));
-        verticalLayout = new QVBoxLayout(widget1);
+        sizePolicy.setHeightForWidth(centralwidget->sizePolicy().hasHeightForWidth());
+        centralwidget->setSizePolicy(sizePolicy);
+        horizontalLayout_2 = new QHBoxLayout(centralwidget);
+        horizontalLayout_2->setObjectName(QStringLiteral("horizontalLayout_2"));
+        verticalLayout = new QVBoxLayout();
         verticalLayout->setObjectName(QStringLiteral("verticalLayout"));
         verticalLayout->setSizeConstraint(QLayout::SetDefaultConstraint);
-        verticalLayout->setContentsMargins(0, 0, 0, 0);
-        listFiles = new QListWidget(widget1);
+        listFiles = new QListWidget(centralwidget);
         listFiles->setObjectName(QStringLiteral("listFiles"));
+        QSizePolicy sizePolicy1(QSizePolicy::Fixed, QSizePolicy::Expanding);
+        sizePolicy1.setHorizontalStretch(0);
+        sizePolicy1.setVerticalStretch(0);
+        sizePolicy1.setHeightForWidth(listFiles->sizePolicy().hasHeightForWidth());
+        listFiles->setSizePolicy(sizePolicy1);
         listFiles->setMaximumSize(QSize(16777204, 16777215));
 
         verticalLayout->addWidget(listFiles);
 
-        run = new QPushButton(widget1);
+        run = new QPushButton(centralwidget);
         run->setObjectName(QStringLiteral("run"));
+        QSizePolicy sizePolicy2(QSizePolicy::Fixed, QSizePolicy::Fixed);
+        sizePolicy2.setHorizontalStretch(0);
+        sizePolicy2.setVerticalStretch(0);
+        sizePolicy2.setHeightForWidth(run->sizePolicy().hasHeightForWidth());
+        run->setSizePolicy(sizePolicy2);
         run->setMaximumSize(QSize(16777204, 16777215));
 
         verticalLayout->addWidget(run);
 
+
+        horizontalLayout_2->addLayout(verticalLayout);
+
+        verticalLayout_2 = new QVBoxLayout();
+        verticalLayout_2->setObjectName(QStringLiteral("verticalLayout_2"));
+        displayImage = new QLabel(centralwidget);
+        displayImage->setObjectName(QStringLiteral("displayImage"));
+        displayImage->setEnabled(true);
+        QSizePolicy sizePolicy3(QSizePolicy::Ignored, QSizePolicy::Ignored);
+        sizePolicy3.setHorizontalStretch(0);
+        sizePolicy3.setVerticalStretch(0);
+        sizePolicy3.setHeightForWidth(displayImage->sizePolicy().hasHeightForWidth());
+        displayImage->setSizePolicy(sizePolicy3);
+
+        verticalLayout_2->addWidget(displayImage);
+
+        overlay = new QCheckBox(centralwidget);
+        overlay->setObjectName(QStringLiteral("overlay"));
+        QSizePolicy sizePolicy4(QSizePolicy::Expanding, QSizePolicy::Fixed);
+        sizePolicy4.setHorizontalStretch(0);
+        sizePolicy4.setVerticalStretch(0);
+        sizePolicy4.setHeightForWidth(overlay->sizePolicy().hasHeightForWidth());
+        overlay->setSizePolicy(sizePolicy4);
+
+        verticalLayout_2->addWidget(overlay);
+
+
+        horizontalLayout_2->addLayout(verticalLayout_2);
+
         MainWindow->setCentralWidget(centralwidget);
         menubar = new QMenuBar(MainWindow);
         menubar->setObjectName(QStringLiteral("menubar"));
-        menubar->setGeometry(QRect(0, 0, 830, 25));
+        menubar->setGeometry(QRect(0, 0, 1022, 25));
         menu_Files = new QMenu(menubar);
         menu_Files->setObjectName(QStringLiteral("menu_Files"));
         MainWindow->setMenuBar(menubar);
@@ -112,9 +140,9 @@ public:
     {
         MainWindow->setWindowTitle(QApplication::translate("MainWindow", "MainWindow", 0));
         openFiles->setText(QApplication::translate("MainWindow", "Open files", 0));
+        run->setText(QApplication::translate("MainWindow", "run", 0));
         displayImage->setText(QString());
         overlay->setText(QApplication::translate("MainWindow", "overlay", 0));
-        run->setText(QApplication::translate("MainWindow", "run", 0));
         menu_Files->setTitle(QApplication::translate("MainWindow", "&File", 0));
     } // retranslateUi
 

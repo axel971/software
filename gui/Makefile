@@ -148,6 +148,30 @@ main_automoc.cpp.s:
 	$(MAKE) -f CMakeFiles/main.dir/build.make CMakeFiles/main.dir/main_automoc.cpp.s
 .PHONY : main_automoc.cpp.s
 
+source/Controller.o: source/Controller.cpp.o
+.PHONY : source/Controller.o
+
+# target to build an object file
+source/Controller.cpp.o:
+	$(MAKE) -f CMakeFiles/main.dir/build.make CMakeFiles/main.dir/source/Controller.cpp.o
+.PHONY : source/Controller.cpp.o
+
+source/Controller.i: source/Controller.cpp.i
+.PHONY : source/Controller.i
+
+# target to preprocess a source file
+source/Controller.cpp.i:
+	$(MAKE) -f CMakeFiles/main.dir/build.make CMakeFiles/main.dir/source/Controller.cpp.i
+.PHONY : source/Controller.cpp.i
+
+source/Controller.s: source/Controller.cpp.s
+.PHONY : source/Controller.s
+
+# target to generate assembly for a file
+source/Controller.cpp.s:
+	$(MAKE) -f CMakeFiles/main.dir/build.make CMakeFiles/main.dir/source/Controller.cpp.s
+.PHONY : source/Controller.cpp.s
+
 source/MainWindow.o: source/MainWindow.cpp.o
 .PHONY : source/MainWindow.o
 
@@ -171,6 +195,30 @@ source/MainWindow.s: source/MainWindow.cpp.s
 source/MainWindow.cpp.s:
 	$(MAKE) -f CMakeFiles/main.dir/build.make CMakeFiles/main.dir/source/MainWindow.cpp.s
 .PHONY : source/MainWindow.cpp.s
+
+source/Model.o: source/Model.cpp.o
+.PHONY : source/Model.o
+
+# target to build an object file
+source/Model.cpp.o:
+	$(MAKE) -f CMakeFiles/main.dir/build.make CMakeFiles/main.dir/source/Model.cpp.o
+.PHONY : source/Model.cpp.o
+
+source/Model.i: source/Model.cpp.i
+.PHONY : source/Model.i
+
+# target to preprocess a source file
+source/Model.cpp.i:
+	$(MAKE) -f CMakeFiles/main.dir/build.make CMakeFiles/main.dir/source/Model.cpp.i
+.PHONY : source/Model.cpp.i
+
+source/Model.s: source/Model.cpp.s
+.PHONY : source/Model.s
+
+# target to generate assembly for a file
+source/Model.cpp.s:
+	$(MAKE) -f CMakeFiles/main.dir/build.make CMakeFiles/main.dir/source/Model.cpp.s
+.PHONY : source/Model.cpp.s
 
 source/main.o: source/main.cpp.o
 .PHONY : source/main.o
@@ -209,9 +257,15 @@ help:
 	@echo "... main_automoc.o"
 	@echo "... main_automoc.i"
 	@echo "... main_automoc.s"
+	@echo "... source/Controller.o"
+	@echo "... source/Controller.i"
+	@echo "... source/Controller.s"
 	@echo "... source/MainWindow.o"
 	@echo "... source/MainWindow.i"
 	@echo "... source/MainWindow.s"
+	@echo "... source/Model.o"
+	@echo "... source/Model.i"
+	@echo "... source/Model.s"
 	@echo "... source/main.o"
 	@echo "... source/main.i"
 	@echo "... source/main.s"

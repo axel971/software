@@ -1,6 +1,6 @@
 #include <QApplication>
 #include <QtWidgets>
-#include "MainWindow.h"
+#include "Controller.h"
 
 
 int main(int argc, char** argv)
@@ -8,9 +8,8 @@ int main(int argc, char** argv)
 
   QApplication app(argc,argv);
 
-  MainWindow fenetre;
-  fenetre.show();
+  Controller controller;
+  controller.showView();
 
   return app.exec();
-
 }

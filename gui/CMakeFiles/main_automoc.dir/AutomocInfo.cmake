@@ -1,5 +1,5 @@
-set(AM_SOURCES "/home/axel/Documents/travail/code/software/gui/source/main.cpp;/home/axel/Documents/travail/code/software/gui/source/MainWindow.cpp" )
-set(AM_HEADERS "/home/axel/Documents/travail/code/software/gui/source/MainWindow.h" )
+set(AM_SOURCES "/home/axel/Documents/travail/code/software/gui/source/main.cpp;/home/axel/Documents/travail/code/software/gui/source/Controller.cpp;/home/axel/Documents/travail/code/software/gui/source/Model.cpp;/home/axel/Documents/travail/code/software/gui/source/MainWindow.cpp" )
+set(AM_HEADERS "/home/axel/Documents/travail/code/software/gui/source/MainWindow.h;/home/axel/Documents/travail/code/software/gui/source/Model.h;/home/axel/Documents/travail/code/software/gui/source/Controller.h" )
 set(AM_MOC_COMPILE_DEFINITIONS "QT_CORE_LIB;QT_GUI_LIB;QT_NO_DEBUG;QT_WIDGETS_LIB")
 set(AM_MOC_INCLUDES "/home/axel/Documents/travail/code/software/gui;/usr/include/qt5;/usr/include/qt5/QtWidgets;/usr/include/qt5/QtGui;/usr/include/qt5/QtCore;/usr/lib/x86_64-linux-gnu/qt5/mkspecs/linux-g++-64")
 set(AM_MOC_OPTIONS "")
