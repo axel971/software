@@ -1,0 +1,15 @@
+#include "Model.h"
+
+Model::Model(){}
+
+void Model::setListFiles(QStringList listFiles)
+{
+  m_listFiles = listFiles;
+  emit listFilesChanged;
+}
+
+
+Model::run()
+{
+  emit runFinished;
+}
