@@ -3,7 +3,7 @@
 
 using namespace std;
 
-MainWindow::MainWindow(Model *ptrModel, QWidget *parent) : m_ptrModel(ptrModel), QMainWindow(parent), ui(new Ui::MainWindow)
+MainWindow::MainWindow(Model *ptrModel, QWidget *parent) : m_ptrModel(ptrModel), QMainWindow(parent), ui(new Ui::MainWindow), m_countListFiledSelected(0)
 {
     ui->setupUi(this);
 
@@ -19,7 +19,7 @@ MainWindow::MainWindow(Model *ptrModel, QWidget *parent) : m_ptrModel(ptrModel),
   
     //signals send of the view
     connect(ui->listFiles, SIGNAL(currentRowChanged(int)), this, SLOT(displayWindow(int)));
-    connect(ui->listFiles, SIGNAL(itemClicked(QListWidgetItem *)), this, SLOT(listFiledSelectedAux(QListWidgetItem *)));
+    connect(ui->listFiles, SIGNAL(itemClicked(QListWidgetItem *)), this, SLOT(countListFiledSelected(QListWidgetItem *)));
     connect(this, SIGNAL(listFiledSelected()), this, SLOT(enabledRun()));
     connect(this, SIGNAL(listFiledUnselected()), this, SLOT(unabledRun())); 
 }
@@ -84,10 +84,17 @@ void MainWindow::displayWindow(int iListFiles)
 }
 
 
-void MainWindow::listFiledSelectedAux(QListWidgetItem *ptrItem)
+void MainWindow::countListFiledSelected(QListWidgetItem *ptrItem)
 {
-   if(ptrItem->checkState())
-    emit listFiledSelected();
+   if (ptrItem->checkState()== 2)
+     ++m_countListFiledSelected;
+   else if (ptrItem->checkState()== 0) 
+     --m_countListFiledSelected;
+
+   if(m_countListFiledSelected)
+     emit listFiledSelected();
+   else
+     emit listFiledUnselected();
 }
 
 void MainWindow::enabledRun()

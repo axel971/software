@@ -20,7 +20,7 @@
 QT_BEGIN_MOC_NAMESPACE
 struct qt_meta_stringdata_MainWindow_t {
     QByteArrayData data[13];
-    char stringdata[172];
+    char stringdata[174];
 };
 #define QT_MOC_LITERAL(idx, ofs, len) \
     Q_STATIC_BYTE_ARRAY_DATA_HEADER_INITIALIZER_WITH_OFFSET(len, \
@@ -40,13 +40,13 @@ QT_MOC_LITERAL(7, 86, 13),
 QT_MOC_LITERAL(8, 100, 10),
 QT_MOC_LITERAL(9, 111, 10),
 QT_MOC_LITERAL(10, 122, 10),
-QT_MOC_LITERAL(11, 133, 20),
-QT_MOC_LITERAL(12, 154, 16)
+QT_MOC_LITERAL(11, 133, 22),
+QT_MOC_LITERAL(12, 156, 16)
     },
     "MainWindow\0setPathActived\0\0listFiledSelected\0"
     "listFiledUnselected\0setPath\0setListFiles\0"
     "displayWindow\0iListFiles\0enabledRun\0"
-    "unabledRun\0listFiledSelectedAux\0"
+    "unabledRun\0countListFiledSelected\0"
     "QListWidgetItem*\0"
 };
 #undef QT_MOC_LITERAL
@@ -106,7 +106,7 @@ void MainWindow::qt_static_metacall(QObject *_o, QMetaObject::Call _c, int _id, 
         case 5: _t->displayWindow((*reinterpret_cast< int(*)>(_a[1]))); break;
         case 6: _t->enabledRun(); break;
         case 7: _t->unabledRun(); break;
-        case 8: _t->listFiledSelectedAux((*reinterpret_cast< QListWidgetItem*(*)>(_a[1]))); break;
+        case 8: _t->countListFiledSelected((*reinterpret_cast< QListWidgetItem*(*)>(_a[1]))); break;
         default: ;
         }
     } else if (_c == QMetaObject::IndexOfMethod) {
