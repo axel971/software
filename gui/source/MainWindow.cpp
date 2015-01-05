@@ -86,12 +86,12 @@ void MainWindow::displayWindow(int iListFiles)
 
 void MainWindow::countListFiledSelected(QListWidgetItem *ptrItem)
 {
-   if (ptrItem->checkState()== 2)
+   if (ptrItem->checkState() == 2)
      ++m_countListFiledSelected;
-   else if (ptrItem->checkState()== 0) 
+   else if (ptrItem->checkState() == 0) 
      --m_countListFiledSelected;
 
-   if(m_countListFiledSelected)
+   if (m_countListFiledSelected)
      emit listFiledSelected();
    else
      emit listFiledUnselected();
