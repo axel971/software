@@ -10,14 +10,13 @@ main(int argc, char* argv[])
 
   Mat image;
 
-  //load image
   image = imread("racoon.jpg", CV_LOAD_IMAGE_COLOR);
 
   //construct pyramide
-  //GaussianPyramid pyramid(image, 3, 5, sqrt(2), 1.6);  
+  // GaussianPyramid pyramid(image, 3, 5, sqrt(2), 1.6);  
   //pyramid.build();
 
-  DOGPyramid dogPyramid(image,3, 4, sqrt(2), 1.6);
+  DOGPyramid dogPyramid(image, 3, 4, sqrt(2), 1.6);
   dogPyramid.build();
   
   namedWindow( "Display window", WINDOW_AUTOSIZE );// Create a window for display.

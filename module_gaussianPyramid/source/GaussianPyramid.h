@@ -16,11 +16,6 @@ class GaussianPyramid{
 
   cv::Mat  getLevelImage(int i, int j);
   double getLevelSigma(int i, int j);
-  void setImage(cv::Mat image);
-  void setOctave(int octave);
-  void setLevel(int level);
-  void setSigma0(double sigma0);
-  void setK(double k);
 
   void build();
 

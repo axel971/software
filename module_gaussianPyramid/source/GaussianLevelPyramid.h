@@ -10,10 +10,8 @@ class GaussianLevelPyramid {
  public:
 
   GaussianLevelPyramid();
+  GaussianLevelPyramid(cv::Mat image, int octave, int level, double sigma);
 
-  void build(cv::Mat image, double sigma, int octave, int level); 
-  
-  void setImage(cv::Mat image); //To Do : Delete this function here and the class diagramm
   cv::Mat getImage();
   double getSigma();
   int getLevel();
@@ -23,7 +21,7 @@ class GaussianLevelPyramid {
   
  private:
   int m_level;
-  int m_octave; //To Do : Modify the class diagramm
+  int m_octave; 
   cv::Mat m_image;
   double m_sigma;
 

@@ -10,15 +10,17 @@ DOGPyramid::DOGPyramid(cv::Mat image, int octave, int level, double k, double si
 
 void DOGPyramid::build()
 {
+  
   m_gaussianPyramid.build();
+
   Mat im1, im2;
   
   for(int i = 0; i < m_octave; ++i)
     for(int j = 0; j < m_level; ++j)
       {
-	m_gaussianPyramid.getLevelImage(i, j+1).convertTo(im1,CV_64FC1);
+	m_gaussianPyramid.getLevelImage(i, j + 1).convertTo(im1, CV_64FC1);
 	m_gaussianPyramid.getLevelImage(i, j).convertTo(im2, CV_64FC1);
-	m_data[i*m_level+j].build(im1-im2, 1, i, j);
+	m_data[i * m_level + j] = GaussianLevelPyramid(im1 - im2, i, j, 1);
       }
   
 }
