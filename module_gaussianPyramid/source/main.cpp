@@ -1,4 +1,4 @@
-#include "DOGPyramid.h"
+#include "DOGPyramid.hpp"
 #include <iostream>
 
 

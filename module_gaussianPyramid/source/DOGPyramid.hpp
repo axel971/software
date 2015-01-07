@@ -1,7 +1,7 @@
-#ifndef DOGPyramid_h
-#define DOGPyramid_h
+#ifndef DOGPyramid_hpp
+#define DOGPyramid_hpp
 
-#include "GaussianPyramid.h"
+#include "GaussianPyramid.hpp"
 
 
 class DOGPyramid : public GaussianPyramid

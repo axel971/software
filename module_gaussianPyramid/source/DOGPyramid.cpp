@@ -1,4 +1,4 @@
-#include "DOGPyramid.h"
+#include "DOGPyramid.hpp"
 
 using namespace cv;
 using namespace std;

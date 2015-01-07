@@ -35,10 +35,10 @@ RM = /usr/bin/cmake -E remove -f
 EQUALS = =
 
 # The top-level source directory on which CMake was run.
-CMAKE_SOURCE_DIR = /home/axel/Documents/travail/code/software/module_gaussianPyramid
+CMAKE_SOURCE_DIR = /home/axel/Documents/code/software/module_gaussianPyramid
 
 # The top-level build directory on which CMake was run.
-CMAKE_BINARY_DIR = /home/axel/Documents/travail/code/software/module_gaussianPyramid
+CMAKE_BINARY_DIR = /home/axel/Documents/code/software/module_gaussianPyramid
 
 # Include any dependencies generated for this target.
 include CMakeFiles/main.dir/depend.make
@@ -51,17 +51,17 @@ include CMakeFiles/main.dir/flags.make
 
 CMakeFiles/main.dir/source/main.cpp.o: CMakeFiles/main.dir/flags.make
 CMakeFiles/main.dir/source/main.cpp.o: source/main.cpp
-	$(CMAKE_COMMAND) -E cmake_progress_report /home/axel/Documents/travail/code/software/module_gaussianPyramid/CMakeFiles $(CMAKE_PROGRESS_1)
+	$(CMAKE_COMMAND) -E cmake_progress_report /home/axel/Documents/code/software/module_gaussianPyramid/CMakeFiles $(CMAKE_PROGRESS_1)
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Building CXX object CMakeFiles/main.dir/source/main.cpp.o"
-	/usr/bin/c++   $(CXX_DEFINES) $(CXX_FLAGS) -o CMakeFiles/main.dir/source/main.cpp.o -c /home/axel/Documents/travail/code/software/module_gaussianPyramid/source/main.cpp
+	/usr/bin/c++   $(CXX_DEFINES) $(CXX_FLAGS) -o CMakeFiles/main.dir/source/main.cpp.o -c /home/axel/Documents/code/software/module_gaussianPyramid/source/main.cpp
 
 CMakeFiles/main.dir/source/main.cpp.i: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/main.dir/source/main.cpp.i"
-	/usr/bin/c++  $(CXX_DEFINES) $(CXX_FLAGS) -E /home/axel/Documents/travail/code/software/module_gaussianPyramid/source/main.cpp > CMakeFiles/main.dir/source/main.cpp.i
+	/usr/bin/c++  $(CXX_DEFINES) $(CXX_FLAGS) -E /home/axel/Documents/code/software/module_gaussianPyramid/source/main.cpp > CMakeFiles/main.dir/source/main.cpp.i
 
 CMakeFiles/main.dir/source/main.cpp.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/main.dir/source/main.cpp.s"
-	/usr/bin/c++  $(CXX_DEFINES) $(CXX_FLAGS) -S /home/axel/Documents/travail/code/software/module_gaussianPyramid/source/main.cpp -o CMakeFiles/main.dir/source/main.cpp.s
+	/usr/bin/c++  $(CXX_DEFINES) $(CXX_FLAGS) -S /home/axel/Documents/code/software/module_gaussianPyramid/source/main.cpp -o CMakeFiles/main.dir/source/main.cpp.s
 
 CMakeFiles/main.dir/source/main.cpp.o.requires:
 .PHONY : CMakeFiles/main.dir/source/main.cpp.o.requires
@@ -74,17 +74,17 @@ CMakeFiles/main.dir/source/main.cpp.o.provides.build: CMakeFiles/main.dir/source
 
 CMakeFiles/main.dir/source/DOGPyramid.cpp.o: CMakeFiles/main.dir/flags.make
 CMakeFiles/main.dir/source/DOGPyramid.cpp.o: source/DOGPyramid.cpp
-	$(CMAKE_COMMAND) -E cmake_progress_report /home/axel/Documents/travail/code/software/module_gaussianPyramid/CMakeFiles $(CMAKE_PROGRESS_2)
+	$(CMAKE_COMMAND) -E cmake_progress_report /home/axel/Documents/code/software/module_gaussianPyramid/CMakeFiles $(CMAKE_PROGRESS_2)
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Building CXX object CMakeFiles/main.dir/source/DOGPyramid.cpp.o"
-	/usr/bin/c++   $(CXX_DEFINES) $(CXX_FLAGS) -o CMakeFiles/main.dir/source/DOGPyramid.cpp.o -c /home/axel/Documents/travail/code/software/module_gaussianPyramid/source/DOGPyramid.cpp
+	/usr/bin/c++   $(CXX_DEFINES) $(CXX_FLAGS) -o CMakeFiles/main.dir/source/DOGPyramid.cpp.o -c /home/axel/Documents/code/software/module_gaussianPyramid/source/DOGPyramid.cpp
 
 CMakeFiles/main.dir/source/DOGPyramid.cpp.i: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/main.dir/source/DOGPyramid.cpp.i"
-	/usr/bin/c++  $(CXX_DEFINES) $(CXX_FLAGS) -E /home/axel/Documents/travail/code/software/module_gaussianPyramid/source/DOGPyramid.cpp > CMakeFiles/main.dir/source/DOGPyramid.cpp.i
+	/usr/bin/c++  $(CXX_DEFINES) $(CXX_FLAGS) -E /home/axel/Documents/code/software/module_gaussianPyramid/source/DOGPyramid.cpp > CMakeFiles/main.dir/source/DOGPyramid.cpp.i
 
 CMakeFiles/main.dir/source/DOGPyramid.cpp.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/main.dir/source/DOGPyramid.cpp.s"
-	/usr/bin/c++  $(CXX_DEFINES) $(CXX_FLAGS) -S /home/axel/Documents/travail/code/software/module_gaussianPyramid/source/DOGPyramid.cpp -o CMakeFiles/main.dir/source/DOGPyramid.cpp.s
+	/usr/bin/c++  $(CXX_DEFINES) $(CXX_FLAGS) -S /home/axel/Documents/code/software/module_gaussianPyramid/source/DOGPyramid.cpp -o CMakeFiles/main.dir/source/DOGPyramid.cpp.s
 
 CMakeFiles/main.dir/source/DOGPyramid.cpp.o.requires:
 .PHONY : CMakeFiles/main.dir/source/DOGPyramid.cpp.o.requires
@@ -97,17 +97,17 @@ CMakeFiles/main.dir/source/DOGPyramid.cpp.o.provides.build: CMakeFiles/main.dir/
 
 CMakeFiles/main.dir/source/GaussianLevelPyramid.cpp.o: CMakeFiles/main.dir/flags.make
 CMakeFiles/main.dir/source/GaussianLevelPyramid.cpp.o: source/GaussianLevelPyramid.cpp
-	$(CMAKE_COMMAND) -E cmake_progress_report /home/axel/Documents/travail/code/software/module_gaussianPyramid/CMakeFiles $(CMAKE_PROGRESS_3)
+	$(CMAKE_COMMAND) -E cmake_progress_report /home/axel/Documents/code/software/module_gaussianPyramid/CMakeFiles $(CMAKE_PROGRESS_3)
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Building CXX object CMakeFiles/main.dir/source/GaussianLevelPyramid.cpp.o"
-	/usr/bin/c++   $(CXX_DEFINES) $(CXX_FLAGS) -o CMakeFiles/main.dir/source/GaussianLevelPyramid.cpp.o -c /home/axel/Documents/travail/code/software/module_gaussianPyramid/source/GaussianLevelPyramid.cpp
+	/usr/bin/c++   $(CXX_DEFINES) $(CXX_FLAGS) -o CMakeFiles/main.dir/source/GaussianLevelPyramid.cpp.o -c /home/axel/Documents/code/software/module_gaussianPyramid/source/GaussianLevelPyramid.cpp
 
 CMakeFiles/main.dir/source/GaussianLevelPyramid.cpp.i: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/main.dir/source/GaussianLevelPyramid.cpp.i"
-	/usr/bin/c++  $(CXX_DEFINES) $(CXX_FLAGS) -E /home/axel/Documents/travail/code/software/module_gaussianPyramid/source/GaussianLevelPyramid.cpp > CMakeFiles/main.dir/source/GaussianLevelPyramid.cpp.i
+	/usr/bin/c++  $(CXX_DEFINES) $(CXX_FLAGS) -E /home/axel/Documents/code/software/module_gaussianPyramid/source/GaussianLevelPyramid.cpp > CMakeFiles/main.dir/source/GaussianLevelPyramid.cpp.i
 
 CMakeFiles/main.dir/source/GaussianLevelPyramid.cpp.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/main.dir/source/GaussianLevelPyramid.cpp.s"
-	/usr/bin/c++  $(CXX_DEFINES) $(CXX_FLAGS) -S /home/axel/Documents/travail/code/software/module_gaussianPyramid/source/GaussianLevelPyramid.cpp -o CMakeFiles/main.dir/source/GaussianLevelPyramid.cpp.s
+	/usr/bin/c++  $(CXX_DEFINES) $(CXX_FLAGS) -S /home/axel/Documents/code/software/module_gaussianPyramid/source/GaussianLevelPyramid.cpp -o CMakeFiles/main.dir/source/GaussianLevelPyramid.cpp.s
 
 CMakeFiles/main.dir/source/GaussianLevelPyramid.cpp.o.requires:
 .PHONY : CMakeFiles/main.dir/source/GaussianLevelPyramid.cpp.o.requires
@@ -120,17 +120,17 @@ CMakeFiles/main.dir/source/GaussianLevelPyramid.cpp.o.provides.build: CMakeFiles
 
 CMakeFiles/main.dir/source/GaussianPyramid.cpp.o: CMakeFiles/main.dir/flags.make
 CMakeFiles/main.dir/source/GaussianPyramid.cpp.o: source/GaussianPyramid.cpp
-	$(CMAKE_COMMAND) -E cmake_progress_report /home/axel/Documents/travail/code/software/module_gaussianPyramid/CMakeFiles $(CMAKE_PROGRESS_4)
+	$(CMAKE_COMMAND) -E cmake_progress_report /home/axel/Documents/code/software/module_gaussianPyramid/CMakeFiles $(CMAKE_PROGRESS_4)
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Building CXX object CMakeFiles/main.dir/source/GaussianPyramid.cpp.o"
-	/usr/bin/c++   $(CXX_DEFINES) $(CXX_FLAGS) -o CMakeFiles/main.dir/source/GaussianPyramid.cpp.o -c /home/axel/Documents/travail/code/software/module_gaussianPyramid/source/GaussianPyramid.cpp
+	/usr/bin/c++   $(CXX_DEFINES) $(CXX_FLAGS) -o CMakeFiles/main.dir/source/GaussianPyramid.cpp.o -c /home/axel/Documents/code/software/module_gaussianPyramid/source/GaussianPyramid.cpp
 
 CMakeFiles/main.dir/source/GaussianPyramid.cpp.i: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/main.dir/source/GaussianPyramid.cpp.i"
-	/usr/bin/c++  $(CXX_DEFINES) $(CXX_FLAGS) -E /home/axel/Documents/travail/code/software/module_gaussianPyramid/source/GaussianPyramid.cpp > CMakeFiles/main.dir/source/GaussianPyramid.cpp.i
+	/usr/bin/c++  $(CXX_DEFINES) $(CXX_FLAGS) -E /home/axel/Documents/code/software/module_gaussianPyramid/source/GaussianPyramid.cpp > CMakeFiles/main.dir/source/GaussianPyramid.cpp.i
 
 CMakeFiles/main.dir/source/GaussianPyramid.cpp.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/main.dir/source/GaussianPyramid.cpp.s"
-	/usr/bin/c++  $(CXX_DEFINES) $(CXX_FLAGS) -S /home/axel/Documents/travail/code/software/module_gaussianPyramid/source/GaussianPyramid.cpp -o CMakeFiles/main.dir/source/GaussianPyramid.cpp.s
+	/usr/bin/c++  $(CXX_DEFINES) $(CXX_FLAGS) -S /home/axel/Documents/code/software/module_gaussianPyramid/source/GaussianPyramid.cpp -o CMakeFiles/main.dir/source/GaussianPyramid.cpp.s
 
 CMakeFiles/main.dir/source/GaussianPyramid.cpp.o.requires:
 .PHONY : CMakeFiles/main.dir/source/GaussianPyramid.cpp.o.requires
@@ -204,6 +204,6 @@ CMakeFiles/main.dir/clean:
 .PHONY : CMakeFiles/main.dir/clean
 
 CMakeFiles/main.dir/depend:
-	cd /home/axel/Documents/travail/code/software/module_gaussianPyramid && $(CMAKE_COMMAND) -E cmake_depends "Unix Makefiles" /home/axel/Documents/travail/code/software/module_gaussianPyramid /home/axel/Documents/travail/code/software/module_gaussianPyramid /home/axel/Documents/travail/code/software/module_gaussianPyramid /home/axel/Documents/travail/code/software/module_gaussianPyramid /home/axel/Documents/travail/code/software/module_gaussianPyramid/CMakeFiles/main.dir/DependInfo.cmake --color=$(COLOR)
+	cd /home/axel/Documents/code/software/module_gaussianPyramid && $(CMAKE_COMMAND) -E cmake_depends "Unix Makefiles" /home/axel/Documents/code/software/module_gaussianPyramid /home/axel/Documents/code/software/module_gaussianPyramid /home/axel/Documents/code/software/module_gaussianPyramid /home/axel/Documents/code/software/module_gaussianPyramid /home/axel/Documents/code/software/module_gaussianPyramid/CMakeFiles/main.dir/DependInfo.cmake --color=$(COLOR)
 .PHONY : CMakeFiles/main.dir/depend
 

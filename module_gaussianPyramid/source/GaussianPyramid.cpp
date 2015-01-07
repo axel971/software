@@ -1,4 +1,4 @@
-#include "GaussianPyramid.h"
+#include "GaussianPyramid.hpp"
 using namespace cv;
 using namespace std;
 

@@ -1,4 +1,4 @@
-#include "GaussianLevelPyramid.h"
+#include "GaussianLevelPyramid.hpp"
 #include <iostream>
 
 using namespace cv;
