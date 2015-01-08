@@ -18,25 +18,28 @@ class Model : public QWidget
 
   QStringList m_listFiles;
   std::vector<bool> m_isSelected;
-  // bool m_isProcessed;
+  bool m_isAllSelected;
   //  cv::Mat m_images;
 
  public :
-
+  
   Model();
- 
+  
   void run();
   void setListFiles(QStringList listFiles);
-  QStringList getListFiles(); 
+  QStringList getListFiles();   
+  bool getIsSelected(int i);
+  void lookIsAllSelected();
 
   public slots :
     void initIsSelected();
+    void setIsSelected(int i, bool value);
 
  signals :
 
   void listFilesLoaded();
   void runFinished();
-
+  void isAllSelected(bool);
 };
 
 #endif

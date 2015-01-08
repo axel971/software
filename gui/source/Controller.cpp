@@ -7,7 +7,7 @@ Controller::Controller() : m_view(&m_model)
 {
   //manage the events
    connect(&m_view, SIGNAL(setPathActived(QStringList)), this, SLOT(setListFiles(QStringList)));
-   //   cout << m_view << endl; 
+   connect(&m_view, SIGNAL(fileClicked(int, bool)), &m_model, SLOT(setIsSelected(int, bool)));
 }
 
 

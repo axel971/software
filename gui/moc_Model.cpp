@@ -19,8 +19,8 @@
 
 QT_BEGIN_MOC_NAMESPACE
 struct qt_meta_stringdata_Model_t {
-    QByteArrayData data[5];
-    char stringdata[51];
+    QByteArrayData data[9];
+    char stringdata[87];
 };
 #define QT_MOC_LITERAL(idx, ofs, len) \
     Q_STATIC_BYTE_ARRAY_DATA_HEADER_INITIALIZER_WITH_OFFSET(len, \
@@ -33,10 +33,15 @@ QT_MOC_LITERAL(0, 0, 5),
 QT_MOC_LITERAL(1, 6, 15),
 QT_MOC_LITERAL(2, 22, 0),
 QT_MOC_LITERAL(3, 23, 11),
-QT_MOC_LITERAL(4, 35, 14)
+QT_MOC_LITERAL(4, 35, 13),
+QT_MOC_LITERAL(5, 49, 14),
+QT_MOC_LITERAL(6, 64, 13),
+QT_MOC_LITERAL(7, 78, 1),
+QT_MOC_LITERAL(8, 80, 5)
     },
     "Model\0listFilesLoaded\0\0runFinished\0"
-    "initIsSelected\0"
+    "isAllSelected\0initIsSelected\0setIsSelected\0"
+    "i\0value\0"
 };
 #undef QT_MOC_LITERAL
 
@@ -46,26 +51,30 @@ static const uint qt_meta_data_Model[] = {
        7,       // revision
        0,       // classname
        0,    0, // classinfo
-       3,   14, // methods
+       5,   14, // methods
        0,    0, // properties
        0,    0, // enums/sets
        0,    0, // constructors
        0,       // flags
-       2,       // signalCount
+       3,       // signalCount
 
  // signals: name, argc, parameters, tag, flags
-       1,    0,   29,    2, 0x06,
-       3,    0,   30,    2, 0x06,
+       1,    0,   39,    2, 0x06,
+       3,    0,   40,    2, 0x06,
+       4,    1,   41,    2, 0x06,
 
  // slots: name, argc, parameters, tag, flags
-       4,    0,   31,    2, 0x0a,
+       5,    0,   44,    2, 0x0a,
+       6,    2,   45,    2, 0x0a,
 
  // signals: parameters
     QMetaType::Void,
     QMetaType::Void,
+    QMetaType::Void, QMetaType::Bool,    2,
 
  // slots: parameters
     QMetaType::Void,
+    QMetaType::Void, QMetaType::Int, QMetaType::Bool,    7,    8,
 
        0        // eod
 };
@@ -77,7 +86,9 @@ void Model::qt_static_metacall(QObject *_o, QMetaObject::Call _c, int _id, void 
         switch (_id) {
         case 0: _t->listFilesLoaded(); break;
         case 1: _t->runFinished(); break;
-        case 2: _t->initIsSelected(); break;
+        case 2: _t->isAllSelected((*reinterpret_cast< bool(*)>(_a[1]))); break;
+        case 3: _t->initIsSelected(); break;
+        case 4: _t->setIsSelected((*reinterpret_cast< int(*)>(_a[1])),(*reinterpret_cast< bool(*)>(_a[2]))); break;
         default: ;
         }
     } else if (_c == QMetaObject::IndexOfMethod) {
@@ -95,8 +106,13 @@ void Model::qt_static_metacall(QObject *_o, QMetaObject::Call _c, int _id, void 
                 *result = 1;
             }
         }
+        {
+            typedef void (Model::*_t)(bool );
+            if (*reinterpret_cast<_t *>(func) == static_cast<_t>(&Model::isAllSelected)) {
+                *result = 2;
+            }
+        }
     }
-    Q_UNUSED(_a);
 }
 
 const QMetaObject Model::staticMetaObject = {
@@ -124,13 +140,13 @@ int Model::qt_metacall(QMetaObject::Call _c, int _id, void **_a)
     if (_id < 0)
         return _id;
     if (_c == QMetaObject::InvokeMetaMethod) {
-        if (_id < 3)
+        if (_id < 5)
             qt_static_metacall(this, _c, _id, _a);
-        _id -= 3;
+        _id -= 5;
     } else if (_c == QMetaObject::RegisterMethodArgumentMetaType) {
-        if (_id < 3)
+        if (_id < 5)
             *reinterpret_cast<int*>(_a[0]) = -1;
-        _id -= 3;
+        _id -= 5;
     }
     return _id;
 }
@@ -145,5 +161,12 @@ void Model::listFilesLoaded()
 void Model::runFinished()
 {
     QMetaObject::activate(this, &staticMetaObject, 1, 0);
+}
+
+// SIGNAL 2
+void Model::isAllSelected(bool _t1)
+{
+    void *_a[] = { 0, const_cast<void*>(reinterpret_cast<const void*>(&_t1)) };
+    QMetaObject::activate(this, &staticMetaObject, 2, _a);
 }
 QT_END_MOC_NAMESPACE

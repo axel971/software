@@ -18,8 +18,7 @@ class MainWindow : public QMainWindow
  private:
     Ui::MainWindow *ui;
     Model *m_ptrModel;
-    uint m_countListFiledSelected;
-
+   
  public:
     explicit MainWindow(Model *ptrModel, QWidget *parent = 0);
     ~MainWindow();
@@ -32,14 +31,12 @@ class MainWindow : public QMainWindow
       void setPath();
       void setListFiles();
       void displayWindow(int iListFiles);
-      void enabledRun();
-      void unabledRun();      
-      void countListFiledSelected(QListWidgetItem*);
+      void listFilesClicked(QListWidgetItem*);
+      void enabledRun(bool);   
 
  signals:
       void setPathActived(QStringList);
-      void listFiledSelected();
-      void listFiledUnselected();
+      void fileClicked(int, bool);
 };
 
 #endif // MAINWINDOW_H
