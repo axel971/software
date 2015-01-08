@@ -25,6 +25,7 @@ class MainWindow : public QMainWindow
     ~MainWindow();
 
     void initWidget();
+    Ui::MainWindow *Ui();
     
     public slots :
 

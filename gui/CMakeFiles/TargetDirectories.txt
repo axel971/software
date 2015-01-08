@@ -1,2 +1,2 @@
-/home/axel/Documents/travail/code/software/gui/CMakeFiles/main.dir
-/home/axel/Documents/travail/code/software/gui/CMakeFiles/main_automoc.dir
+/home/axel/Documents/code/software/gui/CMakeFiles/main.dir
+/home/axel/Documents/code/software/gui/CMakeFiles/main_automoc.dir

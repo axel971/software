@@ -3,7 +3,10 @@
 
 using namespace std;
 
-Model::Model(){}
+Model::Model()
+{
+  connect(this, SIGNAL(listFilesLoaded()), this, SLOT(initIsSelected()));
+}
 
 void Model::setListFiles(QStringList listFiles)
 {
@@ -16,6 +19,11 @@ void Model::setListFiles(QStringList listFiles)
 QStringList Model::getListFiles()
 {
   return m_listFiles;
+}
+
+void Model::initIsSelected()
+{
+  m_isSelected = vector<bool>(m_listFiles.count(), false);
 }
 
 void Model::run()

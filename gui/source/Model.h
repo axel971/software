@@ -17,16 +17,20 @@ class Model : public QWidget
  protected :
 
   QStringList m_listFiles;
-  bool m_isSelected;
-  bool m_isProcessed;
+  std::vector<bool> m_isSelected;
+  // bool m_isProcessed;
   //  cv::Mat m_images;
 
  public :
 
   Model();
+ 
   void run();
   void setListFiles(QStringList listFiles);
-  QStringList getListFiles();
+  QStringList getListFiles(); 
+
+  public slots :
+    void initIsSelected();
 
  signals :
 

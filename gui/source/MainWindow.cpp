@@ -10,7 +10,6 @@ MainWindow::MainWindow(Model *ptrModel, QWidget *parent) : m_ptrModel(ptrModel),
     //init the widgets
     initWidget();
     
-    /*-------- Manage the events ---------*/
     //signals send of the controller
     connect(ui->openFiles, SIGNAL(triggered()), this, SLOT(setPath()));
 
@@ -29,6 +28,10 @@ MainWindow::~MainWindow()
     delete ui;
 }
 
+Ui::MainWindow* MainWindow::Ui()
+{
+  return ui;
+} 
 
 void MainWindow::initWidget()
 {
@@ -95,6 +98,9 @@ void MainWindow::countListFiledSelected(QListWidgetItem *ptrItem)
      emit listFiledSelected();
    else
      emit listFiledUnselected();
+
+   cout << m_countListFiledSelected << endl;
+
 }
 
 void MainWindow::enabledRun()

@@ -35,10 +35,10 @@ RM = /usr/bin/cmake -E remove -f
 EQUALS = =
 
 # The top-level source directory on which CMake was run.
-CMAKE_SOURCE_DIR = /home/axel/Documents/travail/code/software/gui
+CMAKE_SOURCE_DIR = /home/axel/Documents/code/software/gui
 
 # The top-level build directory on which CMake was run.
-CMAKE_BINARY_DIR = /home/axel/Documents/travail/code/software/gui
+CMAKE_BINARY_DIR = /home/axel/Documents/code/software/gui
 
 # Include any dependencies generated for this target.
 include CMakeFiles/main.dir/depend.make
@@ -50,23 +50,23 @@ include CMakeFiles/main.dir/progress.make
 include CMakeFiles/main.dir/flags.make
 
 ui_MainWindow.h: source/MainWindow.ui
-	$(CMAKE_COMMAND) -E cmake_progress_report /home/axel/Documents/travail/code/software/gui/CMakeFiles $(CMAKE_PROGRESS_1)
+	$(CMAKE_COMMAND) -E cmake_progress_report /home/axel/Documents/code/software/gui/CMakeFiles $(CMAKE_PROGRESS_1)
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --blue --bold "Generating ui_MainWindow.h"
-	/usr/lib/x86_64-linux-gnu/qt5/bin/uic -o /home/axel/Documents/travail/code/software/gui/ui_MainWindow.h /home/axel/Documents/travail/code/software/gui/source/MainWindow.ui
+	/usr/lib/x86_64-linux-gnu/qt5/bin/uic -o /home/axel/Documents/code/software/gui/ui_MainWindow.h /home/axel/Documents/code/software/gui/source/MainWindow.ui
 
 CMakeFiles/main.dir/source/main.cpp.o: CMakeFiles/main.dir/flags.make
 CMakeFiles/main.dir/source/main.cpp.o: source/main.cpp
-	$(CMAKE_COMMAND) -E cmake_progress_report /home/axel/Documents/travail/code/software/gui/CMakeFiles $(CMAKE_PROGRESS_2)
+	$(CMAKE_COMMAND) -E cmake_progress_report /home/axel/Documents/code/software/gui/CMakeFiles $(CMAKE_PROGRESS_2)
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Building CXX object CMakeFiles/main.dir/source/main.cpp.o"
-	/usr/bin/c++   $(CXX_DEFINES) $(CXX_FLAGS) -o CMakeFiles/main.dir/source/main.cpp.o -c /home/axel/Documents/travail/code/software/gui/source/main.cpp
+	/usr/bin/c++   $(CXX_DEFINES) $(CXX_FLAGS) -o CMakeFiles/main.dir/source/main.cpp.o -c /home/axel/Documents/code/software/gui/source/main.cpp
 
 CMakeFiles/main.dir/source/main.cpp.i: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/main.dir/source/main.cpp.i"
-	/usr/bin/c++  $(CXX_DEFINES) $(CXX_FLAGS) -E /home/axel/Documents/travail/code/software/gui/source/main.cpp > CMakeFiles/main.dir/source/main.cpp.i
+	/usr/bin/c++  $(CXX_DEFINES) $(CXX_FLAGS) -E /home/axel/Documents/code/software/gui/source/main.cpp > CMakeFiles/main.dir/source/main.cpp.i
 
 CMakeFiles/main.dir/source/main.cpp.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/main.dir/source/main.cpp.s"
-	/usr/bin/c++  $(CXX_DEFINES) $(CXX_FLAGS) -S /home/axel/Documents/travail/code/software/gui/source/main.cpp -o CMakeFiles/main.dir/source/main.cpp.s
+	/usr/bin/c++  $(CXX_DEFINES) $(CXX_FLAGS) -S /home/axel/Documents/code/software/gui/source/main.cpp -o CMakeFiles/main.dir/source/main.cpp.s
 
 CMakeFiles/main.dir/source/main.cpp.o.requires:
 .PHONY : CMakeFiles/main.dir/source/main.cpp.o.requires
@@ -79,17 +79,17 @@ CMakeFiles/main.dir/source/main.cpp.o.provides.build: CMakeFiles/main.dir/source
 
 CMakeFiles/main.dir/source/Controller.cpp.o: CMakeFiles/main.dir/flags.make
 CMakeFiles/main.dir/source/Controller.cpp.o: source/Controller.cpp
-	$(CMAKE_COMMAND) -E cmake_progress_report /home/axel/Documents/travail/code/software/gui/CMakeFiles $(CMAKE_PROGRESS_3)
+	$(CMAKE_COMMAND) -E cmake_progress_report /home/axel/Documents/code/software/gui/CMakeFiles $(CMAKE_PROGRESS_3)
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Building CXX object CMakeFiles/main.dir/source/Controller.cpp.o"
-	/usr/bin/c++   $(CXX_DEFINES) $(CXX_FLAGS) -o CMakeFiles/main.dir/source/Controller.cpp.o -c /home/axel/Documents/travail/code/software/gui/source/Controller.cpp
+	/usr/bin/c++   $(CXX_DEFINES) $(CXX_FLAGS) -o CMakeFiles/main.dir/source/Controller.cpp.o -c /home/axel/Documents/code/software/gui/source/Controller.cpp
 
 CMakeFiles/main.dir/source/Controller.cpp.i: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/main.dir/source/Controller.cpp.i"
-	/usr/bin/c++  $(CXX_DEFINES) $(CXX_FLAGS) -E /home/axel/Documents/travail/code/software/gui/source/Controller.cpp > CMakeFiles/main.dir/source/Controller.cpp.i
+	/usr/bin/c++  $(CXX_DEFINES) $(CXX_FLAGS) -E /home/axel/Documents/code/software/gui/source/Controller.cpp > CMakeFiles/main.dir/source/Controller.cpp.i
 
 CMakeFiles/main.dir/source/Controller.cpp.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/main.dir/source/Controller.cpp.s"
-	/usr/bin/c++  $(CXX_DEFINES) $(CXX_FLAGS) -S /home/axel/Documents/travail/code/software/gui/source/Controller.cpp -o CMakeFiles/main.dir/source/Controller.cpp.s
+	/usr/bin/c++  $(CXX_DEFINES) $(CXX_FLAGS) -S /home/axel/Documents/code/software/gui/source/Controller.cpp -o CMakeFiles/main.dir/source/Controller.cpp.s
 
 CMakeFiles/main.dir/source/Controller.cpp.o.requires:
 .PHONY : CMakeFiles/main.dir/source/Controller.cpp.o.requires
@@ -102,17 +102,17 @@ CMakeFiles/main.dir/source/Controller.cpp.o.provides.build: CMakeFiles/main.dir/
 
 CMakeFiles/main.dir/source/Model.cpp.o: CMakeFiles/main.dir/flags.make
 CMakeFiles/main.dir/source/Model.cpp.o: source/Model.cpp
-	$(CMAKE_COMMAND) -E cmake_progress_report /home/axel/Documents/travail/code/software/gui/CMakeFiles $(CMAKE_PROGRESS_4)
+	$(CMAKE_COMMAND) -E cmake_progress_report /home/axel/Documents/code/software/gui/CMakeFiles $(CMAKE_PROGRESS_4)
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Building CXX object CMakeFiles/main.dir/source/Model.cpp.o"
-	/usr/bin/c++   $(CXX_DEFINES) $(CXX_FLAGS) -o CMakeFiles/main.dir/source/Model.cpp.o -c /home/axel/Documents/travail/code/software/gui/source/Model.cpp
+	/usr/bin/c++   $(CXX_DEFINES) $(CXX_FLAGS) -o CMakeFiles/main.dir/source/Model.cpp.o -c /home/axel/Documents/code/software/gui/source/Model.cpp
 
 CMakeFiles/main.dir/source/Model.cpp.i: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/main.dir/source/Model.cpp.i"
-	/usr/bin/c++  $(CXX_DEFINES) $(CXX_FLAGS) -E /home/axel/Documents/travail/code/software/gui/source/Model.cpp > CMakeFiles/main.dir/source/Model.cpp.i
+	/usr/bin/c++  $(CXX_DEFINES) $(CXX_FLAGS) -E /home/axel/Documents/code/software/gui/source/Model.cpp > CMakeFiles/main.dir/source/Model.cpp.i
 
 CMakeFiles/main.dir/source/Model.cpp.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/main.dir/source/Model.cpp.s"
-	/usr/bin/c++  $(CXX_DEFINES) $(CXX_FLAGS) -S /home/axel/Documents/travail/code/software/gui/source/Model.cpp -o CMakeFiles/main.dir/source/Model.cpp.s
+	/usr/bin/c++  $(CXX_DEFINES) $(CXX_FLAGS) -S /home/axel/Documents/code/software/gui/source/Model.cpp -o CMakeFiles/main.dir/source/Model.cpp.s
 
 CMakeFiles/main.dir/source/Model.cpp.o.requires:
 .PHONY : CMakeFiles/main.dir/source/Model.cpp.o.requires
@@ -125,17 +125,17 @@ CMakeFiles/main.dir/source/Model.cpp.o.provides.build: CMakeFiles/main.dir/sourc
 
 CMakeFiles/main.dir/source/MainWindow.cpp.o: CMakeFiles/main.dir/flags.make
 CMakeFiles/main.dir/source/MainWindow.cpp.o: source/MainWindow.cpp
-	$(CMAKE_COMMAND) -E cmake_progress_report /home/axel/Documents/travail/code/software/gui/CMakeFiles $(CMAKE_PROGRESS_5)
+	$(CMAKE_COMMAND) -E cmake_progress_report /home/axel/Documents/code/software/gui/CMakeFiles $(CMAKE_PROGRESS_5)
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Building CXX object CMakeFiles/main.dir/source/MainWindow.cpp.o"
-	/usr/bin/c++   $(CXX_DEFINES) $(CXX_FLAGS) -o CMakeFiles/main.dir/source/MainWindow.cpp.o -c /home/axel/Documents/travail/code/software/gui/source/MainWindow.cpp
+	/usr/bin/c++   $(CXX_DEFINES) $(CXX_FLAGS) -o CMakeFiles/main.dir/source/MainWindow.cpp.o -c /home/axel/Documents/code/software/gui/source/MainWindow.cpp
 
 CMakeFiles/main.dir/source/MainWindow.cpp.i: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/main.dir/source/MainWindow.cpp.i"
-	/usr/bin/c++  $(CXX_DEFINES) $(CXX_FLAGS) -E /home/axel/Documents/travail/code/software/gui/source/MainWindow.cpp > CMakeFiles/main.dir/source/MainWindow.cpp.i
+	/usr/bin/c++  $(CXX_DEFINES) $(CXX_FLAGS) -E /home/axel/Documents/code/software/gui/source/MainWindow.cpp > CMakeFiles/main.dir/source/MainWindow.cpp.i
 
 CMakeFiles/main.dir/source/MainWindow.cpp.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/main.dir/source/MainWindow.cpp.s"
-	/usr/bin/c++  $(CXX_DEFINES) $(CXX_FLAGS) -S /home/axel/Documents/travail/code/software/gui/source/MainWindow.cpp -o CMakeFiles/main.dir/source/MainWindow.cpp.s
+	/usr/bin/c++  $(CXX_DEFINES) $(CXX_FLAGS) -S /home/axel/Documents/code/software/gui/source/MainWindow.cpp -o CMakeFiles/main.dir/source/MainWindow.cpp.s
 
 CMakeFiles/main.dir/source/MainWindow.cpp.o.requires:
 .PHONY : CMakeFiles/main.dir/source/MainWindow.cpp.o.requires
@@ -148,17 +148,17 @@ CMakeFiles/main.dir/source/MainWindow.cpp.o.provides.build: CMakeFiles/main.dir/
 
 CMakeFiles/main.dir/main_automoc.cpp.o: CMakeFiles/main.dir/flags.make
 CMakeFiles/main.dir/main_automoc.cpp.o: main_automoc.cpp
-	$(CMAKE_COMMAND) -E cmake_progress_report /home/axel/Documents/travail/code/software/gui/CMakeFiles $(CMAKE_PROGRESS_6)
+	$(CMAKE_COMMAND) -E cmake_progress_report /home/axel/Documents/code/software/gui/CMakeFiles $(CMAKE_PROGRESS_6)
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Building CXX object CMakeFiles/main.dir/main_automoc.cpp.o"
-	/usr/bin/c++   $(CXX_DEFINES) $(CXX_FLAGS) -o CMakeFiles/main.dir/main_automoc.cpp.o -c /home/axel/Documents/travail/code/software/gui/main_automoc.cpp
+	/usr/bin/c++   $(CXX_DEFINES) $(CXX_FLAGS) -o CMakeFiles/main.dir/main_automoc.cpp.o -c /home/axel/Documents/code/software/gui/main_automoc.cpp
 
 CMakeFiles/main.dir/main_automoc.cpp.i: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/main.dir/main_automoc.cpp.i"
-	/usr/bin/c++  $(CXX_DEFINES) $(CXX_FLAGS) -E /home/axel/Documents/travail/code/software/gui/main_automoc.cpp > CMakeFiles/main.dir/main_automoc.cpp.i
+	/usr/bin/c++  $(CXX_DEFINES) $(CXX_FLAGS) -E /home/axel/Documents/code/software/gui/main_automoc.cpp > CMakeFiles/main.dir/main_automoc.cpp.i
 
 CMakeFiles/main.dir/main_automoc.cpp.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/main.dir/main_automoc.cpp.s"
-	/usr/bin/c++  $(CXX_DEFINES) $(CXX_FLAGS) -S /home/axel/Documents/travail/code/software/gui/main_automoc.cpp -o CMakeFiles/main.dir/main_automoc.cpp.s
+	/usr/bin/c++  $(CXX_DEFINES) $(CXX_FLAGS) -S /home/axel/Documents/code/software/gui/main_automoc.cpp -o CMakeFiles/main.dir/main_automoc.cpp.s
 
 CMakeFiles/main.dir/main_automoc.cpp.o.requires:
 .PHONY : CMakeFiles/main.dir/main_automoc.cpp.o.requires
@@ -210,6 +210,6 @@ CMakeFiles/main.dir/clean:
 .PHONY : CMakeFiles/main.dir/clean
 
 CMakeFiles/main.dir/depend: ui_MainWindow.h
-	cd /home/axel/Documents/travail/code/software/gui && $(CMAKE_COMMAND) -E cmake_depends "Unix Makefiles" /home/axel/Documents/travail/code/software/gui /home/axel/Documents/travail/code/software/gui /home/axel/Documents/travail/code/software/gui /home/axel/Documents/travail/code/software/gui /home/axel/Documents/travail/code/software/gui/CMakeFiles/main.dir/DependInfo.cmake --color=$(COLOR)
+	cd /home/axel/Documents/code/software/gui && $(CMAKE_COMMAND) -E cmake_depends "Unix Makefiles" /home/axel/Documents/code/software/gui /home/axel/Documents/code/software/gui /home/axel/Documents/code/software/gui /home/axel/Documents/code/software/gui /home/axel/Documents/code/software/gui/CMakeFiles/main.dir/DependInfo.cmake --color=$(COLOR)
 .PHONY : CMakeFiles/main.dir/depend
 

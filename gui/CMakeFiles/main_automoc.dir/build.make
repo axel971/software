@@ -35,10 +35,10 @@ RM = /usr/bin/cmake -E remove -f
 EQUALS = =
 
 # The top-level source directory on which CMake was run.
-CMAKE_SOURCE_DIR = /home/axel/Documents/travail/code/software/gui
+CMAKE_SOURCE_DIR = /home/axel/Documents/code/software/gui
 
 # The top-level build directory on which CMake was run.
-CMAKE_BINARY_DIR = /home/axel/Documents/travail/code/software/gui
+CMAKE_BINARY_DIR = /home/axel/Documents/code/software/gui
 
 # Utility rule file for main_automoc.
 
@@ -46,9 +46,9 @@ CMAKE_BINARY_DIR = /home/axel/Documents/travail/code/software/gui
 include CMakeFiles/main_automoc.dir/progress.make
 
 CMakeFiles/main_automoc:
-	$(CMAKE_COMMAND) -E cmake_progress_report /home/axel/Documents/travail/code/software/gui/CMakeFiles $(CMAKE_PROGRESS_1)
+	$(CMAKE_COMMAND) -E cmake_progress_report /home/axel/Documents/code/software/gui/CMakeFiles $(CMAKE_PROGRESS_1)
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --blue --bold "Automoc for target main"
-	/usr/bin/cmake -E cmake_automoc /home/axel/Documents/travail/code/software/gui/CMakeFiles/main_automoc.dir/ ""
+	/usr/bin/cmake -E cmake_automoc /home/axel/Documents/code/software/gui/CMakeFiles/main_automoc.dir/ ""
 
 main_automoc: CMakeFiles/main_automoc
 main_automoc: CMakeFiles/main_automoc.dir/build.make
@@ -63,6 +63,6 @@ CMakeFiles/main_automoc.dir/clean:
 .PHONY : CMakeFiles/main_automoc.dir/clean
 
 CMakeFiles/main_automoc.dir/depend:
-	cd /home/axel/Documents/travail/code/software/gui && $(CMAKE_COMMAND) -E cmake_depends "Unix Makefiles" /home/axel/Documents/travail/code/software/gui /home/axel/Documents/travail/code/software/gui /home/axel/Documents/travail/code/software/gui /home/axel/Documents/travail/code/software/gui /home/axel/Documents/travail/code/software/gui/CMakeFiles/main_automoc.dir/DependInfo.cmake --color=$(COLOR)
+	cd /home/axel/Documents/code/software/gui && $(CMAKE_COMMAND) -E cmake_depends "Unix Makefiles" /home/axel/Documents/code/software/gui /home/axel/Documents/code/software/gui /home/axel/Documents/code/software/gui /home/axel/Documents/code/software/gui /home/axel/Documents/code/software/gui/CMakeFiles/main_automoc.dir/DependInfo.cmake --color=$(COLOR)
 .PHONY : CMakeFiles/main_automoc.dir/depend
 
