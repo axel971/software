@@ -1,0 +1,36 @@
+#IncludeRegexLine: ^[ 	]*#[ 	]*(include|import)[ 	]*[<"]([^">]+)([">])
+
+#IncludeRegexScan: ^.*$
+
+#IncludeRegexComplain: ^$
+
+#IncludeRegexTransform: 
+
+/home/axel/Documents/code/software/module_gaussianPyramid/source/DOGPyramid.hpp
+GaussianPyramid.hpp
+/home/axel/Documents/code/software/module_gaussianPyramid/source/GaussianPyramid.hpp
+
+/home/axel/Documents/code/software/module_gaussianPyramid/source/GaussianLevelPyramid.hpp
+opencv2/core/core.hpp
+-
+opencv2/imgproc/imgproc.hpp
+-
+opencv2/highgui/highgui.hpp
+-
+
+/home/axel/Documents/code/software/module_gaussianPyramid/source/GaussianPyramid.hpp
+vector
+-
+opencv2/core/core.hpp
+-
+iostream
+-
+GaussianLevelPyramid.hpp
+/home/axel/Documents/code/software/module_gaussianPyramid/source/GaussianLevelPyramid.hpp
+
+/home/axel/Documents/code/software/module_gaussianPyramid/source/main.cpp
+DOGPyramid.hpp
+/home/axel/Documents/code/software/module_gaussianPyramid/source/DOGPyramid.hpp
+iostream
+-
+
