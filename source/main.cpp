@@ -1,6 +1,6 @@
 #include <QApplication>
 #include <QtWidgets>
-#include "Controller.h"
+#include "mvc/Controller.h"
 
 
 int main(int argc, char** argv)
