@@ -1,3 +1,4 @@
 
 # Ignorer les backups emacs :
 *~
+compile/*
