@@ -1,6 +1,7 @@
 CMAKE_MINIMUM_REQUIRED(VERSION 2.8.8)
 
-PROJECT(main)
+PROJECT(application)
+
 
 # Appeler automatique le moc quand nécessaire
 SET(CMAKE_AUTOMOC ON)
@@ -22,12 +23,18 @@ FILE(
     FICHIERS_SOURCES
     source/*
 )
+FILE(
+    GLOB_RECURSE
+    UI_FILES	
+    source/*.ui
+)
 
-ADD_EXECUTABLE(${PROJECT_NAME} ${FICHIERS_SOURCES})
+# Support UI files
+qt5_wrap_ui(UI_HEADERS ${UI_FILES})
+
+ADD_EXECUTABLE(${PROJECT_NAME} ${FICHIERS_SOURCES} ${UI_HEADER})
 
 TARGET_LINK_LIBRARIES(${PROJECT_NAME} ${OpenCV_LIBS} Qt5::Widgets Qt5::Core Qt5::Gui)
 
-# Support UI files
-qt5_wrap_ui(source/ui_MainWindow.h source/MainWindow.ui)
 
 
