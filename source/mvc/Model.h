@@ -8,6 +8,7 @@
 #include <QWidget>
 
 #include <iostream>
+#include <vector>
 
 class Model : public QWidget
 {
@@ -19,7 +20,7 @@ class Model : public QWidget
   QStringList m_listFiles;
   std::vector<bool> m_isSelected;
   bool m_isAllSelected;
-  //  cv::Mat m_images;
+  std::vector<cv::Mat> m_images;
 
  public :
   
@@ -29,17 +30,19 @@ class Model : public QWidget
   void setListFiles(QStringList listFiles);
   QStringList getListFiles();   
   bool getIsSelected(int i);
-  void lookIsAllSelected();
-
+  
   public slots :
     void initIsSelected();
     void setIsSelected(int i, bool value);
+    void initImages();
+    void lookIsAllSelected();
 
  signals :
 
   void listFilesLoaded();
   void runFinished();
   void isAllSelected(bool);
+  void isSelectedChanged();
 };
 
 #endif

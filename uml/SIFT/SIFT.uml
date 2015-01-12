@@ -58,7 +58,7 @@
 			CodeGeneration
 		</plugin>
 </profile>
-<XMI xmi.version = '1.2' xmlns:UML = 'org.omg.xmi.namespace.UML' timestamp = 'Thu Jan 08 11:24:01 CET 2015'>
+<XMI xmi.version = '1.2' xmlns:UML = 'org.omg.xmi.namespace.UML' timestamp = 'Mon Jan 12 10:28:28 CET 2015'>
   <XMI.header>    <XMI.documentation>
       <XMI.exporter>ArgoUML (using Netbeans XMI Writer version 1.0)</XMI.exporter>
       <XMI.exporterVersion>0.34(6) revised on $Date: 2010-01-11 22:20:14 +0100 (Mon, 11 Jan 2010) $ </XMI.exporterVersion>
@@ -314,35 +314,33 @@
                 </UML:Parameter>
               </UML:BehavioralFeature.parameter>
             </UML:Operation>
-            <UML:Operation xmi.id = '127-0-1-1--2149b0e:14ac8f07e6f:-8000:0000000000000FF6'
-              name = 'eraseLocalExtrema' visibility = 'public' isSpecification = 'false'
+            <UML:Operation xmi.id = '127-0-1-1--55daae71:14add51ab39:-8000:0000000000000AA1'
+              name = 'isLocalExtrema' visibility = 'private' isSpecification = 'false'
               ownerScope = 'instance' isQuery = 'false' concurrency = 'sequential' isRoot = 'false'
               isLeaf = 'false' isAbstract = 'false'>
               <UML:BehavioralFeature.parameter>
-                <UML:Parameter xmi.id = '127-0-1-1--2149b0e:14ac8f07e6f:-8000:0000000000000FF7'
-                  name = 'return' isSpecification = 'false' kind = 'return'/>
-                <UML:Parameter xmi.id = '127-0-1-1--2149b0e:14ac8f07e6f:-8000:0000000000000FF8'
-                  name = 'img1' isSpecification = 'false' kind = 'inout'>
+                <UML:Parameter xmi.id = '127-0-1-1--55daae71:14add51ab39:-8000:0000000000000AA2'
+                  name = 'isExtrema' isSpecification = 'false' kind = 'return'>
+                  <UML:Parameter.type>
+                    <UML:DataType xmi.idref = '127-0-1-1--55daae71:14add51ab39:-8000:0000000000000AA8'/>
+                  </UML:Parameter.type>
+                </UML:Parameter>
+                <UML:Parameter xmi.id = '127-0-1-1--55daae71:14add51ab39:-8000:0000000000000AA3'
+                  name = 'roiImg1' isSpecification = 'false' kind = 'in'>
                   <UML:Parameter.type>
                     <UML:DataType xmi.idref = '127-0-1-1--2149b0e:14ac8f07e6f:-8000:0000000000000FD0'/>
                   </UML:Parameter.type>
                 </UML:Parameter>
-                <UML:Parameter xmi.id = '127-0-1-1--2149b0e:14ac8f07e6f:-8000:0000000000000FF9'
-                  name = 'img2' isSpecification = 'false' kind = 'inout'>
+                <UML:Parameter xmi.id = '127-0-1-1--55daae71:14add51ab39:-8000:0000000000000AA6'
+                  name = 'roiImg2' isSpecification = 'false' kind = 'in'>
                   <UML:Parameter.type>
                     <UML:DataType xmi.idref = '127-0-1-1--2149b0e:14ac8f07e6f:-8000:0000000000000FD0'/>
                   </UML:Parameter.type>
                 </UML:Parameter>
-                <UML:Parameter xmi.id = '127-0-1-1--2149b0e:14ac8f07e6f:-8000:0000000000000FFA'
-                  name = 'img3' isSpecification = 'false' kind = 'inout'>
+                <UML:Parameter xmi.id = '127-0-1-1--55daae71:14add51ab39:-8000:0000000000000AA7'
+                  name = 'roiImg3' isSpecification = 'false' kind = 'in'>
                   <UML:Parameter.type>
                     <UML:DataType xmi.idref = '127-0-1-1--2149b0e:14ac8f07e6f:-8000:0000000000000FD0'/>
-                  </UML:Parameter.type>
-                </UML:Parameter>
-                <UML:Parameter xmi.id = '127-0-1-1--2149b0e:14ac8f07e6f:-8000:0000000000000FFB'
-                  name = 'features' isSpecification = 'false' kind = 'in'>
-                  <UML:Parameter.type>
-                    <UML:DataType xmi.idref = '127-0-1-1--2149b0e:14ac8f07e6f:-8000:0000000000000FF5'/>
                   </UML:Parameter.type>
                 </UML:Parameter>
               </UML:BehavioralFeature.parameter>
@@ -409,6 +407,9 @@
         <UML:DataType xmi.id = '127-0-1-1--2149b0e:14ac8f07e6f:-8000:0000000000000FF5'
           name = 'vector&lt;Feature&gt;' isSpecification = 'false' isRoot = 'false'
           isLeaf = 'false' isAbstract = 'false'/>
+        <UML:DataType xmi.id = '127-0-1-1--55daae71:14add51ab39:-8000:0000000000000AA8'
+          name = 'bool' isSpecification = 'false' isRoot = 'false' isLeaf = 'false'
+          isAbstract = 'false'/>
       </UML:Namespace.ownedElement>
     </UML:Model>
   </XMI.content>
@@ -454,7 +455,7 @@
       justification="Center"
     >+ DOGPyramid</text>
     <group name="Fig0.2"
-         description="org.argouml.uml.diagram.ui.FigStereotypesGroup[921, 233, 102, 0]"
+         description="org.argouml.uml.diagram.ui.FigStereotypesGroup[921, 233, 131, 0]"
          href="127-0-1-1--2149b0e:14ac8f07e6f:-8000:0000000000000962"
          fill="0"
          fillcolor="white"
@@ -468,7 +469,7 @@
       <rectangle name="Fig0.2.0"
         x="921"
         y="233"
-        width="102"
+        width="131"
         height="0"
         fill="0"
         fillcolor="white"
@@ -659,7 +660,7 @@
       justification="Center"
     >+ Feature</text>
     <group name="Fig1.2"
-         description="org.argouml.uml.diagram.ui.FigStereotypesGroup[929, 41, 123, 0]"
+         description="org.argouml.uml.diagram.ui.FigStereotypesGroup[929, 41, 174, 0]"
          href="127-0-1-1--2149b0e:14ac8f07e6f:-8000:0000000000000963"
          fill="0"
          fillcolor="white"
@@ -673,7 +674,7 @@
       <rectangle name="Fig1.2.0"
         x="929"
         y="41"
-        width="123"
+        width="174"
         height="0"
         fill="0"
         fillcolor="white"
@@ -848,7 +849,7 @@
       justification="Center"
     >+ SIFT</text>
     <group name="Fig2.2"
-         description="org.argouml.uml.diagram.ui.FigStereotypesGroup[17, 153, 64, 0]"
+         description="org.argouml.uml.diagram.ui.FigStereotypesGroup[17, 121, 710, 0]"
          href="127-0-1-1--2149b0e:14ac8f07e6f:-8000:0000000000000FC3"
          fill="0"
          fillcolor="white"
@@ -861,8 +862,8 @@
       
       <rectangle name="Fig2.2.0"
         x="17"
-        y="153"
-        width="64"
+        y="121"
+        width="710"
         height="0"
         fill="0"
         fillcolor="white"
@@ -1044,7 +1045,7 @@
         bold="false"
         textsize="12"
         justification="Left"
-      >+eraseLocalExtrema(inout img1 : Cv::Mat,inout img2 : Cv::Mat,inout img3 : Cv::Mat,features : vector&lt;Feature&gt;)</text>
+      >-isLocalExtrema(roiImg1 : Cv::Mat,roiImg2 : Cv::Mat,roiImg3 : Cv::Mat) : bool</text>
     </group>
   </group>
   <group name="Fig3"
@@ -1092,7 +1093,7 @@
                         offset="55" />
     </private>
     <path name="Fig3.0"
-      description="org.tigris.gef.presentation.FigPoly"
+      description="org.argouml.gefext.ArgoFigPoly"
       fill="0"
       fillcolor="white"
       stroke="1"
@@ -1149,7 +1150,7 @@
                         offset="43" />
     </private>
     <path name="Fig4.0"
-      description="org.tigris.gef.presentation.FigPoly"
+      description="org.argouml.gefext.ArgoFigPoly"
       fill="0"
       fillcolor="white"
       stroke="1"

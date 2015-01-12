@@ -2,10 +2,13 @@
 #include "moc_Model.cpp"
 
 using namespace std;
+using namespace cv;
 
 Model::Model() : m_isAllSelected(false)
 {
   connect(this, SIGNAL(listFilesLoaded()), this, SLOT(initIsSelected()));
+  connect(this, SIGNAL(listFilesLoaded()), this, SLOT(initImages()));
+  connect(this, SIGNAL(isSelectedChanged()), this, SLOT(lookIsAllSelected()));
 }
 
 void Model::setListFiles(QStringList listFiles)
@@ -25,13 +28,13 @@ void Model::initIsSelected()
 {
   m_isSelected.clear();
   m_isSelected = vector<bool>(m_listFiles.count(), false);
-  lookIsAllSelected();
+  emit isSelectedChanged();
 }
 
 void Model::setIsSelected(int i, bool value)
 {
   m_isSelected[i] = value;
-  lookIsAllSelected();
+  emit isSelectedChanged();
 }
 
 bool Model::getIsSelected(int i)
@@ -51,6 +54,17 @@ void Model::lookIsAllSelected()
 	}
 
   emit isAllSelected(m_isAllSelected);
+}
+
+void Model::initImages()
+{
+  //generation of image array 
+  m_images.clear();
+  m_images.resize(m_listFiles.count());
+
+  for(int i = 0; i < m_listFiles.count(); ++i)
+    m_images[i] = imread(m_listFiles.at(i).toLocal8Bit().constData(), CV_LOAD_IMAGE_COLOR);
+    
 }
 
 void Model::run()
