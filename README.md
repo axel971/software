@@ -1,8 +1,8 @@
 #software
 
-Ce projet a pour but de developper une application de reconnaissance de formes. 
-Fonctionalités :
--Tester plusieurs méthodes de descripteurs d'images
+Ce projet a pour but de developper une application de reconnaissance de formes. <br>
+Fonctionalités principales : <br>
+-Test de plusieurs méthodes de descripteurs d'images (SIFT, SURF, ...) <br>
 
 
 Instruction de compilation : <br>
