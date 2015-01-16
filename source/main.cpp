@@ -1,7 +1,7 @@
 #include <QApplication>
 #include <QtWidgets>
 #include "mvc/Controller.h"
-
+#include "sift/Sift.hpp"
 
 int main(int argc, char** argv)
 {

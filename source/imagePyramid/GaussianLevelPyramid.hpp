@@ -45,25 +45,25 @@ public:
    * \brief Get the image
    * \return the image
    */
-  cv::Mat getImage();
+  cv::Mat const& getImage() const;
 
   /**
    * \brief Get the scale
    * \return the scale 
    */
-  double getSigma();
+  double const& getSigma() const;
 
   /**
    * \brief Get the curent level
    * \return the level 
    */					
-  int getLevel();
+  int const& getLevel() const;
 
   /**
    * \brief Get the current octave
    * \return the octave 
    */					
-  int getOctave();
+  int const& getOctave() const;
 
 };
 

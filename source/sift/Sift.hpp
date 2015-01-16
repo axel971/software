@@ -2,30 +2,34 @@
 #define SIFT_H
 
 #include "Feature.hpp"
-#include "DOGPyramid.hpp"
+#include "../imagePyramid/DOGPyramid.hpp"
 #include <vector>
+#include <cassert>
 
 class Sift
 {
 
 private :
+  cv::Mat m_image;
   int m_level;
   int m_octave;
+  double m_k;
   double m_sigma;
-  vector<Feature> features;
-  DOGPyramid dogPyramid;
+  std::vector<Feature> m_features;
+  DOGPyramid m_dogPyramid;
   
 public:
   Sift();
-  Sift(int octave, int level, int sigma);
+  Sift(cv::Mat image, int octave, int level, double k, double sigma);
   
   void operator()();
   void localExtrema();
-  vector<Feature> localExtremaAux(cv::Mat const& img1, cv::Mat const& img2, cv::Mat const& img3);
+  bool isLocalExtrema(cv::Mat const& roi1, cv::Mat const& roi2, cv::Mat const& roi3, int i, int j);
 
 private : //private methods
-  bool isLocalExtrema(cv::Mat const& roiImg1, cv::Mat const& roiImg2, cv::Mat const& roiImg3);
-
+  bool isLocalMaximum(cv::Mat const& roi1, cv::Mat const& roi2, cv::Mat const& roi3, int i, int j);
+  bool isLocalMinimum(cv::Mat const& roi1, cv::Mat const& roi2, cv::Mat const& roi3, int i, int j);
+  std::vector<Feature> localExtremaAux(GaussianLevelPyramid const& level1, GaussianLevelPyramid const& level2, GaussianLevelPyramid const& level3);
 };
 
 #endif

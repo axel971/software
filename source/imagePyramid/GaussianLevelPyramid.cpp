@@ -10,25 +10,25 @@ GaussianLevelPyramid::GaussianLevelPyramid(): m_level(0), m_octave(0), m_sigma(0
 GaussianLevelPyramid::GaussianLevelPyramid(cv::Mat image, int octave, int level, double sigma):m_image(image), m_octave(octave), m_level(level), m_sigma(sigma) 
 {}
 
-cv::Mat GaussianLevelPyramid::getImage()
+cv::Mat const& GaussianLevelPyramid::getImage() const 
 {
   return m_image;
 }
 
 
-double GaussianLevelPyramid::getSigma()
+double const& GaussianLevelPyramid::getSigma() const
 {
   return m_sigma;
 }
 
 
-int GaussianLevelPyramid::getLevel()
+int const& GaussianLevelPyramid::getLevel() const
 {
   return m_level;
 }
 
 
-int GaussianLevelPyramid::getOctave()
+int const& GaussianLevelPyramid::getOctave() const
 {
   return m_octave;
 }

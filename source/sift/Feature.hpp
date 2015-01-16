@@ -12,6 +12,7 @@ private :
 public :
 
   Feature();
+  Feature(int x, int y, double sigma, double theta);
 
 };
 
