@@ -8,6 +8,8 @@ Controller::Controller() : m_view(&m_model)
   //manage the events
    connect(&m_view, SIGNAL(setPathActived(QStringList)), this, SLOT(setListFiles(QStringList)));
    connect(&m_view, SIGNAL(fileClicked(int, bool)), &m_model, SLOT(setIsSelected(int, bool)));
+   connect(&m_view, SIGNAL(runClicked()), &m_model, SLOT(run()));
+   
 }
 
 
@@ -20,3 +22,5 @@ void Controller::showView()
 {
   m_view.show();
 }
+
+

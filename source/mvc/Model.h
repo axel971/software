@@ -9,6 +9,7 @@
 
 #include <iostream>
 #include <vector>
+#include <numeric>
 
 class Model : public QWidget
 {
@@ -25,8 +26,7 @@ class Model : public QWidget
  public :
   
   Model();
-  
-  void run();
+
   void setListFiles(QStringList listFiles);
   QStringList getListFiles();   
   bool getIsSelected(int i);
@@ -36,11 +36,14 @@ class Model : public QWidget
     void setIsSelected(int i, bool value);
     void initImages();
     void lookIsAllSelected();
+    void run();
 
  signals :
 
   void listFilesLoaded();
-  void runFinished();
+  void runOff();
+  void runOn();
+  void runChanged(int);
   void isAllSelected(bool);
   void isSelectedChanged();
 };

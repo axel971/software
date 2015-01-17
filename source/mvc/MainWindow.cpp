@@ -3,20 +3,24 @@
 
 using namespace std;
 
-MainWindow::MainWindow(Model *ptrModel, QWidget *parent) : m_ptrModel(ptrModel), QMainWindow(parent), ui(new Ui::MainWindow)
+MainWindow::MainWindow(Model *ptrModel, QWidget *parent) : m_ptrModel(ptrModel), QMainWindow(parent), ui(new Ui::MainWindow), m_waitBar(parent)
 {
     ui->setupUi(this);
 
-    //init the widgets
+    //Initialisation of the widgets
     initWidget();
     
-    //signals send of the controller
+    //Signals send of the controller
     connect(ui->openFiles, SIGNAL(triggered()), this, SLOT(setPath()));
+    connect(ui->run, SIGNAL(clicked()), this, SLOT(runClickedSlot()));
 
-    //listener toward the model
+    //Listener toward the model
     connect(m_ptrModel, SIGNAL(listFilesLoaded()), this, SLOT(setListFiles()));
-  
-    //signals send of the view
+    //connect(m_ptrModel, SIGNAL(runOn()), &m_waitBar, SLOT(show()));
+    //connect(m_ptrModel, SIGNAL(runOff()), &m_waitBar, SLOT(cancel()));
+    //connect(m_ptrModel, SIGNAL(runChanged(int)), &m_waitBar, SLOT(setValue(int)));
+
+    //Signals send of the view
     connect(ui->listFiles, SIGNAL(currentRowChanged(int)), this, SLOT(displayWindow(int)));
     connect(ui->listFiles, SIGNAL(itemClicked(QListWidgetItem *)), this, SLOT(listFilesClicked(QListWidgetItem *)));
     connect(m_ptrModel, SIGNAL(isAllSelected(bool)), this, SLOT(enabledRun(bool)));
@@ -27,22 +31,22 @@ MainWindow::~MainWindow()
     delete ui;
 }
 
-Ui::MainWindow* MainWindow::Ui()
-{
-  return ui;
-} 
-
 void MainWindow::initWidget()
 {
   //making process widget disable
   ui->run->setEnabled(false);
   ui->overlay->setEnabled(false);
+
+  //init progressBar
+  m_waitBar.setWindowModality(Qt::WindowModal); 
+ m_waitBar.setRange(0, 100);
 }
+
 
 void MainWindow::setPath()
 {
-  QStringList listFiles;
-  listFiles =  QFileDialog::getOpenFileNames(this, "ouvrir un fichier",  QString(),"Images all (*.jpg  *.png *.jpeg)");
+  QStringList listFiles = QFileDialog::getOpenFileNames(this, "ouvrir un fichier",  QString(),"Images all (*.jpg  *.png *.jpeg)");
+
   emit setPathActived(listFiles);
 }
 
@@ -99,3 +103,9 @@ void MainWindow::enabledRun(bool value)
 {
   ui->run->setEnabled(value);
 }
+
+void MainWindow::runClickedSlot()
+{
+  emit runClicked();
+}
+

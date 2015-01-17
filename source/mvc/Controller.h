@@ -24,6 +24,6 @@ class Controller : QWidget
   public slots :
     
     void setListFiles(QStringList);
-  
+      
 };
 #endif

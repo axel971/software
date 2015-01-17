@@ -4,6 +4,7 @@
 #include <QMainWindow>
 #include <QListWidgetItem>
 #include <iostream>
+#include <QProgressDialog>
 
 #include "Model.h"
 
@@ -18,25 +19,27 @@ class MainWindow : public QMainWindow
  private:
     Ui::MainWindow *ui;
     Model *m_ptrModel;
+    QProgressDialog m_waitBar;
    
  public:
     explicit MainWindow(Model *ptrModel, QWidget *parent = 0);
     ~MainWindow();
 
     void initWidget();
-    Ui::MainWindow *Ui();
-    
+        
     public slots :
 
       void setPath();
       void setListFiles();
       void displayWindow(int iListFiles);
       void listFilesClicked(QListWidgetItem*);
-      void enabledRun(bool);   
+      void enabledRun(bool);    
+      void runClickedSlot();
 
  signals:
       void setPathActived(QStringList);
       void fileClicked(int, bool);
+      void runClicked();
 };
 
-#endif // MAINWINDOW_H
+#endif 

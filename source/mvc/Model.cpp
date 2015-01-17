@@ -1,6 +1,7 @@
 #include "Model.h"
 #include "moc_Model.cpp"
 
+
 using namespace std;
 using namespace cv;
 
@@ -69,6 +70,17 @@ void Model::initImages()
 
 void Model::run()
 {
-  cout << "toto" << endl;
-  // emit runFinished();
+  int nAllSelected = std::accumulate(m_isSelected.begin(), m_isSelected.end(), 0);
+  int count(0);
+
+  emit runOn();
+
+  for(int i = 0; i < m_listFiles.count(); ++i)
+    if(m_isSelected[i])
+      {
+	emit runChanged(100 * count / (nAllSelected - 1));
+	count++;
+      }
+  
+  emit runOff();
 }
