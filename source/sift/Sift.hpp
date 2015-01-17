@@ -17,19 +17,21 @@ private :
   double m_sigma;
   std::vector<Feature> m_features;
   DOGPyramid m_dogPyramid;
-  
+
 public:
+
   Sift();
   Sift(cv::Mat image, int octave, int level, double k, double sigma);
   
   void operator()();
-  void localExtrema();
-  bool isLocalExtrema(cv::Mat const& roi1, cv::Mat const& roi2, cv::Mat const& roi3, int i, int j);
+  void findExtrema();
+  std::vector<Feature> findExtremaAux(GaussianLevelPyramid const& level1, GaussianLevelPyramid const& level2, GaussianLevelPyramid const& level3);
 
 private : //private methods
   bool isLocalMaximum(cv::Mat const& roi1, cv::Mat const& roi2, cv::Mat const& roi3, int i, int j);
   bool isLocalMinimum(cv::Mat const& roi1, cv::Mat const& roi2, cv::Mat const& roi3, int i, int j);
-  std::vector<Feature> localExtremaAux(GaussianLevelPyramid const& level1, GaussianLevelPyramid const& level2, GaussianLevelPyramid const& level3);
+  bool isLocalExtrema(cv::Mat const& roi1, cv::Mat const& roi2, cv::Mat const& roi3, int i, int j);
+
 };
 
 #endif

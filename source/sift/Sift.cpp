@@ -79,12 +79,12 @@ bool Sift::isLocalExtrema(cv::Mat const& roi1, cv::Mat const& roi2, cv::Mat cons
 }
 
 
-vector<Feature> Sift::localExtremaAux(GaussianLevelPyramid const& level1, GaussianLevelPyramid const& level2, GaussianLevelPyramid const& level3)
+vector<Feature> Sift::findExtremaAux(GaussianLevelPyramid const& level1, GaussianLevelPyramid const& level2, GaussianLevelPyramid const& level3)
  {
    vector<Feature> features;
    bool isExtrema(false);
    Mat img1, img2, img3, roi1, roi2, roi3;
-   int centerPixelI(2), centerPixelJ(2), sizeRoi(3);
+   int centerPixelI(1), centerPixelJ(1), sizeRoi(3);
 
    //Initialisation
    img1 = level1.getImage();
@@ -94,33 +94,22 @@ vector<Feature> Sift::localExtremaAux(GaussianLevelPyramid const& level1, Gaussi
    //Check the argument of the function
    assert((!img1.empty()) && (!img2.empty()) && (!img3.empty()));
    assert(img1.size() == img2.size() && img2.size() == img3.size());
-   assert(img2.cols >= sizeRoi);
-  
-   if(img2.cols == sizeRoi)
-     {
-       //Find if the center pixel is an extrema
-       isExtrema = isLocalExtrema(img1, img2, img3, centerPixelI, centerPixelJ);
-	 
-       if(isExtrema)
-	 features.push_back(Feature(centerPixelI, centerPixelJ, level2.getSigma(), 0)); 
-     }
-   else
-     {
-       for(int i = 1; i < roi1.rows - 1; ++i)
-	 for(int j = 1; j < roi1.cols - 1; ++j) 
-	   {
-	     //Construct the roi
-	     roi1 = img1(Rect(j-1, i-1, sizeRoi, sizeRoi));
-	     roi2 = img2(Rect(j-1, i-1, sizeRoi, sizeRoi));
-	     roi3 = img3(Rect(j-1, i-1, sizeRoi, sizeRoi));
+   assert(img2.rows >= sizeRoi && img2.cols >= sizeRoi);
 
-	     //Find if the current pixel is an extrema
-	     isExtrema = isLocalExtrema(roi1, roi2, roi3, centerPixelI, centerPixelJ);
-	     
-	     if(isExtrema)
-	       features.push_back(Feature(i, j, level2.getSigma(), 0)); 
-	   }// end for
-    }//end else
-
+     for(int i = 1; i < img1.rows - 1; ++i)
+       for(int j = 1; j < img1.cols - 1; ++j) 
+	 {
+	   //Construct the roi
+	   roi1 = img1(Rect(j-1, i-1, sizeRoi, sizeRoi));
+	   roi2 = img2(Rect(j-1, i-1, sizeRoi, sizeRoi));
+	   roi3 = img3(Rect(j-1, i-1, sizeRoi, sizeRoi));
+	   
+	   //Find if the current pixel is an extrema
+	   isExtrema = isLocalExtrema(roi1, roi2, roi3, centerPixelI, centerPixelJ);
+	   
+	   if(isExtrema)
+	     features.push_back(Feature(i, j, level2.getSigma(), 0)); 
+	 }// end for
+ 
    return features; 
  }
