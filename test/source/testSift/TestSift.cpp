@@ -28,7 +28,8 @@ void TestSift::findExtremaBorderInfConditionTest()
   level3 = GaussianLevelPyramid(Mat::zeros(row, col, CV_64F), 0, 3, 0.);
 
   //Exercice step
-  features = sift.findExtremaAux(level1, level2, level3);
+  sift.findExtremaAux(level1, level2, level3);
+  features = sift.getFeatures();
 
   //Check step
   CPPUNIT_ASSERT_EQUAL(true, features.empty()); 
@@ -48,7 +49,8 @@ void TestSift::findExtremaBorderSupConditionTest()
   level3 = GaussianLevelPyramid(Mat::ones(row, col, CV_64F), 0, 3, 0.);
 
   //Exercice step
-  features = sift.findExtremaAux(level1, level2, level3);
+  sift.findExtremaAux(level1, level2, level3);
+  features = sift.getFeatures();
 
   //Check step
   CPPUNIT_ASSERT_EQUAL(true, features.empty()); 
@@ -74,12 +76,13 @@ void TestSift::findExtremaLevel2isMaximaTest()
   level3 = GaussianLevelPyramid(img3, 0, 3, 0.);
 
   //Exercice step
-  features = sift.findExtremaAux(level1, level2, level3);
+  sift.findExtremaAux(level1, level2, level3);
+  features = sift.getFeatures();
 
   //Check step
   CPPUNIT_ASSERT_EQUAL(false, features.empty());
-  CPPUNIT_ASSERT_EQUAL(iMax, features[0].getX());
-  CPPUNIT_ASSERT_EQUAL(jMax, features[0].getY()); 
+  CPPUNIT_ASSERT_EQUAL(iMax, features[0].getRow());
+  CPPUNIT_ASSERT_EQUAL(jMax, features[0].getCol()); 
  }
 
 void TestSift::findExtremaLevel2isMinimaTest()
@@ -102,12 +105,13 @@ void TestSift::findExtremaLevel2isMinimaTest()
   level3 = GaussianLevelPyramid(img3, 0, 3, 0.);
 
   //Exercice step
-  features = sift.findExtremaAux(level1, level2, level3);
+  sift.findExtremaAux(level1, level2, level3);
+  features = sift.getFeatures();
 
   //Check step
   CPPUNIT_ASSERT_EQUAL(false, features.empty());
-  CPPUNIT_ASSERT_EQUAL(iMax, features[0].getX());
-  CPPUNIT_ASSERT_EQUAL(jMax, features[0].getY()); 
+  CPPUNIT_ASSERT_EQUAL(iMax, features[0].getRow());
+  CPPUNIT_ASSERT_EQUAL(jMax, features[0].getCol()); 
  }
 
 void TestSift::findExtremaIsFalseTest()
@@ -132,7 +136,8 @@ void TestSift::findExtremaIsFalseTest()
   level3 = GaussianLevelPyramid(img3, 0, 3, 0.);
 
   //Exercice step
-  features = sift.findExtremaAux(level1, level2, level3);
+  sift.findExtremaAux(level1, level2, level3);
+  features = sift.getFeatures();
 
   //Check step
   CPPUNIT_ASSERT_EQUAL(true, features.empty());
