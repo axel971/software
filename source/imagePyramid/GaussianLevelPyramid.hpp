@@ -11,8 +11,10 @@
 #include <opencv2/core/core.hpp>
 #include <opencv2/imgproc/imgproc.hpp>
 #include <opencv2/highgui/highgui.hpp>
+#include "LevelPyramid.hpp"
 
-class GaussianLevelPyramid {
+class GaussianLevelPyramid : public LevelPyramid
+{
 
   /**
    *\class GaussianLevelPyramid
@@ -20,9 +22,6 @@ class GaussianLevelPyramid {
    */
  
 private:
-  int m_level; /*!< level current of the pyramid */
-  int m_octave; /*!< current octave of the pyramid */
-  cv::Mat m_image; /*!< image at the current octave and level of the pyramid */
   double m_sigma; /*!< scale */
 
 public:
@@ -42,28 +41,10 @@ public:
   GaussianLevelPyramid(cv::Mat image, int octave, int level, double sigma);
 
   /**
-   * \brief Get the image
-   * \return the image
-   */
-  cv::Mat const& getImage() const;
-
-  /**
    * \brief Get the scale
    * \return the scale 
    */
   double const& getSigma() const;
-
-  /**
-   * \brief Get the curent level
-   * \return the level 
-   */					
-  int const& getLevel() const;
-
-  /**
-   * \brief Get the current octave
-   * \return the octave 
-   */					
-  int const& getOctave() const;
 
 };
 
