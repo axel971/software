@@ -2,4 +2,4 @@
 # Ignorer les backups emacs :
 *~
 compile/*
-test/compile/*
+unityTest/compile/*
