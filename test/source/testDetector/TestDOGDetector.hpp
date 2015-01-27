@@ -1,14 +1,14 @@
-#ifndef TESTSIFT_H
-#define TESTSIFT_H
+#ifndef TESTDOGDETECTOR_H
+#define TESTDOGDETECTOR_H
 
 #include <cppunit/TestFixture.h>
 #include <cppunit/extensions/HelperMacros.h>
 
-#include "../../../source/sift/Sift.hpp"
+#include "../../../source/detector/DOGDetector.hpp"
 
-class TestSift : public CPPUNIT_NS :: TestFixture
+class TestDOGDetector : public CPPUNIT_NS :: TestFixture
 {
-  CPPUNIT_TEST_SUITE (TestSift);
+  CPPUNIT_TEST_SUITE (TestDOGDetector);
   CPPUNIT_TEST (findExtremaBorderInfConditionTest);
   CPPUNIT_TEST (findExtremaBorderSupConditionTest);
   CPPUNIT_TEST (findExtremaLevel2isMaximaTest);
@@ -17,8 +17,8 @@ class TestSift : public CPPUNIT_NS :: TestFixture
   CPPUNIT_TEST_SUITE_END ();
 
 private :
-  Sift m_sift;
-
+  //  DOGDetector m_dogDetector;
+  
 public :
   
   void setUp();

@@ -17,7 +17,7 @@ FILE(
     GLOB_RECURSE
     FICHIERS_SOURCES
     ./source/*
-    ../source/sift/*
+    ../source/detector/*
     ../source/imagePyramid/*		
 )
 
