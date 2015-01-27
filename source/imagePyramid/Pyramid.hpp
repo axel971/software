@@ -4,8 +4,8 @@
 #include <vector>
 #include <opencv2/core/core.hpp>
 #include <iostream>
-#include "GaussianLevelPyramid.hpp"
- 
+#include "LevelPyramid.hpp"
+
 class Pyramid
 {
 
@@ -15,7 +15,8 @@ protected :
   int m_levelInside;
   int m_octave;
   cv::Mat m_image; 
-  std::vector<GaussianLevelPyramid> m_data;
+  std::vector<LevelPyramid> m_data;
+  bool m_isBuild;
 
 public :
 
@@ -24,15 +25,17 @@ public :
   virtual ~Pyramid();
 
   cv::Mat getImage(int i, int j);
-  GaussianLevelPyramid get(int i, int j);
+  LevelPyramid get(int i, int j);
   int getLevel();
   int getOctave();
 
   virtual void build() = 0; 
+
+  bool isBuild();
   
 protected : //protected method
 
-  void set(GaussianLevelPyramid level, int i, int j);
+  void set(LevelPyramid level, int i, int j);
 
 };
 

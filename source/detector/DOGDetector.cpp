@@ -1,37 +1,38 @@
-#include "Sift.hpp"
+#include "DOGDetector.hpp"
 
 using namespace std;
 using namespace cv;
 
 
-Sift::Sift(Mat image, int octave, int level, double k, double sigma): m_image(image), m_level(level), m_octave(octave), m_sigma(sigma), m_k(k), m_dogPyramid(DOGPyramid(image, octave, level - 1, k, sigma))
+DOGDetector::DOGDetector(Mat image, int octave, int level, double k, double sigma): m_image(image), m_level(level), m_octave(octave), m_sigma(sigma), m_k(k), m_dogPyramid(DOGPyramid(image, octave, level - 1, k, sigma))
 {
   CHECK_INVARIANTS();
 }
 
-vector<Feature> Sift::getFeatures()
+vector<Feature> DOGDetector::getFeatures()
  {
    return m_features;
  }
 
-int Sift::getNumbersFeatures()
+int DOGDetector::getNumbersFeatures()
 {
   return m_features.size();
 }
 
-void Sift::operator()()
+void DOGDetector::operator()()
 {
   CHECK_INVARIANTS();
 
   m_dogPyramid.build();  
+  
   findExtrema();
-
-  cout << computeDelta(m_features[10]) << endl;
+  locateExtrema();
+  
 
   CHECK_INVARIANTS();
 }
 
-bool Sift::isLocalMaximum(cv::Mat const& roi1, cv::Mat const& roi2, cv::Mat const& roi3)
+bool DOGDetector::isLocalMaximum(cv::Mat const& roi1, cv::Mat const& roi2, cv::Mat const& roi3)
 {
   REQUIRE(roi1.cols == 3 && roi2.cols == 3 && roi3.cols == 3, "ROI must have a size 3*3");
   REQUIRE(roi1.size() == roi2.size() && roi2.size() == roi3.size(), "ROI must be have the same size");
@@ -66,7 +67,7 @@ bool Sift::isLocalMaximum(cv::Mat const& roi1, cv::Mat const& roi2, cv::Mat cons
   return isMaximum;
 }
 
-bool Sift::isLocalMinimum(cv::Mat const& roi1, cv::Mat const& roi2, cv::Mat const& roi3)
+bool DOGDetector::isLocalMinimum(cv::Mat const& roi1, cv::Mat const& roi2, cv::Mat const& roi3)
 {
   REQUIRE(roi1.cols == 3 && roi2.cols == 3 && roi3.cols == 3, "ROI must have a size 3*3");
   REQUIRE(roi1.size() == roi2.size() && roi2.size() == roi3.size(), "ROI must be have the same size");
@@ -100,7 +101,7 @@ bool Sift::isLocalMinimum(cv::Mat const& roi1, cv::Mat const& roi2, cv::Mat cons
    return isMinimum;
 };
 
-bool Sift::isLocalExtrema(cv::Mat const& roi1, cv::Mat const& roi2, cv::Mat const& roi3)
+bool DOGDetector::isLocalExtrema(cv::Mat const& roi1, cv::Mat const& roi2, cv::Mat const& roi3)
 {
   REQUIRE(roi1.cols == 3 && roi2.cols == 3 && roi3.cols == 3, "ROI must have a size 3*3");
   REQUIRE(roi1.size() == roi2.size() && roi2.size() == roi3.size(), "ROI must be have the same size");  
@@ -119,7 +120,7 @@ bool Sift::isLocalExtrema(cv::Mat const& roi1, cv::Mat const& roi2, cv::Mat cons
 }
 
 
-void Sift::findExtremaAux(GaussianLevelPyramid const& level1, GaussianLevelPyramid const& level2, GaussianLevelPyramid const& level3)
+void DOGDetector::findExtremaAux(LevelPyramid const& level1, LevelPyramid const& level2, LevelPyramid const& level3)
  {
    REQUIRE(level1.getOctave() == level2.getOctave() && level1.getOctave() == level3.getOctave(), "the element must be in the same octave");
    REQUIRE(level1.getLevel() == level2.getLevel() - 1 && level3.getLevel() == level2.getLevel() + 1, "The level is in the same order");
@@ -153,23 +154,22 @@ void Sift::findExtremaAux(GaussianLevelPyramid const& level1, GaussianLevelPyram
    CHECK_INVARIANTS();
 }
 
-void Sift::findExtrema()
+void DOGDetector::findExtrema()
 {
-  //To Do : REQUIRE dogPyramid doit etre valide
+  REQUIRE(m_dogPyramid.isBuild(), "DOG Pyramid must be processed");
 
   for(int i = 0; i < m_dogPyramid.getOctave(); ++i)
     for(int j = 1; j < m_dogPyramid.getLevel(); ++j)
       findExtremaAux(m_dogPyramid.get(i, j - 1), m_dogPyramid.get(i, j), m_dogPyramid.get(i, j + 1));
 }
 
-Mat Sift::computeHessian(int row, int col, Mat const& im1, Mat const& im2, Mat const& im3)
+Mat DOGDetector::computeHessian(int row, int col, Mat const& im1, Mat const& im2, Mat const& im3) const
 {
   REQUIRE(im1.rows >= 3 && im1.cols >= 3, "Size of images must be superior or equal at 3");
   REQUIRE(im1.size() == im2.size() && im2.size() == im3.size(), "Dimension of images must be equal");
   REQUIRE(row > 0 && row < im1.rows, "Row don't be in the border");
   REQUIRE(col > 0 && col < im1.cols, "Col don't be in the border");
-  CHECK_INVARIANTS();
-
+  
   Mat hessian(3, 3, CV_64F);
   double dRowRow, dRowCol, dRowSigma, dColRow, dColCol, dColSigma, dSigmaRow, dSigmaCol, dSigmaSigma ;
 
@@ -198,18 +198,16 @@ Mat Sift::computeHessian(int row, int col, Mat const& im1, Mat const& im2, Mat c
   hessian.at<double>(2, 0) = dSigmaRow; hessian.at<double>(2, 1) = dSigmaCol; hessian.at<double>(2, 2) = dSigmaSigma;
 
   ENSURE(hessian.rows == 3 && hessian.cols == 3, "Hessian must be have the good dimension");
-  CHECK_INVARIANTS();
-
+  
   return hessian;
 }
 
-Mat Sift::computeGradian(int row, int col, cv::Mat const& im1, cv::Mat const& im2, cv::Mat const& im3)
+Mat DOGDetector::computeGradian(int row, int col, cv::Mat const& im1, cv::Mat const& im2, cv::Mat const& im3) const
 {
   REQUIRE(im1.rows >= 3 && im1.cols >= 3, "Size of images must be superior or equal at 3");
   REQUIRE(im1.size() == im2.size() && im2.size() == im3.size(), "Dimension of images must be equal");
   REQUIRE(row > 0 && row < im1.rows, "Row don't be in the border");
   REQUIRE(col > 0 && col < im1.cols, "Col don't be in the border");
-  CHECK_INVARIANTS();
   
   Mat gradian(3, 1, CV_64F);
 
@@ -219,18 +217,16 @@ Mat Sift::computeGradian(int row, int col, cv::Mat const& im1, cv::Mat const& im
   gradian.at<double>(2) = 0.5 *(im3.at<double>(row, col) - im1.at<double>(row, col));
 
   ENSURE(gradian.rows == 3 && gradian.cols == 1, "Gradian must be have the good dimension");
-  CHECK_INVARIANTS();
-
+  
   return gradian;
 }
 
-Mat Sift::computeDelta(Feature const& feature) 
+Mat DOGDetector::computeDelta(Feature const& feature) 
 {
   REQUIRE(feature.getRow() > 0 && feature.getRow() < m_image.rows, "Feature.row must be inside this definition field");
   REQUIRE(feature.getCol() > 0 && feature.getCol() < m_image.cols, "Feature.col must be inside this definition field");
+  REQUIRE(m_dogPyramid.isBuild(), "DOG Pyramid must be processed");
   CHECK_INVARIANTS();
-
-  //To do : Require dogPyramid is correct construct (check the dogPyramid etat)
 
   Mat delta, gradian(3, 1, CV_64F), hessian(3, 3, CV_64F);
   Mat im1, im2, im3;
@@ -254,4 +250,62 @@ Mat Sift::computeDelta(Feature const& feature)
   CHECK_INVARIANTS();
 
   return delta;
+}
+
+bool DOGDetector::isSupHalfOfStep(cv::Mat delta) const
+{
+  REQUIRE(delta.rows == 3 && delta.cols == 1, "Delta must have the size 3 * 1 ");
+
+  bool isTrue = false;
+
+  abs(delta);
+
+  if(delta.at<double>(0) > 0.5)
+    isTrue = true;
+
+  else if(delta.at<double>(1) > 0.5)
+    isTrue = true;
+
+  else if(delta.at<double>(2) > m_k * m_sigma * 0.5)
+    isTrue = true;
+}
+
+cv::Mat DOGDetector::delataConvertToImageFrame(cv::Mat delta) const
+{
+  REQUIRE(delta.rows == 3 && delta.cols == 1, "Delta must have the size 3 * 1 ");
+
+  Mat res(3, 1, CV_64F), sup, inf, deltaBorder(3, 1, CV_64F);
+
+  //Creat border
+  deltaBorder.at<double>(0) = 0.5;
+  deltaBorder.at<double>(1) = 0.5;
+  deltaBorder.at<double>(2) = m_k * m_sigma * 0.5;
+
+  //Binarize the delta
+  sup = delta > deltaBorder;
+  inf = delta < - 1 * deltaBorder;
+  
+  sup.convertTo(sup, CV_64F);
+  inf.convertTo(inf, CV_64F); 
+  inf *= -1;
+
+  res = (sup + inf)/255;
+
+  ENSURE(sum(res)[0] <= 3 && sum(res)[0] >= -3, "The convert delta must be have elements equal to  one or zero");
+  
+  return res;
+
+}
+
+void DOGDetector::locateExtrema()
+{
+  CHECK_INVARIANTS();
+
+  for(int i = 0; i < m_features.size(); ++i)
+    {
+      Mat delta = computeDelta(m_features[i]);
+      cout << isSupHalfOfStep(delta) << " " << delta << " " << delataConvertToImageFrame(delta) << endl;
+    }
+
+  CHECK_INVARIANTS();
 }

@@ -35,8 +35,12 @@ void DOGPyramid::build()
 	im1.convertTo(im1, CV_64F);
 	im2.convertTo(im2, CV_64F);
 
-	GaussianLevelPyramid level(im1 - im2, i, j, gaussianPyramid.getSigma(i, j));
+	LevelPyramid level(im1 - im2, i, j, gaussianPyramid.getSigma(i, j));
 	set(level, i, j);
       }
+
+  m_isBuild = true;
+  
+  ENSURE(getImage(0, 0).type() == CV_64F, "The images inside the DOG pyramid must be a double");
 }
 

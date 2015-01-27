@@ -24,6 +24,7 @@ protected :
   int m_level; /*!< level current of the pyramid */
   int m_octave; /*!< current octave of the pyramid */
   cv::Mat m_image; /*!< image at the current octave and level of the pyramid */
+  double m_sigma; /*!< scale */
 
 public :
   /**
@@ -37,8 +38,9 @@ public :
    *\param image : image of the pyramid at the current octave and level
    *\param octave : current octave of the pyramid
    *\param level : current level of the pyramid
+   *\param sigma : current sigma if necessary
    */
-  LevelPyramid(cv::Mat image, int octave, int level);
+  LevelPyramid(cv::Mat image, int octave, int level, double sigma);
 
   /**
    * \brief Get the image
@@ -58,6 +60,11 @@ public :
    */					
   int const& getOctave() const;
 
+  /**
+   * \brief Get the scale
+   * \return the scale 
+   */
+  double const& getSigma() const;
 
 };
 #endif

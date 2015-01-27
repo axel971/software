@@ -3,6 +3,7 @@
 
 #include "Pyramid.hpp"
 #include "GaussianPyramid.hpp"
+#include "../contract/contract.hpp"
 
 class DOGPyramid : public Pyramid
 {

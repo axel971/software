@@ -5,7 +5,6 @@
 #include <opencv2/core/core.hpp>
 #include <iostream>
 #include "Pyramid.hpp"
-#include "GaussianLevelPyramid.hpp"
 
 class GaussianPyramid : public Pyramid
 {

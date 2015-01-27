@@ -1,5 +1,5 @@
-#ifndef SIFT_H
-#define SIFT_H
+#ifndef DOGDETECTOR_H
+#define DOGDETECTOR_H
 
 #include "Feature.hpp"
 #include "../imagePyramid/DOGPyramid.hpp"
@@ -7,7 +7,7 @@
 #include <vector>
 #include "../contract/contract.hpp"
 
-class Sift
+class DOGDetector
 {
 
 private :
@@ -22,10 +22,10 @@ private :
 public:
 
   //Constructeur
-  Sift(cv::Mat image, int octave, int level, double k, double sigma);
+  DOGDetector(cv::Mat image, int octave, int level, double k, double sigma);
   
   //Define invariant
-  BEGIN_INVARIANT_BLOCK(Sift) 
+  BEGIN_INVARIANT_BLOCK(DOGDetector) 
   INVARIANT(!m_image.empty(), "Image is empty");
   INVARIANT(m_level > 0, "Level must be superior at zero");
   INVARIANT(m_octave > 0, "Octave must be superior at zero");

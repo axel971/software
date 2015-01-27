@@ -1,7 +1,7 @@
 #include <QApplication>
 #include <QtWidgets>
 #include "mvc/Controller.h"
-#include "sift/Sift.hpp"
+#include "detector/DOGDetector.hpp"
 
 using namespace cv;
 using namespace std;
@@ -20,9 +20,9 @@ int main(int argc, char** argv)
   Mat image;
   image = imread("racoon.jpg", CV_LOAD_IMAGE_COLOR);
 
-  Sift sift(image, 3, 5, sqrt(2), 1.6);
-  sift();
-  cout << sift.getNumbersFeatures() << endl;
+  DOGDetector DOGDetector(image, 3, 5, sqrt(2), 1.6);
+  DOGDetector();
+  cout << DOGDetector.getNumbersFeatures() << endl;
 
   //construct pyramide
   //GaussianPyramid pyramid(image, 3, 5, sqrt(2), 1.6);  
