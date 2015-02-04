@@ -43,6 +43,7 @@ public:
 
 
   std::vector<Feature> getFeatures();
+  std::vector<Feature> getFeaturesScaled();
   int getNumbersFeatures();
 
   void operator()();

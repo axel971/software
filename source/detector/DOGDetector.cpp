@@ -21,6 +21,21 @@ vector<Feature> DOGDetector::getFeatures()
    return m_features;
  }
 
+vector<Feature> DOGDetector::getFeaturesScaled()
+{
+  vector<Feature> features(m_features.size());
+
+  for(int i = 0; i < m_features.size(); ++i)
+    {
+      features[i] = m_features[i];
+
+      features[i].setRow(features[i].getRow() * pow(2, features[i].getOctave()));
+      features[i].setCol(features[i].getCol() * pow(2, features[i].getOctave()));
+    }
+
+  return features;
+}
+
 int DOGDetector::getNumbersFeatures()
 {
   return m_features.size();
@@ -355,7 +370,6 @@ double DOGDetector::offsetContrastReponse(double value, Mat& gradian, Mat& offse
   return res;
 }
 
-
 double DOGDetector::traceH(Feature const& feature)
 {
   double dxx, dyy;
@@ -401,12 +415,13 @@ void DOGDetector::accurateKeyPointLocalization()
   REQUIRE(m_features.size() > 0, "");
 
   vector<Feature>::iterator  itFeature = m_features.begin();
-  int i = 0;
+
 
   while(itFeature != m_features.end())
     {
       Mat offset, gradian;
       double value;
+      int i = 0;
 
       //Compute the offset and add it of current feature coordinates 
       while(i < DOG_MAX_INTERP_STEPS)
