@@ -1,19 +1,24 @@
 #ifndef DOGPyramid_hpp
 #define DOGPyramid_hpp
 
+#include "Pyramid.hpp"
 #include "GaussianPyramid.hpp"
+#include "../contract/contract.hpp"
 
-
-class DOGPyramid : public GaussianPyramid
+class DOGPyramid : public Pyramid
 {
 
  private :
-  GaussianPyramid m_gaussianPyramid;
+  double m_sigma;
+  double m_k;
    
  public :
 
   DOGPyramid();
-  DOGPyramid(cv::Mat image, int octave, int level, double k, double sigma0);
+  DOGPyramid(cv::Mat image, int octave, int level, double sigma, double k);
+  ~DOGPyramid();
+
+  double getSigma(int i, int j);
 
   virtual void build();
 

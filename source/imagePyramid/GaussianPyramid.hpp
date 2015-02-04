@@ -4,32 +4,25 @@
 #include <vector>
 #include <opencv2/core/core.hpp>
 #include <iostream>
-#include "GaussianLevelPyramid.hpp"
+#include "Pyramid.hpp"
 
+class GaussianPyramid : public Pyramid
+{
 
-class GaussianPyramid{
+protected :
+  double m_sigma;
+  double m_k;
+   
+public :
 
-
-
- protected: 
-    int m_level;
-    int m_octave;
-    double m_sigma0;
-    double m_k;
-    cv::Mat m_image; 
-    std::vector< GaussianLevelPyramid> m_data;
-
- public :
-
-  GaussianPyramid(cv::Mat image, int octave, int level, double sigma0, double k);
+  GaussianPyramid(cv::Mat image, int octave, int level, double sigma, double k);
   GaussianPyramid();
-
-  cv::Mat getImage(int i, int j);
-  double getSigma(int i, int j);
-
-  void build();
-
   
+  double getSigma(int i, int j);
+  
+ 
+  virtual void build();
+
 };
 
 #endif 
