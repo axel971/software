@@ -18,7 +18,7 @@ int main(int argc, char** argv)
   */
 
   Mat image;
-  image = imread("racoon.jpg", CV_LOAD_IMAGE_COLOR);
+  image = imread("lena.jpg", CV_LOAD_IMAGE_COLOR);
 
   DOGDetector DOGDetector(image, 3, 5, sqrt(2), 1.6);
   DOGDetector();

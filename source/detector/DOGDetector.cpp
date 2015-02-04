@@ -426,13 +426,14 @@ void DOGDetector::accurateKeyPointLocalization()
 
 	  i++;
 	}//end while
-
+      
       if(i == DOG_MAX_INTERP_STEPS) //You must assure the convergence of algorithme 
 	{
 	  itFeature = m_features.erase(itFeature);
 	  continue;
 	}
   
+
       //Filter low contrast responses
       if(abs(offsetContrastReponse(value, gradian, offset)) < 0.03)
 	{
@@ -452,7 +453,7 @@ void DOGDetector::accurateKeyPointLocalization()
 	}
 
       addOffset(*itFeature, offset);
-      
+
       itFeature++;
     }//end while
  
