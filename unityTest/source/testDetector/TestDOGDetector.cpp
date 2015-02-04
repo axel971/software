@@ -68,7 +68,7 @@ void TestDOGDetector::findExtremaLevel2isMaximaTest()
   img2 = Mat::zeros(4, 4, CV_64F);
   img3 = Mat::zeros(4, 4, CV_64F); 
 
-  img2.at<double>(iMax, jMax) = 1;
+  img2.at<double>(iMax, jMax) = 0.01;
  
   level1 = LevelPyramid(img1, 0, 1, 0.);
   level2 = LevelPyramid(img2, 0, 2, 0.);
@@ -97,7 +97,7 @@ void TestDOGDetector::findExtremaLevel2isMinimaTest()
   img2 = Mat::zeros(4, 4, CV_64F);
   img3 = Mat::zeros(4, 4, CV_64F); 
 
-  img2.at<double>(iMax, jMax) = -1;
+  img2.at<double>(iMax, jMax) = -0.1;
  
   level1 = LevelPyramid(img1, 0, 1, 0.);
   level2 = LevelPyramid(img2, 0, 2, 0.);

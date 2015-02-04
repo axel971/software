@@ -33,7 +33,7 @@ CMakeFiles/test.dir/home/axel/Documents/code/software/source/imagePyramid/Pyrami
  /home/axel/Documents/code/software/source/imagePyramid/Pyramid.cpp
  /home/axel/Documents/code/software/source/imagePyramid/Pyramid.hpp
 CMakeFiles/test.dir/source/main.cpp.o
- /home/axel/Documents/code/software/test/source/main.cpp
+ /home/axel/Documents/code/software/unityTest/source/main.cpp
 CMakeFiles/test.dir/source/testDetector/TestDOGDetector.cpp.o
  /home/axel/Documents/code/software/source/contract/contract.hpp
  /home/axel/Documents/code/software/source/detector/DOGDetector.hpp
@@ -42,5 +42,5 @@ CMakeFiles/test.dir/source/testDetector/TestDOGDetector.cpp.o
  /home/axel/Documents/code/software/source/imagePyramid/GaussianPyramid.hpp
  /home/axel/Documents/code/software/source/imagePyramid/LevelPyramid.hpp
  /home/axel/Documents/code/software/source/imagePyramid/Pyramid.hpp
- /home/axel/Documents/code/software/test/source/testDetector/TestDOGDetector.cpp
- /home/axel/Documents/code/software/test/source/testDetector/TestDOGDetector.hpp
+ /home/axel/Documents/code/software/unityTest/source/testDetector/TestDOGDetector.cpp
+ /home/axel/Documents/code/software/unityTest/source/testDetector/TestDOGDetector.hpp

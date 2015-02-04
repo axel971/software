@@ -62,11 +62,11 @@ iostream
 LevelPyramid.hpp
 /home/axel/Documents/code/software/source/imagePyramid/LevelPyramid.hpp
 
-/home/axel/Documents/code/software/test/source/testDetector/TestDOGDetector.cpp
+/home/axel/Documents/code/software/unityTest/source/testDetector/TestDOGDetector.cpp
 TestDOGDetector.hpp
-/home/axel/Documents/code/software/test/source/testDetector/TestDOGDetector.hpp
+/home/axel/Documents/code/software/unityTest/source/testDetector/TestDOGDetector.hpp
 
-/home/axel/Documents/code/software/test/source/testDetector/TestDOGDetector.hpp
+/home/axel/Documents/code/software/unityTest/source/testDetector/TestDOGDetector.hpp
 cppunit/TestFixture.h
 -
 cppunit/extensions/HelperMacros.h

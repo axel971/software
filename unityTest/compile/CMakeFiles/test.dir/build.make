@@ -35,10 +35,10 @@ RM = /usr/bin/cmake -E remove -f
 EQUALS = =
 
 # The top-level source directory on which CMake was run.
-CMAKE_SOURCE_DIR = /home/axel/Documents/code/software/test
+CMAKE_SOURCE_DIR = /home/axel/Documents/code/software/unityTest
 
 # The top-level build directory on which CMake was run.
-CMAKE_BINARY_DIR = /home/axel/Documents/code/software/test/compile
+CMAKE_BINARY_DIR = /home/axel/Documents/code/software/unityTest/compile
 
 # Include any dependencies generated for this target.
 include CMakeFiles/test.dir/depend.make
@@ -51,17 +51,17 @@ include CMakeFiles/test.dir/flags.make
 
 CMakeFiles/test.dir/source/main.cpp.o: CMakeFiles/test.dir/flags.make
 CMakeFiles/test.dir/source/main.cpp.o: ../source/main.cpp
-	$(CMAKE_COMMAND) -E cmake_progress_report /home/axel/Documents/code/software/test/compile/CMakeFiles $(CMAKE_PROGRESS_1)
+	$(CMAKE_COMMAND) -E cmake_progress_report /home/axel/Documents/code/software/unityTest/compile/CMakeFiles $(CMAKE_PROGRESS_1)
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Building CXX object CMakeFiles/test.dir/source/main.cpp.o"
-	/usr/bin/c++   $(CXX_DEFINES) $(CXX_FLAGS) -o CMakeFiles/test.dir/source/main.cpp.o -c /home/axel/Documents/code/software/test/source/main.cpp
+	/usr/bin/c++   $(CXX_DEFINES) $(CXX_FLAGS) -o CMakeFiles/test.dir/source/main.cpp.o -c /home/axel/Documents/code/software/unityTest/source/main.cpp
 
 CMakeFiles/test.dir/source/main.cpp.i: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/test.dir/source/main.cpp.i"
-	/usr/bin/c++  $(CXX_DEFINES) $(CXX_FLAGS) -E /home/axel/Documents/code/software/test/source/main.cpp > CMakeFiles/test.dir/source/main.cpp.i
+	/usr/bin/c++  $(CXX_DEFINES) $(CXX_FLAGS) -E /home/axel/Documents/code/software/unityTest/source/main.cpp > CMakeFiles/test.dir/source/main.cpp.i
 
 CMakeFiles/test.dir/source/main.cpp.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/test.dir/source/main.cpp.s"
-	/usr/bin/c++  $(CXX_DEFINES) $(CXX_FLAGS) -S /home/axel/Documents/code/software/test/source/main.cpp -o CMakeFiles/test.dir/source/main.cpp.s
+	/usr/bin/c++  $(CXX_DEFINES) $(CXX_FLAGS) -S /home/axel/Documents/code/software/unityTest/source/main.cpp -o CMakeFiles/test.dir/source/main.cpp.s
 
 CMakeFiles/test.dir/source/main.cpp.o.requires:
 .PHONY : CMakeFiles/test.dir/source/main.cpp.o.requires
@@ -74,17 +74,17 @@ CMakeFiles/test.dir/source/main.cpp.o.provides.build: CMakeFiles/test.dir/source
 
 CMakeFiles/test.dir/source/testDetector/TestDOGDetector.cpp.o: CMakeFiles/test.dir/flags.make
 CMakeFiles/test.dir/source/testDetector/TestDOGDetector.cpp.o: ../source/testDetector/TestDOGDetector.cpp
-	$(CMAKE_COMMAND) -E cmake_progress_report /home/axel/Documents/code/software/test/compile/CMakeFiles $(CMAKE_PROGRESS_2)
+	$(CMAKE_COMMAND) -E cmake_progress_report /home/axel/Documents/code/software/unityTest/compile/CMakeFiles $(CMAKE_PROGRESS_2)
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Building CXX object CMakeFiles/test.dir/source/testDetector/TestDOGDetector.cpp.o"
-	/usr/bin/c++   $(CXX_DEFINES) $(CXX_FLAGS) -o CMakeFiles/test.dir/source/testDetector/TestDOGDetector.cpp.o -c /home/axel/Documents/code/software/test/source/testDetector/TestDOGDetector.cpp
+	/usr/bin/c++   $(CXX_DEFINES) $(CXX_FLAGS) -o CMakeFiles/test.dir/source/testDetector/TestDOGDetector.cpp.o -c /home/axel/Documents/code/software/unityTest/source/testDetector/TestDOGDetector.cpp
 
 CMakeFiles/test.dir/source/testDetector/TestDOGDetector.cpp.i: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/test.dir/source/testDetector/TestDOGDetector.cpp.i"
-	/usr/bin/c++  $(CXX_DEFINES) $(CXX_FLAGS) -E /home/axel/Documents/code/software/test/source/testDetector/TestDOGDetector.cpp > CMakeFiles/test.dir/source/testDetector/TestDOGDetector.cpp.i
+	/usr/bin/c++  $(CXX_DEFINES) $(CXX_FLAGS) -E /home/axel/Documents/code/software/unityTest/source/testDetector/TestDOGDetector.cpp > CMakeFiles/test.dir/source/testDetector/TestDOGDetector.cpp.i
 
 CMakeFiles/test.dir/source/testDetector/TestDOGDetector.cpp.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/test.dir/source/testDetector/TestDOGDetector.cpp.s"
-	/usr/bin/c++  $(CXX_DEFINES) $(CXX_FLAGS) -S /home/axel/Documents/code/software/test/source/testDetector/TestDOGDetector.cpp -o CMakeFiles/test.dir/source/testDetector/TestDOGDetector.cpp.s
+	/usr/bin/c++  $(CXX_DEFINES) $(CXX_FLAGS) -S /home/axel/Documents/code/software/unityTest/source/testDetector/TestDOGDetector.cpp -o CMakeFiles/test.dir/source/testDetector/TestDOGDetector.cpp.s
 
 CMakeFiles/test.dir/source/testDetector/TestDOGDetector.cpp.o.requires:
 .PHONY : CMakeFiles/test.dir/source/testDetector/TestDOGDetector.cpp.o.requires
@@ -97,7 +97,7 @@ CMakeFiles/test.dir/source/testDetector/TestDOGDetector.cpp.o.provides.build: CM
 
 CMakeFiles/test.dir/home/axel/Documents/code/software/source/detector/DOGDetector.cpp.o: CMakeFiles/test.dir/flags.make
 CMakeFiles/test.dir/home/axel/Documents/code/software/source/detector/DOGDetector.cpp.o: /home/axel/Documents/code/software/source/detector/DOGDetector.cpp
-	$(CMAKE_COMMAND) -E cmake_progress_report /home/axel/Documents/code/software/test/compile/CMakeFiles $(CMAKE_PROGRESS_3)
+	$(CMAKE_COMMAND) -E cmake_progress_report /home/axel/Documents/code/software/unityTest/compile/CMakeFiles $(CMAKE_PROGRESS_3)
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Building CXX object CMakeFiles/test.dir/home/axel/Documents/code/software/source/detector/DOGDetector.cpp.o"
 	/usr/bin/c++   $(CXX_DEFINES) $(CXX_FLAGS) -o CMakeFiles/test.dir/home/axel/Documents/code/software/source/detector/DOGDetector.cpp.o -c /home/axel/Documents/code/software/source/detector/DOGDetector.cpp
 
@@ -120,7 +120,7 @@ CMakeFiles/test.dir/home/axel/Documents/code/software/source/detector/DOGDetecto
 
 CMakeFiles/test.dir/home/axel/Documents/code/software/source/detector/Feature.cpp.o: CMakeFiles/test.dir/flags.make
 CMakeFiles/test.dir/home/axel/Documents/code/software/source/detector/Feature.cpp.o: /home/axel/Documents/code/software/source/detector/Feature.cpp
-	$(CMAKE_COMMAND) -E cmake_progress_report /home/axel/Documents/code/software/test/compile/CMakeFiles $(CMAKE_PROGRESS_4)
+	$(CMAKE_COMMAND) -E cmake_progress_report /home/axel/Documents/code/software/unityTest/compile/CMakeFiles $(CMAKE_PROGRESS_4)
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Building CXX object CMakeFiles/test.dir/home/axel/Documents/code/software/source/detector/Feature.cpp.o"
 	/usr/bin/c++   $(CXX_DEFINES) $(CXX_FLAGS) -o CMakeFiles/test.dir/home/axel/Documents/code/software/source/detector/Feature.cpp.o -c /home/axel/Documents/code/software/source/detector/Feature.cpp
 
@@ -143,7 +143,7 @@ CMakeFiles/test.dir/home/axel/Documents/code/software/source/detector/Feature.cp
 
 CMakeFiles/test.dir/home/axel/Documents/code/software/source/imagePyramid/LevelPyramid.cpp.o: CMakeFiles/test.dir/flags.make
 CMakeFiles/test.dir/home/axel/Documents/code/software/source/imagePyramid/LevelPyramid.cpp.o: /home/axel/Documents/code/software/source/imagePyramid/LevelPyramid.cpp
-	$(CMAKE_COMMAND) -E cmake_progress_report /home/axel/Documents/code/software/test/compile/CMakeFiles $(CMAKE_PROGRESS_5)
+	$(CMAKE_COMMAND) -E cmake_progress_report /home/axel/Documents/code/software/unityTest/compile/CMakeFiles $(CMAKE_PROGRESS_5)
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Building CXX object CMakeFiles/test.dir/home/axel/Documents/code/software/source/imagePyramid/LevelPyramid.cpp.o"
 	/usr/bin/c++   $(CXX_DEFINES) $(CXX_FLAGS) -o CMakeFiles/test.dir/home/axel/Documents/code/software/source/imagePyramid/LevelPyramid.cpp.o -c /home/axel/Documents/code/software/source/imagePyramid/LevelPyramid.cpp
 
@@ -166,7 +166,7 @@ CMakeFiles/test.dir/home/axel/Documents/code/software/source/imagePyramid/LevelP
 
 CMakeFiles/test.dir/home/axel/Documents/code/software/source/imagePyramid/DOGPyramid.cpp.o: CMakeFiles/test.dir/flags.make
 CMakeFiles/test.dir/home/axel/Documents/code/software/source/imagePyramid/DOGPyramid.cpp.o: /home/axel/Documents/code/software/source/imagePyramid/DOGPyramid.cpp
-	$(CMAKE_COMMAND) -E cmake_progress_report /home/axel/Documents/code/software/test/compile/CMakeFiles $(CMAKE_PROGRESS_6)
+	$(CMAKE_COMMAND) -E cmake_progress_report /home/axel/Documents/code/software/unityTest/compile/CMakeFiles $(CMAKE_PROGRESS_6)
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Building CXX object CMakeFiles/test.dir/home/axel/Documents/code/software/source/imagePyramid/DOGPyramid.cpp.o"
 	/usr/bin/c++   $(CXX_DEFINES) $(CXX_FLAGS) -o CMakeFiles/test.dir/home/axel/Documents/code/software/source/imagePyramid/DOGPyramid.cpp.o -c /home/axel/Documents/code/software/source/imagePyramid/DOGPyramid.cpp
 
@@ -189,7 +189,7 @@ CMakeFiles/test.dir/home/axel/Documents/code/software/source/imagePyramid/DOGPyr
 
 CMakeFiles/test.dir/home/axel/Documents/code/software/source/imagePyramid/GaussianPyramid.cpp.o: CMakeFiles/test.dir/flags.make
 CMakeFiles/test.dir/home/axel/Documents/code/software/source/imagePyramid/GaussianPyramid.cpp.o: /home/axel/Documents/code/software/source/imagePyramid/GaussianPyramid.cpp
-	$(CMAKE_COMMAND) -E cmake_progress_report /home/axel/Documents/code/software/test/compile/CMakeFiles $(CMAKE_PROGRESS_7)
+	$(CMAKE_COMMAND) -E cmake_progress_report /home/axel/Documents/code/software/unityTest/compile/CMakeFiles $(CMAKE_PROGRESS_7)
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Building CXX object CMakeFiles/test.dir/home/axel/Documents/code/software/source/imagePyramid/GaussianPyramid.cpp.o"
 	/usr/bin/c++   $(CXX_DEFINES) $(CXX_FLAGS) -o CMakeFiles/test.dir/home/axel/Documents/code/software/source/imagePyramid/GaussianPyramid.cpp.o -c /home/axel/Documents/code/software/source/imagePyramid/GaussianPyramid.cpp
 
@@ -212,7 +212,7 @@ CMakeFiles/test.dir/home/axel/Documents/code/software/source/imagePyramid/Gaussi
 
 CMakeFiles/test.dir/home/axel/Documents/code/software/source/imagePyramid/Pyramid.cpp.o: CMakeFiles/test.dir/flags.make
 CMakeFiles/test.dir/home/axel/Documents/code/software/source/imagePyramid/Pyramid.cpp.o: /home/axel/Documents/code/software/source/imagePyramid/Pyramid.cpp
-	$(CMAKE_COMMAND) -E cmake_progress_report /home/axel/Documents/code/software/test/compile/CMakeFiles $(CMAKE_PROGRESS_8)
+	$(CMAKE_COMMAND) -E cmake_progress_report /home/axel/Documents/code/software/unityTest/compile/CMakeFiles $(CMAKE_PROGRESS_8)
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Building CXX object CMakeFiles/test.dir/home/axel/Documents/code/software/source/imagePyramid/Pyramid.cpp.o"
 	/usr/bin/c++   $(CXX_DEFINES) $(CXX_FLAGS) -o CMakeFiles/test.dir/home/axel/Documents/code/software/source/imagePyramid/Pyramid.cpp.o -c /home/axel/Documents/code/software/source/imagePyramid/Pyramid.cpp
 
@@ -308,6 +308,6 @@ CMakeFiles/test.dir/clean:
 .PHONY : CMakeFiles/test.dir/clean
 
 CMakeFiles/test.dir/depend:
-	cd /home/axel/Documents/code/software/test/compile && $(CMAKE_COMMAND) -E cmake_depends "Unix Makefiles" /home/axel/Documents/code/software/test /home/axel/Documents/code/software/test /home/axel/Documents/code/software/test/compile /home/axel/Documents/code/software/test/compile /home/axel/Documents/code/software/test/compile/CMakeFiles/test.dir/DependInfo.cmake --color=$(COLOR)
+	cd /home/axel/Documents/code/software/unityTest/compile && $(CMAKE_COMMAND) -E cmake_depends "Unix Makefiles" /home/axel/Documents/code/software/unityTest /home/axel/Documents/code/software/unityTest /home/axel/Documents/code/software/unityTest/compile /home/axel/Documents/code/software/unityTest/compile /home/axel/Documents/code/software/unityTest/compile/CMakeFiles/test.dir/DependInfo.cmake --color=$(COLOR)
 .PHONY : CMakeFiles/test.dir/depend
 
