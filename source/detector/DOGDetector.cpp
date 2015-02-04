@@ -7,6 +7,13 @@ using namespace cv;
 DOGDetector::DOGDetector(Mat image, int octave, int level, double k, double sigma): m_image(image), m_level(level), m_octave(octave), m_sigma(sigma), m_k(k), m_dogPyramid(DOGPyramid(image, octave, level - 1, k, sigma))
 {
   CHECK_INVARIANTS();
+
+  //Creat limit of offset
+  m_offsetLimit = Mat(3, 1, CV_64F);
+  m_offsetLimit.at<double>(0) = 0.5;
+  m_offsetLimit.at<double>(1) = 0.5;
+  m_offsetLimit.at<double>(2) = 0.5;
+  
 }
 
 vector<Feature> DOGDetector::getFeatures()
@@ -26,7 +33,7 @@ void DOGDetector::operator()()
   m_dogPyramid.build();  
   
   findExtrema();
-  locateExtrema();
+  accurateKeyPointLocalization();
   
 
   CHECK_INVARIANTS();
@@ -128,7 +135,7 @@ void DOGDetector::findExtremaAux(LevelPyramid const& level1, LevelPyramid const&
 
    bool isExtrema(false);
    Mat img1, img2, img3, roi1, roi2, roi3;
-   int  sizeRoi(3), countTest = m_features.size();
+   int  sizeRoi(3);
 
    //Get images
    img1 = level1.getImage();
@@ -150,7 +157,6 @@ void DOGDetector::findExtremaAux(LevelPyramid const& level1, LevelPyramid const&
 	   m_features.push_back(Feature(i, j, level2.getSigma(), 0, level2.getOctave(), level2.getLevel())); 
        }//end for 
 
-   ENSURE(m_features.size() >= countTest, "The size of features array cannot decrease"); 
    CHECK_INVARIANTS();
 }
 
@@ -163,52 +169,71 @@ void DOGDetector::findExtrema()
       findExtremaAux(m_dogPyramid.get(i, j - 1), m_dogPyramid.get(i, j), m_dogPyramid.get(i, j + 1));
 }
 
-Mat DOGDetector::computeHessian(int row, int col, Mat const& im1, Mat const& im2, Mat const& im3) const
+Mat DOGDetector::computeHessian(Feature const& feature)
 {
-  REQUIRE(im1.rows >= 3 && im1.cols >= 3, "Size of images must be superior or equal at 3");
-  REQUIRE(im1.size() == im2.size() && im2.size() == im3.size(), "Dimension of images must be equal");
-  REQUIRE(row > 0 && row < im1.rows, "Row don't be in the border");
-  REQUIRE(col > 0 && col < im1.cols, "Col don't be in the border");
-  
+  REQUIRE(feature.getRow() > 0, "Row don't be in the border");
+  REQUIRE(feature.getCol() > 0, "Col don't be in the border");
+  REQUIRE(feature.getLevel() > 0, "Level must be superior at zero");
+  REQUIRE(feature.getRow() < m_image.rows / pow(2, feature.getOctave()), "");
+  REQUIRE(feature.getCol() < m_image.cols / pow(2, feature.getOctave()), "");
+  REQUIRE(feature.getLevel() < m_level + 1, "" );
+
+  double dRowRow, dRowCol, dRowSigma, dColCol, dColSigma, dSigmaSigma ;
+  int row = feature.getRow(), col = feature.getCol();
+  Mat im1 = DOG_IMAGE_SCALE_1;
+  Mat im2 = DOG_IMAGE_SCALE_2;
+  Mat im3 = DOG_IMAGE_SCALE_3;
   Mat hessian(3, 3, CV_64F);
-  double dRowRow, dRowCol, dRowSigma, dColRow, dColCol, dColSigma, dSigmaRow, dSigmaCol, dSigmaSigma ;
 
   //Compute the partial second derivate
-  dRowRow = 0.25 * (im2.at<double>(row + 1, col) - 2 * im2.at<double>(row, col) + im2.at<double>(row - 1, col));
+  dRowRow = (im2.at<double>(row + 1, col) - 2 * im2.at<double>(row, col)
+             + im2.at<double>(row - 1, col));
 
-  dColCol = 0.25 * (im2.at<double>(row, col + 1) - 2 * im2.at<double>(row, col) + im2.at<double>(row, col -1));
+  dColCol = (im2.at<double>(row, col + 1) - 2 * im2.at<double>(row, col) 
+             + im2.at<double>(row, col -1));
 
-  dSigmaSigma = 0.25 * (im3.at<double>(row, col) - 2 * im2.at<double>(row, col) + im1.at<double>(row, col));
+  dSigmaSigma = (im3.at<double>(row, col) - 2 * im2.at<double>(row, col)
+		 + im1.at<double>(row, col));
 
-  dRowCol = 0.25 * (im2.at<double>(row + 1, col + 1) - im2.at<double>(row + 1, col - 1) - im2.at<double>(row - 1, col + 1) + im2.at<double>(row - 1, col - 1));
+  dRowCol = 0.25 * (im2.at<double>(row + 1, col + 1) - im2.at<double>(row + 1, col - 1)
+		    - im2.at<double>(row - 1, col + 1) + im2.at<double>(row - 1, col - 1));
   
-  dRowSigma = 0.25 * (im3.at<double>(row + 1, col) - im1.at<double>(row + 1, col) - im3.at<double>(row - 1, col) + im1.at<double>(row - 1, col));
+  dRowSigma = 0.25 * (im3.at<double>(row + 1, col) - im1.at<double>(row + 1, col)
+		      - im3.at<double>(row - 1, col) + im1.at<double>(row - 1, col));
 
-  dColRow = 0.25 * (im2.at<double>(row + 1, col + 1) - im2.at<double>(row - 1, col + 1) - im2.at<double>(row + 1, col - 1) + im2.at<double>(row - 1, col - 1)); 
-
-  dColSigma = 0.25 * (im3.at<double>(row, col + 1) - im1.at<double>(row, col + 1) - im3.at<double>(row, col -1) + im1.at<double>(row, col -1));
-
-  dSigmaRow = 0.25 * (im3.at<double>(row + 1, col) - im3.at<double>(row - 1, col) - im1.at<double>(row + 1, col) + im1.at<double>(row - 1, col));
-
-  dSigmaCol = 0.25 * (im3.at<double>(row, col + 1) - im3.at<double>(row, col - 1) - im1.at<double>(row, col + 1) + im1.at<double>(row, col - 1));
+  dColSigma = 0.25 * (im3.at<double>(row, col + 1) - im1.at<double>(row, col + 1)
+		      - im3.at<double>(row, col -1) + im1.at<double>(row, col -1));
 
   //Construct the hessian matrix
-  hessian.at<double>(0, 0) = dRowRow; hessian.at<double>(0, 1) = dRowCol; hessian.at<double>(0, 2) = dRowSigma;
-  hessian.at<double>(1, 0) = dColRow; hessian.at<double>(1, 1) = dColCol; hessian.at<double>(1, 2) = dColSigma;
-  hessian.at<double>(2, 0) = dSigmaRow; hessian.at<double>(2, 1) = dSigmaCol; hessian.at<double>(2, 2) = dSigmaSigma;
-
-  ENSURE(hessian.rows == 3 && hessian.cols == 3, "Hessian must be have the good dimension");
+  hessian.at<double>(0, 0) = dRowRow;
+  hessian.at<double>(0, 1) = dRowCol;
+  hessian.at<double>(0, 2) = dRowSigma;
+  hessian.at<double>(1, 0) = dRowCol;
+  hessian.at<double>(1, 1) = dColCol;
+  hessian.at<double>(1, 2) = dColSigma;
+  hessian.at<double>(2, 0) = dRowSigma;
+  hessian.at<double>(2, 1) = dColSigma;
+  hessian.at<double>(2, 2) = dSigmaSigma;
+  
+ 
+  ENSURE(hessian.rows == 3 && hessian.cols == 3, "");
   
   return hessian;
 }
 
-Mat DOGDetector::computeGradian(int row, int col, cv::Mat const& im1, cv::Mat const& im2, cv::Mat const& im3) const
+Mat DOGDetector::computeGradian(Feature const& feature)
 {
-  REQUIRE(im1.rows >= 3 && im1.cols >= 3, "Size of images must be superior or equal at 3");
-  REQUIRE(im1.size() == im2.size() && im2.size() == im3.size(), "Dimension of images must be equal");
-  REQUIRE(row > 0 && row < im1.rows, "Row don't be in the border");
-  REQUIRE(col > 0 && col < im1.cols, "Col don't be in the border");
-  
+  REQUIRE(feature.getRow() > 0, "Row don't be in the border");
+  REQUIRE(feature.getCol() > 0, "Col don't be in the border");
+  REQUIRE(feature.getLevel() > 0, "Level must be superior at zero");
+  REQUIRE(feature.getRow() < m_image.rows / pow(2, feature.getOctave()), "");
+  REQUIRE(feature.getCol() < m_image.cols / pow(2, feature.getOctave()), "");
+  REQUIRE(feature.getLevel() < m_level + 1, "" );
+
+  int row = feature.getRow(), col = feature.getCol();
+  Mat im1 = DOG_IMAGE_SCALE_1;
+  Mat im2 = DOG_IMAGE_SCALE_2;
+  Mat im3 = DOG_IMAGE_SCALE_3;
   Mat gradian(3, 1, CV_64F);
 
   //Compute gradian
@@ -221,91 +246,215 @@ Mat DOGDetector::computeGradian(int row, int col, cv::Mat const& im1, cv::Mat co
   return gradian;
 }
 
-Mat DOGDetector::computeDelta(Feature const& feature) 
+Mat DOGDetector::computeOffset(Feature const& feature, double *pixelValue, Mat *grad) 
 {
-  REQUIRE(feature.getRow() > 0 && feature.getRow() < m_image.rows, "Feature.row must be inside this definition field");
-  REQUIRE(feature.getCol() > 0 && feature.getCol() < m_image.cols, "Feature.col must be inside this definition field");
   REQUIRE(m_dogPyramid.isBuild(), "DOG Pyramid must be processed");
   CHECK_INVARIANTS();
 
-  Mat delta, gradian(3, 1, CV_64F), hessian(3, 3, CV_64F);
+  Mat offset, gradian(3, 1, CV_64F), hessian(3, 3, CV_64F);
   Mat im1, im2, im3;
-  int row = feature.getRow(), col = feature.getCol();
-
-  //Get the images
-  im1 = m_dogPyramid.getImage(feature.getOctave(), feature.getLevel() - 1);
-  im2 = m_dogPyramid.getImage(feature.getOctave(), feature.getLevel());
-  im3 = m_dogPyramid.getImage(feature.getOctave(), feature.getLevel() + 1);
-
+ 
   //Compute the gradian
-  gradian = computeGradian(row, col, im1, im2,  im3);
+  gradian = computeGradian(feature);
 
   //Compute the hessian
-  hessian = computeHessian(row, col, im1, im2, im3);
+  hessian = computeHessian(feature);
   
-  //Compute the delta
-  delta = - hessian.inv() * gradian;
+  //Compute the offset
+  offset = -1 * hessian.inv(DECOMP_SVD) * gradian;
 
-  ENSURE(delta.rows == 3 && delta.cols == 1, "Delta must be have the good dimension");
+  if(grad != 0)
+    *grad = gradian;
+
+  if(pixelValue != 0)
+    *pixelValue = m_dogPyramid.getImage(feature.getOctave(), 
+					feature.getLevel()).at<double>(feature.getRow(),
+								       feature.getCol());
+
+  ENSURE(offset.rows == 3 && offset.cols == 1, "Offset must be have the good dimension");
   CHECK_INVARIANTS();
 
-  return delta;
+  return offset;
 }
 
-bool DOGDetector::isSupHalfOfStep(cv::Mat delta) const
+bool DOGDetector::featureMustChange(cv::Mat offset) const
 {
-  REQUIRE(delta.rows == 3 && delta.cols == 1, "Delta must have the size 3 * 1 ");
+  REQUIRE(offset.rows == 3 && offset.cols == 1, "Offset must have the size 3 * 1 ");
 
-  bool isTrue = false;
+  bool res = false;
 
-  abs(delta);
+  if(sum(abs(offset))[0] > sum(m_offsetLimit)[0])
+    res = true;
 
-  if(delta.at<double>(0) > 0.5)
-    isTrue = true;
-
-  else if(delta.at<double>(1) > 0.5)
-    isTrue = true;
-
-  else if(delta.at<double>(2) > m_k * m_sigma * 0.5)
-    isTrue = true;
+  return res;
 }
 
-cv::Mat DOGDetector::delataConvertToImageFrame(cv::Mat delta) const
+cv::Mat DOGDetector::discretizeOffset(cv::Mat const& offset) const
 {
-  REQUIRE(delta.rows == 3 && delta.cols == 1, "Delta must have the size 3 * 1 ");
+  REQUIRE(offset.rows == 3 && offset.cols == 1, "");
 
-  Mat res(3, 1, CV_64F), sup, inf, deltaBorder(3, 1, CV_64F);
+  Mat res(3, 1, CV_64F);
 
-  //Creat border
-  deltaBorder.at<double>(0) = 0.5;
-  deltaBorder.at<double>(1) = 0.5;
-  deltaBorder.at<double>(2) = m_k * m_sigma * 0.5;
+  //Discretize the offset
+  res.at<double>(0) = round(offset.at<double>(0));
+  res.at<double>(1) = round(offset.at<double>(1));
+  res.at<double>(2) = round(offset.at<double>(2));
 
-  //Binarize the delta
-  sup = delta > deltaBorder;
-  inf = delta < - 1 * deltaBorder;
-  
-  sup.convertTo(sup, CV_64F);
-  inf.convertTo(inf, CV_64F); 
-  inf *= -1;
-
-  res = (sup + inf)/255;
-
-  ENSURE(sum(res)[0] <= 3 && sum(res)[0] >= -3, "The convert delta must be have elements equal to  one or zero");
-  
   return res;
 
 }
 
-void DOGDetector::locateExtrema()
+void DOGDetector::addOffset(Feature& feature, Mat const& offset, bool isDiscretize)
+{
+  REQUIRE(feature.getRow() > 0 && feature.getCol() > 0, "");
+  REQUIRE(feature.getRow() < m_image.rows/ pow(2, feature.getOctave()) && feature.getCol() < m_image.cols/ pow(2, feature.getOctave()), "The feature must be stay inside the image");
+
+  feature.setRow(feature.getRow() + offset.at<double>(0));
+  feature.setCol(feature.getCol() + offset.at<double>(1));
+  
+  if(isDiscretize)
+    {
+      feature.setLevel(feature.getLevel() + offset.at<double>(2));
+      feature.setSigma(feature.getSigma() * pow(m_k, offset.at<double>(2))) ;
+    }
+}
+
+
+bool DOGDetector::checkImageBorder(Feature const& feature) 
+{
+  bool res = false;
+  int level = feature.getLevel(), 
+    octave = feature.getOctave(),
+    row = feature.getRow(),
+    col = feature.getCol(),
+    imgRow = m_image.rows / pow(2, feature.getOctave()),
+    imgCol = m_image.cols / pow(2, feature.getOctave());
+
+  if( level < 1  ||
+      level > m_level  ||
+      row < DOG_IMG_BORDER ||
+      col < DOG_IMG_BORDER ||
+      row >= imgRow - DOG_IMG_BORDER  ||
+      col >= imgCol - DOG_IMG_BORDER )
+    res = true;
+
+  return res;
+}
+
+double DOGDetector::offsetContrastReponse(double value, Mat& gradian, Mat& offset) const
+{
+  REQUIRE(offset.rows == 3 && offset.cols == 1, "Offset must have the size 3 * 1");
+  REQUIRE(gradian.rows == 3 && gradian.cols == 1, "Offset must have the size 3 * 1");
+
+  double res;
+  Mat tmp(1, 1, CV_64F);
+
+  tmp = abs(value + (0.5 * gradian.t() * offset));
+  res = tmp.at<double>(0);
+
+  return res;
+}
+
+
+double DOGDetector::traceH(Feature const& feature)
+{
+  double dxx, dyy;
+  int row = feature.getRow(), col = feature.getCol();
+  Mat im1 = DOG_IMAGE_SCALE_1;
+  Mat im2 = DOG_IMAGE_SCALE_2;
+  Mat im3 = DOG_IMAGE_SCALE_3;
+ 
+  dxx = (im2.at<double>(row + 1, col) - 2 * im2.at<double>(row, col)
+             + im2.at<double>(row - 1, col));
+
+  dyy = (im2.at<double>(row, col + 1) - 2 * im2.at<double>(row, col) 
+             + im2.at<double>(row, col -1));
+
+  return dxx + dyy;
+}
+
+double DOGDetector::detH(Feature const& feature)
+{
+  double dxx, dyy, dxy;
+  int row = feature.getRow(), col = feature.getCol();
+  Mat im1 = DOG_IMAGE_SCALE_1;
+  Mat im2 = DOG_IMAGE_SCALE_2;
+  Mat im3 = DOG_IMAGE_SCALE_3;
+  
+  //Compute the partial second derivate
+  dxx = (im2.at<double>(row + 1, col) - 2 * im2.at<double>(row, col)
+             + im2.at<double>(row - 1, col));
+
+  dyy = (im2.at<double>(row, col + 1) - 2 * im2.at<double>(row, col) 
+             + im2.at<double>(row, col -1));
+
+  dxy = 0.25 * (im2.at<double>(row + 1, col + 1) - im2.at<double>(row + 1, col - 1)
+		    - im2.at<double>(row - 1, col + 1) + im2.at<double>(row - 1, col - 1));
+
+  return dxx*dyy - dxy*dxy;
+}
+
+
+void DOGDetector::accurateKeyPointLocalization()
 {
   CHECK_INVARIANTS();
+  REQUIRE(m_features.size() > 0, "");
 
-  for(int i = 0; i < m_features.size(); ++i)
+  vector<Feature>::iterator  itFeature = m_features.begin();
+  int i = 0;
+
+  while(itFeature != m_features.end())
     {
-      Mat delta = computeDelta(m_features[i]);
-      cout << isSupHalfOfStep(delta) << " " << delta << " " << delataConvertToImageFrame(delta) << endl;
-    }
+      Mat offset, gradian;
+      double value;
 
+      //Compute the offset and add it of current feature coordinates 
+      while(i < DOG_MAX_INTERP_STEPS)
+	{
+	  offset = computeOffset(*itFeature, &value, &gradian);
+	  
+	  if(!featureMustChange(offset))
+	    break;
+	  
+	  addOffset(*itFeature, discretizeOffset(offset), true);
+	  
+	  if(checkImageBorder(*itFeature)) //Delete the feature
+	    {
+	      itFeature = m_features.erase(itFeature);
+	      break;
+	    }
+
+	  i++;
+	}//end while
+
+      if(i == DOG_MAX_INTERP_STEPS) //You must assure the convergence of algorithme 
+	{
+	  itFeature = m_features.erase(itFeature);
+	  continue;
+	}
+  
+      //Filter low contrast responses
+      if(abs(offsetContrastReponse(value, gradian, offset)) < 0.03)
+	{
+	  itFeature = m_features.erase(itFeature);
+	  continue;
+	}
+
+      //Eliminate edge responses
+      double tr = traceH(*itFeature),
+	det = detH(*itFeature);
+
+      if(det < 0 ||
+	  tr * tr / det > (R_THRESHOLD + 1) * (R_THRESHOLD + 1) / R_THRESHOLD) 
+	{
+	  itFeature = m_features.erase(itFeature);
+	  continue;
+	}
+
+      addOffset(*itFeature, offset);
+      
+      itFeature++;
+    }//end while
+ 
   CHECK_INVARIANTS();
 }

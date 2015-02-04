@@ -1,6 +1,13 @@
 #ifndef DOGDETECTOR_H
 #define DOGDETECTOR_H
 
+#define DOG_MAX_INTERP_STEPS 5
+#define DOG_IMG_BORDER 1
+#define R_THRESHOLD 10
+#define DOG_IMAGE_SCALE_1 m_dogPyramid.getImage(feature.getOctave(), feature.getLevel() - 1)
+#define DOG_IMAGE_SCALE_2 m_dogPyramid.getImage(feature.getOctave(), feature.getLevel())
+#define DOG_IMAGE_SCALE_3 m_dogPyramid.getImage(feature.getOctave(), feature.getLevel() + 1)
+
 #include "Feature.hpp"
 #include "../imagePyramid/DOGPyramid.hpp"
 #include "../imagePyramid/GaussianPyramid.hpp"
@@ -18,6 +25,7 @@ private :
   double m_sigma;
   std::vector<Feature> m_features;
   DOGPyramid m_dogPyramid;
+  cv::Mat m_offsetLimit;
 
 public:
 
@@ -40,18 +48,22 @@ public:
   void operator()();
   void findExtrema();
   void findExtremaAux(LevelPyramid const& level1, LevelPyramid const& level2, LevelPyramid const& level3);
-  void locateExtrema();
+  void accurateKeyPointLocalization();
 
 private : //private methods
   bool isLocalMaximum(cv::Mat const& roi1, cv::Mat const& roi2, cv::Mat const& roi3);
   bool isLocalMinimum(cv::Mat const& roi1, cv::Mat const& roi2, cv::Mat const& roi3);
   bool isLocalExtrema(cv::Mat const& roi1, cv::Mat const& roi2, cv::Mat const& roi3);
-  cv::Mat computeDelta(Feature const& feature);
-  cv::Mat computeHessian(int row, int col, cv::Mat const& im1, cv::Mat const& im2, cv::Mat const& im3)const ;
-  cv::Mat computeGradian(int row, int col, cv::Mat const& im1, cv::Mat const& im2, cv::Mat const& im3)const;
-  bool isSupHalfOfStep(cv::Mat delta) const;
-  cv::Mat delataConvertToImageFrame(cv::Mat delta) const;
- 
+  cv::Mat computeOffset(Feature const& feature, double *pixelValue = 0, cv::Mat *grad = 0);
+  cv::Mat computeHessian(Feature const&  feature);
+  cv::Mat computeGradian(Feature const& feature);
+  bool featureMustChange(cv::Mat offset) const;
+  cv::Mat discretizeOffset(cv::Mat const& offset) const;
+  void addOffset(Feature& feature, cv::Mat const& offset, bool isDiscretize = false);
+  bool checkImageBorder(Feature const& feature) ;
+  double offsetContrastReponse(double value, cv::Mat& gradian, cv::Mat& offset) const;
+  double traceH(Feature const& feature);
+  double detH(Feature const& feature);
 };
 
 #endif

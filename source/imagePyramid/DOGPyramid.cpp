@@ -31,11 +31,29 @@ void DOGPyramid::build()
 	cvtColor(gaussianPyramid.getImage(i, j + 1), im1, CV_BGR2GRAY);
 	cvtColor(gaussianPyramid.getImage(i, j), im2, CV_BGR2GRAY);
 
-	//convert the images precision
+	//convert the images in double precision
 	im1.convertTo(im1, CV_64F);
 	im2.convertTo(im2, CV_64F);
+	Mat dog = im1 - im2;
+    
+	
+	//Normalize dog inside [|0,1|]
+	double min, max;
+	minMaxLoc(dog, &min);
 
-	LevelPyramid level(im1 - im2, i, j, gaussianPyramid.getSigma(i, j));
+	dog -= min;
+	minMaxLoc(dog, 0, &max);
+
+	dog /= max;
+
+	/*
+	namedWindow( "Display window", WINDOW_AUTOSIZE);// Create a window for display.
+	imshow( "Display window", dog );                   // Show our image inside it.
+	waitKey(0);
+	*/
+
+	//Create the level
+	LevelPyramid level(dog, i, j, gaussianPyramid.getSigma(i, j));
 	set(level, i, j);
       }
 
