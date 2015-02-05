@@ -15,7 +15,7 @@ class DOGPyramid : public Pyramid
  public :
 
   DOGPyramid();
-  DOGPyramid(cv::Mat image, int octave, int level, double sigma, double k);
+  DOGPyramid(cv::Mat image, int octave, int level, double sigma);
   ~DOGPyramid();
 
   double getSigma(int i, int j);

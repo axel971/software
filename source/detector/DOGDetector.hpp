@@ -21,7 +21,6 @@ private :
   cv::Mat m_image;
   int m_level;
   int m_octave;
-  double m_k;
   double m_sigma;
   std::vector<Feature> m_features;
   DOGPyramid m_dogPyramid;
@@ -30,7 +29,7 @@ private :
 public:
 
   //Constructeur
-  DOGDetector(cv::Mat image, int octave, int level, double k, double sigma);
+  DOGDetector(cv::Mat image, int octave, int level, double sigma);
   
   //Define invariant
   BEGIN_INVARIANT_BLOCK(DOGDetector) 

@@ -7,7 +7,7 @@ DOGPyramid::DOGPyramid(){}
 
 DOGPyramid::~DOGPyramid(){}
 
-DOGPyramid::DOGPyramid(cv::Mat image, int octave, int level, double sigma, double k): Pyramid(image, octave, level), m_sigma(sigma), m_k(k)
+DOGPyramid::DOGPyramid(cv::Mat image, int octave, int level, double sigma): Pyramid(image, octave, level), m_sigma(sigma)
 {}
 
 double DOGPyramid::getSigma(int i, int j)
@@ -17,7 +17,7 @@ double DOGPyramid::getSigma(int i, int j)
 
 void DOGPyramid::build()
 {
-  GaussianPyramid gaussianPyramid(m_image, m_octave, m_level + 1, m_sigma, m_k); 
+  GaussianPyramid gaussianPyramid(m_image, m_octave, m_level + 1, m_sigma); 
   Mat im1, im2;
 
  
@@ -46,11 +46,11 @@ void DOGPyramid::build()
 
 	dog /= max;
 
-	/*
+	
 	namedWindow( "Display window", WINDOW_AUTOSIZE);// Create a window for display.
 	imshow( "Display window", dog );                   // Show our image inside it.
 	waitKey(0);
-	*/
+	
 
 	//Create the level
 	LevelPyramid level(dog, i, j, gaussianPyramid.getSigma(i, j));

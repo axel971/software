@@ -4,7 +4,7 @@ using namespace std;
 using namespace cv;
 
 
-DOGDetector::DOGDetector(Mat image, int octave, int level, double k, double sigma): m_image(image), m_level(level), m_octave(octave), m_sigma(sigma), m_k(k), m_dogPyramid(DOGPyramid(image, octave, level - 1, k, sigma))
+DOGDetector::DOGDetector(Mat image, int octave, int level, double sigma): m_image(image), m_level(level), m_octave(octave), m_sigma(sigma), m_dogPyramid(DOGPyramid(image, octave, level - 1, sigma))
 {
   CHECK_INVARIANTS();
 
@@ -330,7 +330,8 @@ void DOGDetector::addOffset(Feature& feature, Mat const& offset, bool isDiscreti
   if(isDiscretize)
     {
       feature.setLevel(feature.getLevel() + offset.at<double>(2));
-      feature.setSigma(feature.getSigma() * pow(m_k, offset.at<double>(2))) ;
+      double sigma = m_dogPyramid.getSigma(feature.getOctave(), feature.getLevel());
+      feature.setSigma(sigma) ;
     }
 }
 

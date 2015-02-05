@@ -20,7 +20,7 @@ int main(int argc, char** argv)
   Mat image;
   image = imread("lena.jpg", CV_LOAD_IMAGE_COLOR);
 
-  DOGDetector DOGDetector(image, 3, 5, sqrt(2), 1.6);
+  DOGDetector DOGDetector(image, 3, 5, 1.6);
   DOGDetector();
   cout << DOGDetector.getNumbersFeatures() << endl;
 

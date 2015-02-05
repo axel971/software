@@ -6,8 +6,11 @@ using namespace std;
 GaussianPyramid::GaussianPyramid() : m_sigma(0), m_k(0)
 {} 
 
-GaussianPyramid::GaussianPyramid(cv::Mat image, int octave, int level, double sigma, double k) : Pyramid(image, octave, level), m_sigma(sigma), m_k(k) 
-{ } 
+GaussianPyramid::GaussianPyramid(cv::Mat image, int octave, int level, double sigma) : Pyramid(image, octave, level), m_sigma(sigma)
+{ 
+  double k = pow(2, 1. / (level - 2));
+  m_k = k;
+} 
 
 double GaussianPyramid::getSigma(int i, int j)
 {
@@ -16,18 +19,19 @@ double GaussianPyramid::getSigma(int i, int j)
 
 void GaussianPyramid::build()
 {
-  int i2Sigma = 2; 
+  int indexDoubledSigma = m_level - 2; 
   double sigmas[m_levelInside];
   double scale;
 
   //Create the first element of octave zero
   set(LevelPyramid(m_image, 0, 0, m_sigma), 0, 0);
- 
+  
   //Create the array of sigma
   for(int i = 0; i < m_levelInside; ++i)
     sigmas[i] = pow(m_k, i) * m_sigma;
   
- //Constuction of pyramid
+ 
+  //Constuction of pyramid
   for(int i = 0; i < m_octave; ++i)
     for(int j = 0; j < m_levelInside; ++j)
       {
@@ -46,11 +50,12 @@ void GaussianPyramid::build()
 	  {
 	    //Construct the ith octave
 	    Mat out;
-	    scale = getSigma(i - 1, i2Sigma);
-	    resize(getImage(i - 1, i2Sigma), out, Size(0, 0), 0.5, 0.5);
+	    scale = getSigma(i - 1, indexDoubledSigma);
+	    resize(getImage(i - 1, indexDoubledSigma), out, Size(0, 0), 0.5, 0.5);
 	    set(LevelPyramid(out, i, j, scale), i, j);
 	  }
-      }//end for
+	
+   }//end for
 
   m_isBuild == true;
 }
