@@ -15,7 +15,7 @@ protected :
    
 public :
 
-  GaussianPyramid(cv::Mat image, int octave, int level, double sigma, double k);
+  GaussianPyramid(cv::Mat image, int octave, int level, double sigma);
   GaussianPyramid();
   
   double getSigma(int i, int j);
