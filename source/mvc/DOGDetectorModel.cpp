@@ -94,7 +94,6 @@ void DOGDetectorModel::run()
 
 	//display
 	cout << "Image " << i + 1 << " is processed." << endl;
-
 	emit runChanged(100 * count / (allCount - 1));
 	count++;
       }
