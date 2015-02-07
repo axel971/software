@@ -20,7 +20,6 @@ void DOGPyramid::build()
   GaussianPyramid gaussianPyramid(m_image, m_octave, m_level + 1, m_sigma); 
   Mat im1, im2;
 
- 
   gaussianPyramid.build();
 
   for(int i = 0; i < m_octave; ++i)

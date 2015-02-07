@@ -54,12 +54,11 @@ void DOGDetector::operator()()
   CHECK_INVARIANTS();
 }
 
-bool DOGDetector::isLocalMaximum(cv::Mat const& roi1, cv::Mat const& roi2, cv::Mat const& roi3)
+bool DOGDetector::isLocalMaximum(cv::Mat const& roi1, cv::Mat const& roi2, cv::Mat const& roi3) const
 {
   REQUIRE(roi1.cols == 3 && roi2.cols == 3 && roi3.cols == 3, "ROI must have a size 3*3");
   REQUIRE(roi1.size() == roi2.size() && roi2.size() == roi3.size(), "ROI must be have the same size");
-  CHECK_INVARIANTS();
-  
+   
   bool isMaximum = false;
   double val, maxRoi1, maxRoi2, maxRoi3;
   Mat mask;
@@ -84,17 +83,15 @@ bool DOGDetector::isLocalMaximum(cv::Mat const& roi1, cv::Mat const& roi2, cv::M
   //To do : Think at better ENSURE
   ENSURE(mask.cols == 3 && mask.rows == 3, "The mask must have 3 * 3 size");
   ENSURE(isMaximum == true || isMaximum == false, "Output have to be binary");
-  CHECK_INVARIANTS();
+ 
 
   return isMaximum;
 }
 
-bool DOGDetector::isLocalMinimum(cv::Mat const& roi1, cv::Mat const& roi2, cv::Mat const& roi3)
+bool DOGDetector::isLocalMinimum(cv::Mat const& roi1, cv::Mat const& roi2, cv::Mat const& roi3) const
 {
   REQUIRE(roi1.cols == 3 && roi2.cols == 3 && roi3.cols == 3, "ROI must have a size 3*3");
   REQUIRE(roi1.size() == roi2.size() && roi2.size() == roi3.size(), "ROI must be have the same size");
-  CHECK_INVARIANTS();
-  
   bool isMinimum = false;
   double val, minRoi1, minRoi2, minRoi3;
   Mat mask;
@@ -118,36 +115,32 @@ bool DOGDetector::isLocalMinimum(cv::Mat const& roi1, cv::Mat const& roi2, cv::M
 
   ENSURE(mask.cols == 3 && mask.rows == 3, "The mask must have 3 * 3 size");
   ENSURE(isMinimum == true || isMinimum == false, "Output have to be binary");
-  CHECK_INVARIANTS();
-
+  
    return isMinimum;
 };
 
-bool DOGDetector::isLocalExtrema(cv::Mat const& roi1, cv::Mat const& roi2, cv::Mat const& roi3)
+bool DOGDetector::isLocalExtrema(cv::Mat const& roi1, cv::Mat const& roi2, cv::Mat const& roi3) const
 {
   REQUIRE(roi1.cols == 3 && roi2.cols == 3 && roi3.cols == 3, "ROI must have a size 3*3");
   REQUIRE(roi1.size() == roi2.size() && roi2.size() == roi3.size(), "ROI must be have the same size");  
-  CHECK_INVARIANTS();
   
-  bool isMaximum(false), isMinimum(false), isExtrema;
+  bool isMaximum(false), isMinimum(false), isExtrema(false);
 
   isMaximum = isLocalMaximum(roi1, roi2, roi3);
   isMinimum = isLocalMinimum(roi1, roi2, roi3); 
   isExtrema = isMinimum || isMaximum;
 
   ENSURE(isExtrema == isMaximum || isExtrema == isMinimum, "iSExtrema is not valid");
-  CHECK_INVARIANTS();
 
   return isExtrema;
 }
 
 
-void DOGDetector::findExtremaAux(LevelPyramid const& level1, LevelPyramid const& level2, LevelPyramid const& level3)
+void DOGDetector::findExtremaAux(LevelPyramid const& level1, LevelPyramid const& level2, LevelPyramid const& level3) 
  {
    REQUIRE(level1.getOctave() == level2.getOctave() && level1.getOctave() == level3.getOctave(), "the element must be in the same octave");
    REQUIRE(level1.getLevel() == level2.getLevel() - 1 && level3.getLevel() == level2.getLevel() + 1, "The level is in the same order");
-   CHECK_INVARIANTS();
-
+ 
    bool isExtrema(false);
    Mat img1, img2, img3, roi1, roi2, roi3;
    int  sizeRoi(3);
@@ -171,13 +164,15 @@ void DOGDetector::findExtremaAux(LevelPyramid const& level1, LevelPyramid const&
 	 if(isExtrema)
 	   m_features.push_back(Feature(i, j, level2.getSigma(), 0, level2.getOctave(), level2.getLevel())); 
        }//end for 
-
-   CHECK_INVARIANTS();
+ 
 }
 
 void DOGDetector::findExtrema()
 {
   REQUIRE(m_dogPyramid.isBuild(), "DOG Pyramid must be processed");
+
+  if(m_features.size() > 0)
+    m_features.clear();
 
   for(int i = 0; i < m_dogPyramid.getOctave(); ++i)
     for(int j = 1; j < m_dogPyramid.getLevel(); ++j)
