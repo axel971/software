@@ -51,9 +51,9 @@ public:
   void accurateKeyPointLocalization();
 
 private : //private methods
-  bool isLocalMaximum(cv::Mat const& roi1, cv::Mat const& roi2, cv::Mat const& roi3);
-  bool isLocalMinimum(cv::Mat const& roi1, cv::Mat const& roi2, cv::Mat const& roi3);
-  bool isLocalExtrema(cv::Mat const& roi1, cv::Mat const& roi2, cv::Mat const& roi3);
+  bool isLocalMaximum(cv::Mat const& roi1, cv::Mat const& roi2, cv::Mat const& roi3) const;
+  bool isLocalMinimum(cv::Mat const& roi1, cv::Mat const& roi2, cv::Mat const& roi3) const;
+  bool isLocalExtrema(cv::Mat const& roi1, cv::Mat const& roi2, cv::Mat const& roi3) const;
   cv::Mat computeOffset(Feature const& feature, double *pixelValue = 0, cv::Mat *grad = 0);
   cv::Mat computeHessian(Feature const&  feature);
   cv::Mat computeGradian(Feature const& feature);

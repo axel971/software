@@ -24,6 +24,9 @@ int main(int argc, char** argv)
   DOGDetector();
   cout << DOGDetector.getNumbersFeatures() << endl;
 
+  DOGDetector();
+  cout << DOGDetector.getNumbersFeatures() << endl;
+  
   //construct pyramide
   //GaussianPyramid pyramid(image, 3, 5, sqrt(2), 1.6);  
   //pyramid.build();
