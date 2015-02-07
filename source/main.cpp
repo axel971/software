@@ -8,15 +8,15 @@ using namespace std;
 
 int main(int argc, char** argv)
 {
-  /*
+  
   QApplication app(argc,argv);
 
   Controller controller;
   controller.showView();
 
-  return app.exec()  
-  */
-
+  return app.exec();  
+  
+  /*
   Mat image;
   image = imread("lena.jpg", CV_LOAD_IMAGE_COLOR);
 
@@ -25,5 +25,5 @@ int main(int argc, char** argv)
   cout << DOGDetector.getNumbersFeatures() << endl;
 
   return 0;
-
+  */
 }

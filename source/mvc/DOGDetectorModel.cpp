@@ -1,18 +1,19 @@
-#include "Model.h"
-#include "moc_Model.cpp"
+#include "DOGDetectorModel.hpp"
+#include "moc_DOGDetectorModel.cpp"
 
 
 using namespace std;
 using namespace cv;
 
-Model::Model() : m_isAllSelected(false)
+DOGDetectorModel::DOGDetectorModel() : m_isAllSelected(false)
 {
   connect(this, SIGNAL(listFilesLoaded()), this, SLOT(initIsSelected()));
   connect(this, SIGNAL(listFilesLoaded()), this, SLOT(initImages()));
   connect(this, SIGNAL(isSelectedChanged()), this, SLOT(lookIsAllSelected()));
+  connect(this, SIGNAL(imagesLoaded()), this, SLOT(initDetector()));
 }
 
-void Model::setListFiles(QStringList listFiles)
+void DOGDetectorModel::setListFiles(QStringList listFiles)
 {
   m_listFiles.clear();
   m_listFiles = listFiles;
@@ -20,30 +21,30 @@ void Model::setListFiles(QStringList listFiles)
   emit listFilesLoaded();
 }
 
-QStringList Model::getListFiles()
+QStringList DOGDetectorModel::getListFiles()
 {
   return m_listFiles;
 }
 
-void Model::initIsSelected()
+void DOGDetectorModel::initIsSelected()
 {
   m_isSelected.clear();
   m_isSelected = vector<bool>(m_listFiles.count(), false);
   emit isSelectedChanged();
 }
 
-void Model::setIsSelected(int i, bool value)
+void DOGDetectorModel::setIsSelected(int i, bool value)
 {
   m_isSelected[i] = value;
   emit isSelectedChanged();
 }
 
-bool Model::getIsSelected(int i)
+bool DOGDetectorModel::getIsSelected(int i)
 {
  return m_isSelected[i];
 }
 
-void Model::lookIsAllSelected()
+void DOGDetectorModel::lookIsAllSelected()
 {
   m_isAllSelected = false;
 
@@ -57,7 +58,7 @@ void Model::lookIsAllSelected()
   emit isAllSelected(m_isAllSelected);
 }
 
-void Model::initImages()
+void DOGDetectorModel::initImages()
 {
   //generation of image array 
   m_images.clear();
@@ -66,11 +67,21 @@ void Model::initImages()
   for(int i = 0; i < m_listFiles.count(); ++i)
     m_images[i] = imread(m_listFiles.at(i).toLocal8Bit().constData(), CV_LOAD_IMAGE_COLOR);
     
+  emit imagesLoaded();
 }
 
-void Model::run()
+void DOGDetectorModel::initDetector()
 {
-  int nAllSelected = std::accumulate(m_isSelected.begin(), m_isSelected.end(), 0);
+  m_detectors.clear();
+
+  for(int i = 0; i < m_listFiles.count(); ++i)
+    m_detectors.push_back(DOGDetector(m_images[i], 3, 5, 1.6));
+    
+}
+
+void DOGDetectorModel::run()
+{
+  int allCount = std::accumulate(m_isSelected.begin(), m_isSelected.end(), 0);
   int count(0);
 
   emit runOn();
@@ -78,7 +89,13 @@ void Model::run()
   for(int i = 0; i < m_listFiles.count(); ++i)
     if(m_isSelected[i])
       {
-	emit runChanged(100 * count / (nAllSelected - 1));
+	//Process dog detector
+	m_detectors[i]();
+
+	//display
+	cout << "Image " << i + 1 << " is processed." << endl;
+
+	emit runChanged(100 * count / (allCount - 1));
 	count++;
       }
   

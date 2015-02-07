@@ -4,7 +4,7 @@
 #include <iostream>
 #include <QWidget>
 #include "MainWindow.h"
-#include "Model.h"
+#include "DOGDetectorModel.hpp"
 
 class Controller : QWidget
 {
@@ -13,7 +13,7 @@ class Controller : QWidget
  
  private :
 
-  Model m_model; //To Do : utiliser un pointeur lors de l'initialisation de la vue n'es pas elegeant
+  DOGDetectorModel m_model; 
   MainWindow m_view;
   
  public :

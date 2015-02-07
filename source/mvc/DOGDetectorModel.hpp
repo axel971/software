@@ -1,5 +1,5 @@
-#ifndef MODEL_H
-#define MODEL_H
+#ifndef DOGDETECTORMODEL_HPP
+#define DOGDETECTORMODEL_HPP
 
 #include <opencv2/core/core.hpp>
 #include <opencv2/imgproc/imgproc.hpp>
@@ -11,32 +11,38 @@
 #include <vector>
 #include <numeric>
 
-class Model : public QWidget
+#include "../detector/DOGDetector.hpp"
+
+
+class DOGDetectorModel : public QWidget
 {
 
-  Q_OBJECT
+Q_OBJECT
  
- protected :
+protected :
 
   QStringList m_listFiles;
   std::vector<bool> m_isSelected;
   bool m_isAllSelected;
   std::vector<cv::Mat> m_images;
+  std::vector<DOGDetector> m_detectors;
 
  public :
   
-  Model();
+  DOGDetectorModel();
 
   void setListFiles(QStringList listFiles);
   QStringList getListFiles();   
   bool getIsSelected(int i);
-  
-  public slots :
+			   
+public slots :
+
     void initIsSelected();
     void setIsSelected(int i, bool value);
     void initImages();
     void lookIsAllSelected();
     void run();
+    void initDetector();
 
  signals :
 
@@ -46,6 +52,7 @@ class Model : public QWidget
   void runChanged(int);
   void isAllSelected(bool);
   void isSelectedChanged();
+void imagesLoaded();
 };
 
 #endif

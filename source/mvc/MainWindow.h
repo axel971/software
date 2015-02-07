@@ -6,7 +6,7 @@
 #include <iostream>
 #include <QProgressDialog>
 
-#include "Model.h"
+#include "DOGDetectorModel.hpp"
 
 namespace Ui {
 class MainWindow;
@@ -18,11 +18,11 @@ class MainWindow : public QMainWindow
   
  private:
     Ui::MainWindow *ui;
-    Model *m_ptrModel;
+    DOGDetectorModel *m_ptrModel;
     QProgressDialog m_waitBar;
    
  public:
-    explicit MainWindow(Model *ptrModel, QWidget *parent = 0);
+    explicit MainWindow(DOGDetectorModel *ptrModel, QWidget *parent = 0);
     ~MainWindow();
 
     void initWidget();

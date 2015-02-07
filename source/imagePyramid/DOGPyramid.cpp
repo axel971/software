@@ -46,12 +46,6 @@ void DOGPyramid::build()
 
 	dog /= max;
 
-	
-	namedWindow( "Display window", WINDOW_AUTOSIZE);// Create a window for display.
-	imshow( "Display window", dog );                   // Show our image inside it.
-	waitKey(0);
-	
-
 	//Create the level
 	LevelPyramid level(dog, i, j, gaussianPyramid.getSigma(i, j));
 	set(level, i, j);
