@@ -22,6 +22,7 @@ MainWindow::MainWindow(DOGDetectorModel *ptrModel, QWidget *parent) : m_ptrModel
 
     //Signals send of the view
     connect(ui->listFiles, SIGNAL(currentRowChanged(int)), this, SLOT(displayWindow(int)));
+    connect(ui->listFiles, SIGNAL(currentRowChanged(int)), this, SLOT(displayOverlay(int)));
     connect(ui->listFiles, SIGNAL(itemClicked(QListWidgetItem *)), this, SLOT(listFilesClicked(QListWidgetItem *)));
     connect(m_ptrModel, SIGNAL(isAllSelected(bool)), this, SLOT(enabledRun(bool)));
 }
@@ -89,6 +90,23 @@ void MainWindow::displayWindow(int iListFiles)
     ui->displayImage->clear();
 }
 
+void MainWindow::displayOverlay(int iListFiles)
+{
+  
+  vector<Feature> features = m_ptrModel->getFeatures(iListFiles);
+  QPixmap *image = (QPixmap *) ui->displayImage->pixmap();
+  QPainter painter(image);
+
+  painter.setBrush(Qt::red);
+
+  for(int i = 0; i < features.size(); ++i)
+    {
+      QPointF center(features[i].getCol(), features[i].getRow());
+
+      painter.drawEllipse(center, 1, 1);
+    }
+  
+}
 
 void MainWindow::listFilesClicked(QListWidgetItem *ptrItem)
 {

@@ -5,6 +5,7 @@
 #include <QListWidgetItem>
 #include <iostream>
 #include <QProgressDialog>
+#include <QPainter>
 
 #include "DOGDetectorModel.hpp"
 
@@ -32,6 +33,7 @@ class MainWindow : public QMainWindow
       void setPath();
       void setListFiles();
       void displayWindow(int iListFiles);
+      void displayOverlay(int iListFiles);
       void listFilesClicked(QListWidgetItem*);
       void enabledRun(bool);    
       void runClickedSlot();

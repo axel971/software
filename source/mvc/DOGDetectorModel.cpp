@@ -85,7 +85,7 @@ void DOGDetectorModel::run()
   int count(0);
 
   emit runOn();
-
+  
   for(int i = 0; i < m_listFiles.count(); ++i)
     if(m_isSelected[i])
       {
@@ -94,9 +94,15 @@ void DOGDetectorModel::run()
 
 	//display
 	cout << "Image " << i + 1 << " is processed." << endl;
-	emit runChanged(100 * count / (allCount - 1));
+
 	count++;
+	emit runChanged(100 * count / (allCount));
       }
   
   emit runOff();
+}
+
+vector<Feature> DOGDetectorModel::getFeatures(int i)
+{
+  return m_detectors[i].getFeaturesScaled();
 }

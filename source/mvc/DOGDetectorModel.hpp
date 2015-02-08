@@ -17,7 +17,7 @@
 class DOGDetectorModel : public QWidget
 {
 
-Q_OBJECT
+  Q_OBJECT
  
 protected :
 
@@ -26,17 +26,18 @@ protected :
   bool m_isAllSelected;
   std::vector<cv::Mat> m_images;
   std::vector<DOGDetector> m_detectors;
-
- public :
+  
+public :
   
   DOGDetectorModel();
-
+  
   void setListFiles(QStringList listFiles);
   QStringList getListFiles();   
   bool getIsSelected(int i);
+  std::vector<Feature> getFeatures(int i);
 			   
 public slots :
-
+  
     void initIsSelected();
     void setIsSelected(int i, bool value);
     void initImages();
@@ -52,7 +53,9 @@ public slots :
   void runChanged(int);
   void isAllSelected(bool);
   void isSelectedChanged();
-void imagesLoaded();
+  void imagesLoaded();
+  
+
 };
 
 #endif
