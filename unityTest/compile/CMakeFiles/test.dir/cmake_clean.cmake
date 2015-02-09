@@ -1,5 +1,6 @@
 FILE(REMOVE_RECURSE
   "CMakeFiles/test.dir/source/main.cpp.o"
+  "CMakeFiles/test.dir/source/testImagePyramid/TestGaussianPyramid.cpp.o"
   "CMakeFiles/test.dir/source/testDetector/TestDOGDetector.cpp.o"
   "CMakeFiles/test.dir/home/axel/Documents/code/software/source/detector/DOGDetector.cpp.o"
   "CMakeFiles/test.dir/home/axel/Documents/code/software/source/detector/Feature.cpp.o"

@@ -72,9 +72,32 @@ CMakeFiles/test.dir/source/main.cpp.o.provides: CMakeFiles/test.dir/source/main.
 
 CMakeFiles/test.dir/source/main.cpp.o.provides.build: CMakeFiles/test.dir/source/main.cpp.o
 
+CMakeFiles/test.dir/source/testImagePyramid/TestGaussianPyramid.cpp.o: CMakeFiles/test.dir/flags.make
+CMakeFiles/test.dir/source/testImagePyramid/TestGaussianPyramid.cpp.o: ../source/testImagePyramid/TestGaussianPyramid.cpp
+	$(CMAKE_COMMAND) -E cmake_progress_report /home/axel/Documents/code/software/unityTest/compile/CMakeFiles $(CMAKE_PROGRESS_2)
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Building CXX object CMakeFiles/test.dir/source/testImagePyramid/TestGaussianPyramid.cpp.o"
+	/usr/bin/c++   $(CXX_DEFINES) $(CXX_FLAGS) -o CMakeFiles/test.dir/source/testImagePyramid/TestGaussianPyramid.cpp.o -c /home/axel/Documents/code/software/unityTest/source/testImagePyramid/TestGaussianPyramid.cpp
+
+CMakeFiles/test.dir/source/testImagePyramid/TestGaussianPyramid.cpp.i: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/test.dir/source/testImagePyramid/TestGaussianPyramid.cpp.i"
+	/usr/bin/c++  $(CXX_DEFINES) $(CXX_FLAGS) -E /home/axel/Documents/code/software/unityTest/source/testImagePyramid/TestGaussianPyramid.cpp > CMakeFiles/test.dir/source/testImagePyramid/TestGaussianPyramid.cpp.i
+
+CMakeFiles/test.dir/source/testImagePyramid/TestGaussianPyramid.cpp.s: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/test.dir/source/testImagePyramid/TestGaussianPyramid.cpp.s"
+	/usr/bin/c++  $(CXX_DEFINES) $(CXX_FLAGS) -S /home/axel/Documents/code/software/unityTest/source/testImagePyramid/TestGaussianPyramid.cpp -o CMakeFiles/test.dir/source/testImagePyramid/TestGaussianPyramid.cpp.s
+
+CMakeFiles/test.dir/source/testImagePyramid/TestGaussianPyramid.cpp.o.requires:
+.PHONY : CMakeFiles/test.dir/source/testImagePyramid/TestGaussianPyramid.cpp.o.requires
+
+CMakeFiles/test.dir/source/testImagePyramid/TestGaussianPyramid.cpp.o.provides: CMakeFiles/test.dir/source/testImagePyramid/TestGaussianPyramid.cpp.o.requires
+	$(MAKE) -f CMakeFiles/test.dir/build.make CMakeFiles/test.dir/source/testImagePyramid/TestGaussianPyramid.cpp.o.provides.build
+.PHONY : CMakeFiles/test.dir/source/testImagePyramid/TestGaussianPyramid.cpp.o.provides
+
+CMakeFiles/test.dir/source/testImagePyramid/TestGaussianPyramid.cpp.o.provides.build: CMakeFiles/test.dir/source/testImagePyramid/TestGaussianPyramid.cpp.o
+
 CMakeFiles/test.dir/source/testDetector/TestDOGDetector.cpp.o: CMakeFiles/test.dir/flags.make
 CMakeFiles/test.dir/source/testDetector/TestDOGDetector.cpp.o: ../source/testDetector/TestDOGDetector.cpp
-	$(CMAKE_COMMAND) -E cmake_progress_report /home/axel/Documents/code/software/unityTest/compile/CMakeFiles $(CMAKE_PROGRESS_2)
+	$(CMAKE_COMMAND) -E cmake_progress_report /home/axel/Documents/code/software/unityTest/compile/CMakeFiles $(CMAKE_PROGRESS_3)
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Building CXX object CMakeFiles/test.dir/source/testDetector/TestDOGDetector.cpp.o"
 	/usr/bin/c++   $(CXX_DEFINES) $(CXX_FLAGS) -o CMakeFiles/test.dir/source/testDetector/TestDOGDetector.cpp.o -c /home/axel/Documents/code/software/unityTest/source/testDetector/TestDOGDetector.cpp
 
@@ -97,7 +120,7 @@ CMakeFiles/test.dir/source/testDetector/TestDOGDetector.cpp.o.provides.build: CM
 
 CMakeFiles/test.dir/home/axel/Documents/code/software/source/detector/DOGDetector.cpp.o: CMakeFiles/test.dir/flags.make
 CMakeFiles/test.dir/home/axel/Documents/code/software/source/detector/DOGDetector.cpp.o: /home/axel/Documents/code/software/source/detector/DOGDetector.cpp
-	$(CMAKE_COMMAND) -E cmake_progress_report /home/axel/Documents/code/software/unityTest/compile/CMakeFiles $(CMAKE_PROGRESS_3)
+	$(CMAKE_COMMAND) -E cmake_progress_report /home/axel/Documents/code/software/unityTest/compile/CMakeFiles $(CMAKE_PROGRESS_4)
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Building CXX object CMakeFiles/test.dir/home/axel/Documents/code/software/source/detector/DOGDetector.cpp.o"
 	/usr/bin/c++   $(CXX_DEFINES) $(CXX_FLAGS) -o CMakeFiles/test.dir/home/axel/Documents/code/software/source/detector/DOGDetector.cpp.o -c /home/axel/Documents/code/software/source/detector/DOGDetector.cpp
 
@@ -120,7 +143,7 @@ CMakeFiles/test.dir/home/axel/Documents/code/software/source/detector/DOGDetecto
 
 CMakeFiles/test.dir/home/axel/Documents/code/software/source/detector/Feature.cpp.o: CMakeFiles/test.dir/flags.make
 CMakeFiles/test.dir/home/axel/Documents/code/software/source/detector/Feature.cpp.o: /home/axel/Documents/code/software/source/detector/Feature.cpp
-	$(CMAKE_COMMAND) -E cmake_progress_report /home/axel/Documents/code/software/unityTest/compile/CMakeFiles $(CMAKE_PROGRESS_4)
+	$(CMAKE_COMMAND) -E cmake_progress_report /home/axel/Documents/code/software/unityTest/compile/CMakeFiles $(CMAKE_PROGRESS_5)
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Building CXX object CMakeFiles/test.dir/home/axel/Documents/code/software/source/detector/Feature.cpp.o"
 	/usr/bin/c++   $(CXX_DEFINES) $(CXX_FLAGS) -o CMakeFiles/test.dir/home/axel/Documents/code/software/source/detector/Feature.cpp.o -c /home/axel/Documents/code/software/source/detector/Feature.cpp
 
@@ -143,7 +166,7 @@ CMakeFiles/test.dir/home/axel/Documents/code/software/source/detector/Feature.cp
 
 CMakeFiles/test.dir/home/axel/Documents/code/software/source/imagePyramid/LevelPyramid.cpp.o: CMakeFiles/test.dir/flags.make
 CMakeFiles/test.dir/home/axel/Documents/code/software/source/imagePyramid/LevelPyramid.cpp.o: /home/axel/Documents/code/software/source/imagePyramid/LevelPyramid.cpp
-	$(CMAKE_COMMAND) -E cmake_progress_report /home/axel/Documents/code/software/unityTest/compile/CMakeFiles $(CMAKE_PROGRESS_5)
+	$(CMAKE_COMMAND) -E cmake_progress_report /home/axel/Documents/code/software/unityTest/compile/CMakeFiles $(CMAKE_PROGRESS_6)
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Building CXX object CMakeFiles/test.dir/home/axel/Documents/code/software/source/imagePyramid/LevelPyramid.cpp.o"
 	/usr/bin/c++   $(CXX_DEFINES) $(CXX_FLAGS) -o CMakeFiles/test.dir/home/axel/Documents/code/software/source/imagePyramid/LevelPyramid.cpp.o -c /home/axel/Documents/code/software/source/imagePyramid/LevelPyramid.cpp
 
@@ -166,7 +189,7 @@ CMakeFiles/test.dir/home/axel/Documents/code/software/source/imagePyramid/LevelP
 
 CMakeFiles/test.dir/home/axel/Documents/code/software/source/imagePyramid/DOGPyramid.cpp.o: CMakeFiles/test.dir/flags.make
 CMakeFiles/test.dir/home/axel/Documents/code/software/source/imagePyramid/DOGPyramid.cpp.o: /home/axel/Documents/code/software/source/imagePyramid/DOGPyramid.cpp
-	$(CMAKE_COMMAND) -E cmake_progress_report /home/axel/Documents/code/software/unityTest/compile/CMakeFiles $(CMAKE_PROGRESS_6)
+	$(CMAKE_COMMAND) -E cmake_progress_report /home/axel/Documents/code/software/unityTest/compile/CMakeFiles $(CMAKE_PROGRESS_7)
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Building CXX object CMakeFiles/test.dir/home/axel/Documents/code/software/source/imagePyramid/DOGPyramid.cpp.o"
 	/usr/bin/c++   $(CXX_DEFINES) $(CXX_FLAGS) -o CMakeFiles/test.dir/home/axel/Documents/code/software/source/imagePyramid/DOGPyramid.cpp.o -c /home/axel/Documents/code/software/source/imagePyramid/DOGPyramid.cpp
 
@@ -189,7 +212,7 @@ CMakeFiles/test.dir/home/axel/Documents/code/software/source/imagePyramid/DOGPyr
 
 CMakeFiles/test.dir/home/axel/Documents/code/software/source/imagePyramid/GaussianPyramid.cpp.o: CMakeFiles/test.dir/flags.make
 CMakeFiles/test.dir/home/axel/Documents/code/software/source/imagePyramid/GaussianPyramid.cpp.o: /home/axel/Documents/code/software/source/imagePyramid/GaussianPyramid.cpp
-	$(CMAKE_COMMAND) -E cmake_progress_report /home/axel/Documents/code/software/unityTest/compile/CMakeFiles $(CMAKE_PROGRESS_7)
+	$(CMAKE_COMMAND) -E cmake_progress_report /home/axel/Documents/code/software/unityTest/compile/CMakeFiles $(CMAKE_PROGRESS_8)
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Building CXX object CMakeFiles/test.dir/home/axel/Documents/code/software/source/imagePyramid/GaussianPyramid.cpp.o"
 	/usr/bin/c++   $(CXX_DEFINES) $(CXX_FLAGS) -o CMakeFiles/test.dir/home/axel/Documents/code/software/source/imagePyramid/GaussianPyramid.cpp.o -c /home/axel/Documents/code/software/source/imagePyramid/GaussianPyramid.cpp
 
@@ -212,7 +235,7 @@ CMakeFiles/test.dir/home/axel/Documents/code/software/source/imagePyramid/Gaussi
 
 CMakeFiles/test.dir/home/axel/Documents/code/software/source/imagePyramid/Pyramid.cpp.o: CMakeFiles/test.dir/flags.make
 CMakeFiles/test.dir/home/axel/Documents/code/software/source/imagePyramid/Pyramid.cpp.o: /home/axel/Documents/code/software/source/imagePyramid/Pyramid.cpp
-	$(CMAKE_COMMAND) -E cmake_progress_report /home/axel/Documents/code/software/unityTest/compile/CMakeFiles $(CMAKE_PROGRESS_8)
+	$(CMAKE_COMMAND) -E cmake_progress_report /home/axel/Documents/code/software/unityTest/compile/CMakeFiles $(CMAKE_PROGRESS_9)
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Building CXX object CMakeFiles/test.dir/home/axel/Documents/code/software/source/imagePyramid/Pyramid.cpp.o"
 	/usr/bin/c++   $(CXX_DEFINES) $(CXX_FLAGS) -o CMakeFiles/test.dir/home/axel/Documents/code/software/source/imagePyramid/Pyramid.cpp.o -c /home/axel/Documents/code/software/source/imagePyramid/Pyramid.cpp
 
@@ -236,6 +259,7 @@ CMakeFiles/test.dir/home/axel/Documents/code/software/source/imagePyramid/Pyrami
 # Object files for target test
 test_OBJECTS = \
 "CMakeFiles/test.dir/source/main.cpp.o" \
+"CMakeFiles/test.dir/source/testImagePyramid/TestGaussianPyramid.cpp.o" \
 "CMakeFiles/test.dir/source/testDetector/TestDOGDetector.cpp.o" \
 "CMakeFiles/test.dir/home/axel/Documents/code/software/source/detector/DOGDetector.cpp.o" \
 "CMakeFiles/test.dir/home/axel/Documents/code/software/source/detector/Feature.cpp.o" \
@@ -248,6 +272,7 @@ test_OBJECTS = \
 test_EXTERNAL_OBJECTS =
 
 test: CMakeFiles/test.dir/source/main.cpp.o
+test: CMakeFiles/test.dir/source/testImagePyramid/TestGaussianPyramid.cpp.o
 test: CMakeFiles/test.dir/source/testDetector/TestDOGDetector.cpp.o
 test: CMakeFiles/test.dir/home/axel/Documents/code/software/source/detector/DOGDetector.cpp.o
 test: CMakeFiles/test.dir/home/axel/Documents/code/software/source/detector/Feature.cpp.o
@@ -294,6 +319,7 @@ CMakeFiles/test.dir/build: test
 .PHONY : CMakeFiles/test.dir/build
 
 CMakeFiles/test.dir/requires: CMakeFiles/test.dir/source/main.cpp.o.requires
+CMakeFiles/test.dir/requires: CMakeFiles/test.dir/source/testImagePyramid/TestGaussianPyramid.cpp.o.requires
 CMakeFiles/test.dir/requires: CMakeFiles/test.dir/source/testDetector/TestDOGDetector.cpp.o.requires
 CMakeFiles/test.dir/requires: CMakeFiles/test.dir/home/axel/Documents/code/software/source/detector/DOGDetector.cpp.o.requires
 CMakeFiles/test.dir/requires: CMakeFiles/test.dir/home/axel/Documents/code/software/source/detector/Feature.cpp.o.requires

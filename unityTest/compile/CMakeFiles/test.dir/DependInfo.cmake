@@ -12,6 +12,7 @@ SET(CMAKE_DEPENDS_CHECK_CXX
   "/home/axel/Documents/code/software/source/imagePyramid/Pyramid.cpp" "/home/axel/Documents/code/software/unityTest/compile/CMakeFiles/test.dir/home/axel/Documents/code/software/source/imagePyramid/Pyramid.cpp.o"
   "/home/axel/Documents/code/software/unityTest/source/main.cpp" "/home/axel/Documents/code/software/unityTest/compile/CMakeFiles/test.dir/source/main.cpp.o"
   "/home/axel/Documents/code/software/unityTest/source/testDetector/TestDOGDetector.cpp" "/home/axel/Documents/code/software/unityTest/compile/CMakeFiles/test.dir/source/testDetector/TestDOGDetector.cpp.o"
+  "/home/axel/Documents/code/software/unityTest/source/testImagePyramid/TestGaussianPyramid.cpp" "/home/axel/Documents/code/software/unityTest/compile/CMakeFiles/test.dir/source/testImagePyramid/TestGaussianPyramid.cpp.o"
   )
 SET(CMAKE_CXX_COMPILER_ID "GNU")
 

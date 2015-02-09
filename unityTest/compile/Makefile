@@ -303,6 +303,30 @@ source/testDetector/TestDOGDetector.cpp.s:
 	$(MAKE) -f CMakeFiles/test.dir/build.make CMakeFiles/test.dir/source/testDetector/TestDOGDetector.cpp.s
 .PHONY : source/testDetector/TestDOGDetector.cpp.s
 
+source/testImagePyramid/TestGaussianPyramid.o: source/testImagePyramid/TestGaussianPyramid.cpp.o
+.PHONY : source/testImagePyramid/TestGaussianPyramid.o
+
+# target to build an object file
+source/testImagePyramid/TestGaussianPyramid.cpp.o:
+	$(MAKE) -f CMakeFiles/test.dir/build.make CMakeFiles/test.dir/source/testImagePyramid/TestGaussianPyramid.cpp.o
+.PHONY : source/testImagePyramid/TestGaussianPyramid.cpp.o
+
+source/testImagePyramid/TestGaussianPyramid.i: source/testImagePyramid/TestGaussianPyramid.cpp.i
+.PHONY : source/testImagePyramid/TestGaussianPyramid.i
+
+# target to preprocess a source file
+source/testImagePyramid/TestGaussianPyramid.cpp.i:
+	$(MAKE) -f CMakeFiles/test.dir/build.make CMakeFiles/test.dir/source/testImagePyramid/TestGaussianPyramid.cpp.i
+.PHONY : source/testImagePyramid/TestGaussianPyramid.cpp.i
+
+source/testImagePyramid/TestGaussianPyramid.s: source/testImagePyramid/TestGaussianPyramid.cpp.s
+.PHONY : source/testImagePyramid/TestGaussianPyramid.s
+
+# target to generate assembly for a file
+source/testImagePyramid/TestGaussianPyramid.cpp.s:
+	$(MAKE) -f CMakeFiles/test.dir/build.make CMakeFiles/test.dir/source/testImagePyramid/TestGaussianPyramid.cpp.s
+.PHONY : source/testImagePyramid/TestGaussianPyramid.cpp.s
+
 # Help Target
 help:
 	@echo "The following are some of the valid targets for this Makefile:"
@@ -336,6 +360,9 @@ help:
 	@echo "... source/testDetector/TestDOGDetector.o"
 	@echo "... source/testDetector/TestDOGDetector.i"
 	@echo "... source/testDetector/TestDOGDetector.s"
+	@echo "... source/testImagePyramid/TestGaussianPyramid.o"
+	@echo "... source/testImagePyramid/TestGaussianPyramid.i"
+	@echo "... source/testImagePyramid/TestGaussianPyramid.s"
 .PHONY : help
 
 

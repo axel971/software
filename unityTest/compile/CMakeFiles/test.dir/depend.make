@@ -44,3 +44,9 @@ CMakeFiles/test.dir/source/testDetector/TestDOGDetector.cpp.o: /home/axel/Docume
 CMakeFiles/test.dir/source/testDetector/TestDOGDetector.cpp.o: ../source/testDetector/TestDOGDetector.cpp
 CMakeFiles/test.dir/source/testDetector/TestDOGDetector.cpp.o: ../source/testDetector/TestDOGDetector.hpp
 
+CMakeFiles/test.dir/source/testImagePyramid/TestGaussianPyramid.cpp.o: /home/axel/Documents/code/software/source/imagePyramid/GaussianPyramid.hpp
+CMakeFiles/test.dir/source/testImagePyramid/TestGaussianPyramid.cpp.o: /home/axel/Documents/code/software/source/imagePyramid/LevelPyramid.hpp
+CMakeFiles/test.dir/source/testImagePyramid/TestGaussianPyramid.cpp.o: /home/axel/Documents/code/software/source/imagePyramid/Pyramid.hpp
+CMakeFiles/test.dir/source/testImagePyramid/TestGaussianPyramid.cpp.o: ../source/testImagePyramid/TestGaussianPyramid.cpp
+CMakeFiles/test.dir/source/testImagePyramid/TestGaussianPyramid.cpp.o: ../source/testImagePyramid/TestGaussianPyramid.hpp
+
