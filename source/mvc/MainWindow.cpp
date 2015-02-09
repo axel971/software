@@ -16,13 +16,15 @@ MainWindow::MainWindow(DOGDetectorModel *ptrModel, QWidget *parent) : m_ptrModel
 
     //Listener toward the model
     connect(m_ptrModel, SIGNAL(listFilesLoaded()), this, SLOT(setListFiles()));
+    connect(m_ptrModel, SIGNAL(runOff()), this, SLOT(displayWindow()));
+    connect(m_ptrModel, SIGNAL(runOff()), this, SLOT(displayOverlay()));
     //connect(m_ptrModel, SIGNAL(runOn()), &m_waitBar, SLOT(show()));
     //connect(m_ptrModel, SIGNAL(runOff()), &m_waitBar, SLOT(cancel()));
     //connect(m_ptrModel, SIGNAL(runChanged(int)), &m_waitBar, SLOT(setValue(int)));
 
     //Signals send of the view
-    connect(ui->listFiles, SIGNAL(currentRowChanged(int)), this, SLOT(displayWindow(int)));
-    connect(ui->listFiles, SIGNAL(currentRowChanged(int)), this, SLOT(displayOverlay(int)));
+    connect(ui->listFiles, SIGNAL(currentRowChanged(int)), this, SLOT(displayWindow()));
+    connect(ui->listFiles, SIGNAL(currentRowChanged(int)), this, SLOT(displayOverlay()));
     connect(ui->listFiles, SIGNAL(itemClicked(QListWidgetItem *)), this, SLOT(listFilesClicked(QListWidgetItem *)));
     connect(m_ptrModel, SIGNAL(isAllSelected(bool)), this, SLOT(enabledRun(bool)));
 }
@@ -76,10 +78,12 @@ void MainWindow::setListFiles()
 }
 
 
-void MainWindow::displayWindow(int iListFiles)
+void MainWindow::displayWindow()
 {
   QStringList listFiles;
   listFiles = m_ptrModel->getListFiles();
+
+  int iListFiles =  ui->listFiles->currentRow();
 
   if(iListFiles >= 0) // This line avoid the bug when there aren't lisFile elements
     {
@@ -88,24 +92,24 @@ void MainWindow::displayWindow(int iListFiles)
     }
   else
     ui->displayImage->clear();
+
 }
 
-void MainWindow::displayOverlay(int iListFiles)
+void MainWindow::displayOverlay()
 {
-  
+  int iListFiles =  ui->listFiles->currentRow();
   vector<Feature> features = m_ptrModel->getFeatures(iListFiles);
   QPixmap *image = (QPixmap *) ui->displayImage->pixmap();
   QPainter painter(image);
 
-  painter.setBrush(Qt::red);
+  painter.setPen(Qt::red);
 
   for(int i = 0; i < features.size(); ++i)
     {
       QPointF center(features[i].getCol(), features[i].getRow());
-
       painter.drawEllipse(center, 1, 1);
     }
-  
+
 }
 
 void MainWindow::listFilesClicked(QListWidgetItem *ptrItem)
