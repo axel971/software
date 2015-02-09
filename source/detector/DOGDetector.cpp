@@ -49,7 +49,20 @@ void DOGDetector::operator()()
   
   findExtrema();
   accurateKeyPointLocalization();
+
+  /*
+  vector<Feature> features = getFeaturesScaled();
+
+  for(int i = 0; i < m_features.size(); ++i)
+    {
+      Point center(features[i].getCol(), features[i].getRow());
+      circle(m_image, center, 2, Scalar(0, 0, 255), -1);
+    }
   
+  namedWindow( "Display window", WINDOW_AUTOSIZE );
+  imshow( "Display window", m_image );               
+  waitKey(0);   
+  */
 
   CHECK_INVARIANTS();
 }
