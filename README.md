@@ -1,8 +1,9 @@
 #software
 
-Ce projet a pour but de developper une application de reconnaissance de formes. <br>
-Fonctionalités principales : <br>
--Test de plusieurs méthodes de descripteurs d'images (SIFT, SURF, ...) <br>
+Ce projet a pour but d'implementer divers detecteurs de points d'interets et descripteurs d'image. <br>
+Une interface graphique permet de visualiser les resultats. <br>
+Methodes implementees : <br>
+-Detecteurs de points d'interet (DOG, ...) <br>
 
 
 Instruction de compilation : <br>
