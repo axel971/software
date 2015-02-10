@@ -13,6 +13,10 @@ DOGDetector::DOGDetector(Mat image, int octave, int level, double sigma): m_imag
   m_offsetLimit.at<double>(0) = 0.5;
   m_offsetLimit.at<double>(1) = 0.5;
   m_offsetLimit.at<double>(2) = 0.5;
+
+  //Create m_k
+  double k = pow(2, 1. / (level - 2));
+  m_k = k;
   
 }
 
@@ -49,112 +53,74 @@ void DOGDetector::operator()()
   
   findExtrema();
   accurateKeyPointLocalization();
-
-  /*
-  vector<Feature> features = getFeaturesScaled();
-
-  for(int i = 0; i < m_features.size(); ++i)
-    {
-      Point center(features[i].getCol(), features[i].getRow());
-      circle(m_image, center, 2, Scalar(0, 0, 255), -1);
-    }
   
-  namedWindow( "Display window", WINDOW_AUTOSIZE );
-  imshow( "Display window", m_image );               
-  waitKey(0);   
-  */
-
+  
   CHECK_INVARIANTS();
 }
 
 bool DOGDetector::isLocalMaximum(cv::Mat const& roi1, cv::Mat const& roi2, cv::Mat const& roi3) const
 {
-  REQUIRE(roi1.cols == 3 && roi2.cols == 3 && roi3.cols == 3, "ROI must have a size 3*3");
-  REQUIRE(roi1.size() == roi2.size() && roi2.size() == roi3.size(), "ROI must be have the same size");
-   
-  bool isMaximum = false;
-  double val, maxRoi1, maxRoi2, maxRoi3;
-  Mat mask;
+  double val;
   int middleX = 1, middleY = 1;
+  Mat mat;
 
   //Get the value of processed pixel 
   val = roi2.at<double>(middleX, middleY);
 
-  //Construct the mask
-  mask = Mat::ones(roi1.rows, roi1.cols, CV_8UC1);
-  mask.at<uchar>(middleX, middleY) = 0;
+  mat.push_back(roi1);
+  mat.push_back(roi2);
+  mat.push_back(roi3);
   
-  //Find the maximum inside the ROI
-  minMaxLoc(roi1, 0, &maxRoi1);
-  minMaxLoc(roi2, 0, &maxRoi2, 0, 0, mask);
-  minMaxLoc(roi3, 0, &maxRoi3);
-
-  //Compare this maxima with the value of processed pixel
-  if(val > maxRoi1 && val > maxRoi2 && val > maxRoi3)
-    isMaximum = true;
-
-  //To do : Think at better ENSURE
-  ENSURE(mask.cols == 3 && mask.rows == 3, "The mask must have 3 * 3 size");
-  ENSURE(isMaximum == true || isMaximum == false, "Output have to be binary");
+  for(int i = 0; i < mat.rows; ++i)
+    for(int j = 0; j < mat.cols; ++j)
+      if(val < mat.at<double>(i, j))
+	return 0;
  
-
-  return isMaximum;
+  return 1; 
 }
 
 bool DOGDetector::isLocalMinimum(cv::Mat const& roi1, cv::Mat const& roi2, cv::Mat const& roi3) const
 {
-  REQUIRE(roi1.cols == 3 && roi2.cols == 3 && roi3.cols == 3, "ROI must have a size 3*3");
-  REQUIRE(roi1.size() == roi2.size() && roi2.size() == roi3.size(), "ROI must be have the same size");
-  bool isMinimum = false;
-  double val, minRoi1, minRoi2, minRoi3;
-  Mat mask;
+  double val;
   int middleX = 1, middleY = 1;
-  
+  Mat mat;
+
   //Get the value of processed pixel 
   val = roi2.at<double>(middleX, middleY);
 
-  //Construct the mask
-  mask = Mat::ones(roi1.rows, roi1.cols, CV_8UC1);
-  mask.at<uchar>(middleX, middleY) = 0;
+  mat.push_back(roi1);
+  mat.push_back(roi2);
+  mat.push_back(roi3);
   
-  //Find the maximum inside the ROI
-  minMaxLoc(roi1, &minRoi1);
-  minMaxLoc(roi2, &minRoi2, 0, 0, 0, mask);
-  minMaxLoc(roi3, &minRoi3);
-
-  //Compare this maxima with the value of processed pixel
-  if(val < minRoi1 && val < minRoi2 && val < minRoi3)
-    isMinimum = true;
-
-  ENSURE(mask.cols == 3 && mask.rows == 3, "The mask must have 3 * 3 size");
-  ENSURE(isMinimum == true || isMinimum == false, "Output have to be binary");
-  
-   return isMinimum;
+  for(int i = 0; i < mat.rows; ++i)
+    for(int j = 0; j < mat.cols; ++j)
+      if(val > mat.at<double>(i, j))
+	return 0;
+ 
+  return 1; 
 };
 
 bool DOGDetector::isLocalExtrema(cv::Mat const& roi1, cv::Mat const& roi2, cv::Mat const& roi3) const
 {
-  REQUIRE(roi1.cols == 3 && roi2.cols == 3 && roi3.cols == 3, "ROI must have a size 3*3");
-  REQUIRE(roi1.size() == roi2.size() && roi2.size() == roi3.size(), "ROI must be have the same size");  
-  
   bool isMaximum(false), isMinimum(false), isExtrema(false);
 
   isMaximum = isLocalMaximum(roi1, roi2, roi3);
   isMinimum = isLocalMinimum(roi1, roi2, roi3); 
-  isExtrema = isMinimum || isMaximum;
+ 
+  if(isMinimum + isMaximum == 1)
+    return true;
 
-  ENSURE(isExtrema == isMaximum || isExtrema == isMinimum, "iSExtrema is not valid");
-
-  return isExtrema;
+  return false;
 }
 
 
 void DOGDetector::findExtremaAux(LevelPyramid const& level1, LevelPyramid const& level2, LevelPyramid const& level3) 
  {
-   REQUIRE(level1.getOctave() == level2.getOctave() && level1.getOctave() == level3.getOctave(), "the element must be in the same octave");
-   REQUIRE(level1.getLevel() == level2.getLevel() - 1 && level3.getLevel() == level2.getLevel() + 1, "The level is in the same order");
+   REQUIRE(level1.getOctave() == level2.getOctave(), "" );
+   REQUIRE(level1.getOctave() == level3.getOctave(), "");
+   REQUIRE(level1.getLevel() == level2.getLevel() - 1, "");
+   REQUIRE(level3.getLevel() == level2.getLevel() + 1, "");
  
-   bool isExtrema(false);
    Mat img1, img2, img3, roi1, roi2, roi3;
    int  sizeRoi(3);
 
@@ -163,18 +129,20 @@ void DOGDetector::findExtremaAux(LevelPyramid const& level1, LevelPyramid const&
    img2 = level2.getImage();
    img3 = level3.getImage();
 
-   for(int i = 1; i < img1.rows - 1; ++i)
-     for(int j = 1; j < img1.cols - 1; ++j) 
+   for(int i = DOG_IMG_BORDER; i < img1.rows - DOG_IMG_BORDER; ++i)
+     for(int j =  DOG_IMG_BORDER; j < img1.cols - DOG_IMG_BORDER; ++j) 
        {
 	 //Construct the roi
 	 roi1 = img1(Rect(j - 1, i - 1, sizeRoi, sizeRoi));
 	 roi2 = img2(Rect(j - 1, i - 1, sizeRoi, sizeRoi));
 	 roi3 = img3(Rect(j - 1, i - 1, sizeRoi, sizeRoi));
-	   
-	 //Find if the current pixel is an extrema
-	 isExtrema = isLocalExtrema(roi1, roi2, roi3);
-	 
-	 if(isExtrema)
+	
+	 double val = roi2.at<double>(1, 1);
+
+	 if(abs(val) < INTENSITY_THRESHOLD)
+	   continue;
+
+	 if(isLocalExtrema(roi1, roi2, roi3))
 	   m_features.push_back(Feature(i, j, level2.getSigma(), 0, level2.getOctave(), level2.getLevel())); 
        }//end for 
  
@@ -182,7 +150,7 @@ void DOGDetector::findExtremaAux(LevelPyramid const& level1, LevelPyramid const&
 
 void DOGDetector::findExtrema()
 {
-  REQUIRE(m_dogPyramid.isBuild(), "DOG Pyramid must be processed");
+  REQUIRE(m_dogPyramid.isBuild(), "");
 
   if(m_features.size() > 0)
     m_features.clear();
@@ -199,7 +167,7 @@ Mat DOGDetector::computeHessian(Feature const& feature)
   REQUIRE(feature.getLevel() > 0, "Level must be superior at zero");
   REQUIRE(feature.getRow() < m_image.rows / pow(2, feature.getOctave()), "");
   REQUIRE(feature.getCol() < m_image.cols / pow(2, feature.getOctave()), "");
-  REQUIRE(feature.getLevel() < m_level + 1, "" );
+  REQUIRE(feature.getLevel() < DOG_LEVEL, "" );
 
   double dRowRow, dRowCol, dRowSigma, dColCol, dColSigma, dSigmaSigma ;
   int row = feature.getRow(), col = feature.getCol();
@@ -251,7 +219,7 @@ Mat DOGDetector::computeGradian(Feature const& feature)
   REQUIRE(feature.getLevel() > 0, "Level must be superior at zero");
   REQUIRE(feature.getRow() < m_image.rows / pow(2, feature.getOctave()), "");
   REQUIRE(feature.getCol() < m_image.cols / pow(2, feature.getOctave()), "");
-  REQUIRE(feature.getLevel() < m_level + 1, "" );
+  REQUIRE(feature.getLevel() < m_level - 1, "" );
 
   int row = feature.getRow(), col = feature.getCol();
   Mat im1 = DOG_IMAGE_SCALE_1;
@@ -271,7 +239,10 @@ Mat DOGDetector::computeGradian(Feature const& feature)
 
 Mat DOGDetector::computeOffset(Feature const& feature, double *pixelValue, Mat *grad) 
 {
-  REQUIRE(m_dogPyramid.isBuild(), "DOG Pyramid must be processed");
+  REQUIRE(m_dogPyramid.isBuild(), "");
+  REQUIRE(feature.getLevel() < DOG_LEVEL, "");
+  REQUIRE(feature.getLevel() > 0, "");
+
   CHECK_INVARIANTS();
 
   Mat offset, gradian(3, 1, CV_64F), hessian(3, 3, CV_64F);
@@ -330,16 +301,18 @@ cv::Mat DOGDetector::discretizeOffset(cv::Mat const& offset) const
 void DOGDetector::addOffset(Feature& feature, Mat const& offset, bool isDiscretize)
 {
   REQUIRE(feature.getRow() > 0 && feature.getCol() > 0, "");
-  REQUIRE(feature.getRow() < m_image.rows/ pow(2, feature.getOctave()) && feature.getCol() < m_image.cols/ pow(2, feature.getOctave()), "The feature must be stay inside the image");
+  REQUIRE(feature.getRow() < m_image.rows/ pow(2, feature.getOctave()), "");
+  REQUIRE(feature.getCol() < m_image.cols/ pow(2, feature.getOctave()), "");
 
   feature.setRow(feature.getRow() + offset.at<double>(0));
   feature.setCol(feature.getCol() + offset.at<double>(1));
   
   if(isDiscretize)
     {
+      double sigma = m_dogPyramid.getSigma(feature.getOctave(), feature.getLevel());     
+
       feature.setLevel(feature.getLevel() + offset.at<double>(2));
-      double sigma = m_dogPyramid.getSigma(feature.getOctave(), feature.getLevel());
-      feature.setSigma(sigma) ;
+      feature.setSigma(sigma * pow(m_k, offset.at<double>(2))) ;
     }
 }
 
@@ -355,7 +328,7 @@ bool DOGDetector::checkImageBorder(Feature const& feature)
     imgCol = m_image.cols / pow(2, feature.getOctave());
 
   if( level < 1  ||
-      level > m_level  ||
+      level >= DOG_LEVEL ||
       row < DOG_IMG_BORDER ||
       col < DOG_IMG_BORDER ||
       row >= imgRow - DOG_IMG_BORDER  ||

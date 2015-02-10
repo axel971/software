@@ -1,12 +1,15 @@
 #ifndef DOGDETECTOR_H
 #define DOGDETECTOR_H
 
+#define INTENSITY_THRESHOLD 0.70
 #define DOG_MAX_INTERP_STEPS 5
 #define DOG_IMG_BORDER 1
 #define R_THRESHOLD 10
 #define DOG_IMAGE_SCALE_1 m_dogPyramid.getImage(feature.getOctave(), feature.getLevel() - 1)
 #define DOG_IMAGE_SCALE_2 m_dogPyramid.getImage(feature.getOctave(), feature.getLevel())
 #define DOG_IMAGE_SCALE_3 m_dogPyramid.getImage(feature.getOctave(), feature.getLevel() + 1)
+#define DOG_LEVEL m_level - 1
+
 
 #include "Feature.hpp"
 #include "../imagePyramid/DOGPyramid.hpp"
@@ -25,7 +28,7 @@ private :
   std::vector<Feature> m_features;
   DOGPyramid m_dogPyramid;
   cv::Mat m_offsetLimit;
-
+  double m_k;
 public:
 
   //Constructeur
@@ -46,14 +49,13 @@ public:
   int getNumbersFeatures();
 
   void operator()();
-  void findExtrema();
-  void findExtremaAux(LevelPyramid const& level1, LevelPyramid const& level2, LevelPyramid const& level3);
-  void accurateKeyPointLocalization();
 
 private : //private methods
   bool isLocalMaximum(cv::Mat const& roi1, cv::Mat const& roi2, cv::Mat const& roi3) const;
   bool isLocalMinimum(cv::Mat const& roi1, cv::Mat const& roi2, cv::Mat const& roi3) const;
   bool isLocalExtrema(cv::Mat const& roi1, cv::Mat const& roi2, cv::Mat const& roi3) const;
+  void findExtrema();
+  void findExtremaAux(LevelPyramid const& level1, LevelPyramid const& level2, LevelPyramid const& level3);
   cv::Mat computeOffset(Feature const& feature, double *pixelValue = 0, cv::Mat *grad = 0);
   cv::Mat computeHessian(Feature const&  feature);
   cv::Mat computeGradian(Feature const& feature);
@@ -64,6 +66,7 @@ private : //private methods
   double offsetContrastReponse(double value, cv::Mat& gradian, cv::Mat& offset) const;
   double traceH(Feature const& feature);
   double detH(Feature const& feature);
+  void accurateKeyPointLocalization();
 };
 
 #endif

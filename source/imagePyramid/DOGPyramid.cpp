@@ -48,6 +48,12 @@ void DOGPyramid::build()
 	//Create the level
 	LevelPyramid level(dog, i, j, gaussianPyramid.getSigma(i, j));
 	set(level, i, j);
+
+	/*
+	namedWindow( "Display window", WINDOW_AUTOSIZE );
+	imshow( "Display window", dog);               
+	waitKey(0);   
+	*/
       }
 
   m_isBuild = true;
