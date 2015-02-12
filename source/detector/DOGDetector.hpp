@@ -21,6 +21,7 @@ class DOGDetector
 {
 
 private :
+
   cv::Mat m_image;
   int m_level;
   int m_octave;
@@ -29,7 +30,8 @@ private :
   DOGPyramid m_dogPyramid;
   cv::Mat m_offsetLimit;
   double m_k;
-public:
+
+public :
 
   //Constructeur
   DOGDetector(cv::Mat image, int octave, int level, double sigma);

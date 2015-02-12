@@ -13,9 +13,19 @@ DOGDetectorModel::DOGDetectorModel() : m_isAllSelected(false)
   connect(this, SIGNAL(imagesLoaded()), this, SLOT(initDetector()));
 }
 
-void DOGDetectorModel::setListFiles(QStringList listFiles)
+void DOGDetectorModel::clearAll()
 {
   m_listFiles.clear();
+  m_isSelected.clear();
+  m_images.clear();
+  m_detectors.clear();
+  m_isAllSelected = false;
+}
+
+void DOGDetectorModel::setListFiles(QStringList listFiles)
+{
+  clearAll(); 
+
   m_listFiles = listFiles;
 
   emit listFilesLoaded();
@@ -106,3 +116,4 @@ vector<Feature> DOGDetectorModel::getFeatures(int i)
 {
   return m_detectors[i].getFeaturesScaled();
 }
+

@@ -35,6 +35,7 @@ public :
   QStringList getListFiles();   
   bool getIsSelected(int i);
   std::vector<Feature> getFeatures(int i);
+  void clearAll();
 			   
 public slots :
   
@@ -48,7 +49,7 @@ public slots :
  signals :
 
   void listFilesLoaded();
-  void runOff();
+  void runOff(bool = true);
   void runOn();
   void runChanged(int);
   void isAllSelected(bool);

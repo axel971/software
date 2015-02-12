@@ -26,16 +26,15 @@ class MainWindow : public QMainWindow
     explicit MainWindow(DOGDetectorModel *ptrModel, QWidget *parent = 0);
     ~MainWindow();
 
-    void initWidget();
         
     public slots :
 
       void setPath();
       void setListFiles();
+      void initWidget();
       void displayWindow();
       void displayOverlay();
       void listFilesClicked(QListWidgetItem*);
-      void enabledRun(bool);    
       void runClickedSlot();
 
  signals:

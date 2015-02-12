@@ -16,17 +16,20 @@ MainWindow::MainWindow(DOGDetectorModel *ptrModel, QWidget *parent) : m_ptrModel
 
     //Listener toward the model
     connect(m_ptrModel, SIGNAL(listFilesLoaded()), this, SLOT(setListFiles()));
-    connect(m_ptrModel, SIGNAL(runOff()), this, SLOT(displayWindow()));
+    connect(m_ptrModel, SIGNAL(isAllSelected(bool)), ui->run, SLOT(setEnabled(bool)));
+    connect(m_ptrModel, SIGNAL(runOff(bool)), ui->overlay, SLOT(setEnabled(bool)));
+    connect(m_ptrModel, SIGNAL(runOff(bool)), ui->overlay, SLOT(setChecked(bool)));
     connect(m_ptrModel, SIGNAL(runOff()), this, SLOT(displayOverlay()));
     //connect(m_ptrModel, SIGNAL(runOn()), &m_waitBar, SLOT(show()));
     //connect(m_ptrModel, SIGNAL(runOff()), &m_waitBar, SLOT(cancel()));
     //connect(m_ptrModel, SIGNAL(runChanged(int)), &m_waitBar, SLOT(setValue(int)));
 
     //Signals send of the view
+    connect(this, SIGNAL(setPathActived(QStringList)), this, SLOT(initWidget()));
     connect(ui->listFiles, SIGNAL(currentRowChanged(int)), this, SLOT(displayWindow()));
     connect(ui->listFiles, SIGNAL(currentRowChanged(int)), this, SLOT(displayOverlay()));
     connect(ui->listFiles, SIGNAL(itemClicked(QListWidgetItem *)), this, SLOT(listFilesClicked(QListWidgetItem *)));
-    connect(m_ptrModel, SIGNAL(isAllSelected(bool)), this, SLOT(enabledRun(bool)));
+    connect(ui->overlay, SIGNAL(stateChanged(int)), this, SLOT(displayOverlay()));
 }
 
 MainWindow::~MainWindow()
@@ -42,7 +45,9 @@ void MainWindow::initWidget()
 
   //init progressBar
   m_waitBar.setWindowModality(Qt::WindowModal); 
- m_waitBar.setRange(0, 100);
+  m_waitBar.setRange(0, 100);
+
+
 }
 
 
@@ -97,19 +102,30 @@ void MainWindow::displayWindow()
 
 void MainWindow::displayOverlay()
 {
+
+
+  QStringList listFiles = m_ptrModel->getListFiles();
   int iListFiles =  ui->listFiles->currentRow();
-  vector<Feature> features = m_ptrModel->getFeatures(iListFiles);
-  QPixmap *image = (QPixmap *) ui->displayImage->pixmap();
-  QPainter painter(image);
 
-  painter.setPen(Qt::red);
-
-  for(int i = 0; i < features.size(); ++i)
+  if(ui->overlay->checkState() == 0)
+    displayWindow(); 
+  
+  else if(ui->overlay->checkState() == 2 && iListFiles >= 0)
     {
-      QPointF center(features[i].getCol(), features[i].getRow());
-      painter.drawEllipse(center, 1, 1);
-    }
+      vector<Feature> features = m_ptrModel->getFeatures(iListFiles);
+      QPixmap image =  QPixmap(listFiles.at(iListFiles).toLocal8Bit().constData());
+      QPainter painter(&image);
+  
+      painter.setPen(Qt::red);
+      
+      for(int i = 0; i < features.size(); ++i)
+	{
+	  QPointF center(features[i].getCol(), features[i].getRow());
+	  painter.drawEllipse(center, 1, 1);
+	}
 
+      ui->displayImage->setPixmap(image);
+    }
 }
 
 void MainWindow::listFilesClicked(QListWidgetItem *ptrItem)
@@ -119,11 +135,6 @@ void MainWindow::listFilesClicked(QListWidgetItem *ptrItem)
    
    else if (ptrItem->checkState() == 0) 
      emit fileClicked(ui->listFiles->row(ptrItem), false);
-}
-
-void MainWindow::enabledRun(bool value)
-{
-  ui->run->setEnabled(value);
 }
 
 void MainWindow::runClickedSlot()
