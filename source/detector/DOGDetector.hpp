@@ -10,23 +10,16 @@
 #define DOG_IMAGE_SCALE_3 m_dogPyramid.getImage(feature.getOctave(), feature.getLevel() + 1)
 #define DOG_LEVEL m_level - 1
 
-
-#include "Feature.hpp"
+#include "SiftDetector.hpp"
 #include "../imagePyramid/DOGPyramid.hpp"
 #include "../imagePyramid/GaussianPyramid.hpp"
-#include <vector>
 #include "../contract/contract.hpp"
 
-class DOGDetector
+class DOGDetector : public SiftDetector
 {
 
 private :
 
-  cv::Mat m_image;
-  int m_level;
-  int m_octave;
-  double m_sigma;
-  std::vector<Feature> m_features;
   DOGPyramid m_dogPyramid;
   cv::Mat m_offsetLimit;
   double m_k;
@@ -46,11 +39,7 @@ public :
   END_INVARIANT_BLOCK
 
 
-  std::vector<Feature> getFeatures();
-  std::vector<Feature> getFeaturesScaled();
-  int getNumbersFeatures();
-
-  void operator()();
+  virtual  void operator()();
 
 private : //private methods
   bool isLocalMaximum(cv::Mat const& roi1, cv::Mat const& roi2, cv::Mat const& roi3) const;

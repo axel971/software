@@ -4,7 +4,7 @@ using namespace std;
 using namespace cv;
 
 
-DOGDetector::DOGDetector(Mat image, int octave, int level, double sigma): m_image(image), m_level(level), m_octave(octave), m_sigma(sigma), m_dogPyramid(DOGPyramid(image, octave, level - 1, sigma))
+DOGDetector::DOGDetector(Mat image, int octave, int level, double sigma) : SiftDetector(image, octave, level, sigma), m_dogPyramid(DOGPyramid(image, octave, level - 1, sigma))
 {
   CHECK_INVARIANTS();
 
@@ -18,31 +18,6 @@ DOGDetector::DOGDetector(Mat image, int octave, int level, double sigma): m_imag
   double k = pow(2, 1. / (level - 2));
   m_k = k;
   
-}
-
-vector<Feature> DOGDetector::getFeatures()
- {
-   return m_features;
- }
-
-vector<Feature> DOGDetector::getFeaturesScaled()
-{
-  vector<Feature> features(m_features.size());
-
-  for(int i = 0; i < m_features.size(); ++i)
-    {
-      features[i] = m_features[i];
-
-      features[i].setRow(features[i].getRow() * pow(2, features[i].getOctave()));
-      features[i].setCol(features[i].getCol() * pow(2, features[i].getOctave()));
-    }
-
-  return features;
-}
-
-int DOGDetector::getNumbersFeatures()
-{
-  return m_features.size();
 }
 
 void DOGDetector::operator()()
@@ -219,7 +194,7 @@ Mat DOGDetector::computeGradian(Feature const& feature)
   REQUIRE(feature.getLevel() > 0, "Level must be superior at zero");
   REQUIRE(feature.getRow() < m_image.rows / pow(2, feature.getOctave()), "");
   REQUIRE(feature.getCol() < m_image.cols / pow(2, feature.getOctave()), "");
-  REQUIRE(feature.getLevel() < m_level - 1, "" );
+  REQUIRE(feature.getLevel() < DOG_LEVEL, "" );
 
   int row = feature.getRow(), col = feature.getCol();
   Mat im1 = DOG_IMAGE_SCALE_1;
@@ -239,6 +214,7 @@ Mat DOGDetector::computeGradian(Feature const& feature)
 
 Mat DOGDetector::computeOffset(Feature const& feature, double *pixelValue, Mat *grad) 
 {
+
   REQUIRE(m_dogPyramid.isBuild(), "");
   REQUIRE(feature.getLevel() < DOG_LEVEL, "");
   REQUIRE(feature.getLevel() > 0, "");
