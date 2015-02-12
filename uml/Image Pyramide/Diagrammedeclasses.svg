@@ -1,0 +1,91 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.1//EN" "http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd">
+<svg height="340" version="1.1" width="731" xmlns="http://www.w3.org/2000/svg">
+<rect fill="#ffffff" height="112" stroke="#ffffff" stroke-width="1" width="199" x="414" y="214"/>
+<rect fill="none" height="112" stroke="#000000" stroke-width="1" width="199" x="414" y="214"/>
+<text font-family="Dialog" font-size="12" x="453" y="227">
++ GaussianPyramid</text>
+<rect fill="#000000" height="1" stroke="#000000" stroke-width="1" width="199" x="414" y="237"/>
+<text font-family="Dialog" font-size="12" x="418" y="251">
+-m_sigma : double</text>
+<text font-family="Dialog" font-size="12" x="418" y="267">
+-m_k : double</text>
+<rect fill="#000000" height="1" stroke="#000000" stroke-width="1" width="199" x="414" y="289"/>
+<text font-family="Dialog" font-size="12" x="418" y="303">
++build() {root,sequential}</text>
+<rect fill="#ffffff" height="120" stroke="#ffffff" stroke-width="1" width="199" x="518" y="22"/>
+<rect fill="none" height="120" stroke="#000000" stroke-width="1" width="199" x="518" y="22"/>
+<text font-family="Dialog" font-size="12" x="568" y="35">
++ LevelPyramid</text>
+<rect fill="#000000" height="1" stroke="#000000" stroke-width="1" width="199" x="518" y="45"/>
+<text font-family="Dialog" font-size="12" x="522" y="59">
+-m_level : int</text>
+<text font-family="Dialog" font-size="12" x="522" y="75">
+-m_image : cv::Mat</text>
+<text font-family="Dialog" font-size="12" x="522" y="91">
+-m_sigma : double</text>
+<text font-family="Dialog" font-size="12" x="522" y="107">
+-m_octave : int</text>
+<rect fill="#000000" height="1" stroke="#000000" stroke-width="1" width="199" x="518" y="118"/>
+<rect fill="#ffffff" height="88" stroke="#ffffff" stroke-width="1" width="262" x="14" y="222"/>
+<rect fill="none" height="88" stroke="#000000" stroke-width="1" width="262" x="14" y="222"/>
+<text font-family="Dialog" font-size="12" x="94" y="235">
++ DOGPyramide</text>
+<rect fill="#000000" height="1" stroke="#000000" stroke-width="1" width="262" x="14" y="245"/>
+<text font-family="Dialog" font-size="12" x="18" y="259">
+-m_sigma : double</text>
+<text font-family="Dialog" font-size="12" x="18" y="275">
+-m_k : double</text>
+<rect fill="#000000" height="1" stroke="#000000" stroke-width="1" width="262" x="14" y="285"/>
+<text font-family="Dialog" font-size="12" x="18" y="299">
++build() {root,sequential}</text>
+<rect fill="#ffffff" height="136" stroke="#ffffff" stroke-width="1" width="173" x="222" y="14"/>
+<rect fill="none" height="136" stroke="#000000" stroke-width="1" width="173" x="222" y="14"/>
+<text font-family="Dialog" font-size="12" font-style="italic" x="277" y="27">
++ Pyramid</text>
+<rect fill="#000000" height="1" stroke="#000000" stroke-width="1" width="173" x="222" y="37"/>
+<text font-family="Dialog" font-size="12" x="226" y="51">
+#m_image : cv::Mat</text>
+<text font-family="Dialog" font-size="12" x="226" y="67">
+#m_level : int</text>
+<text font-family="Dialog" font-size="12" x="226" y="83">
+#m_octave : int</text>
+<text font-family="Dialog" font-size="12" x="226" y="99">
+#m_levelInside : int</text>
+<text font-family="Dialog" font-size="12" x="226" y="115">
+#m_isBuild : bool</text>
+<rect fill="#000000" height="1" stroke="#000000" stroke-width="1" width="173" x="222" y="125"/>
+<text font-family="Dialog" font-size="12" font-style="italic" x="226" y="139">
++build() {root,sequential}</text>
+<polyline fill="none" points="230,222 230,149" stroke="#000000" stroke-width="1"/>
+<polygon fill="#ffffff" points="230,149 237,161 223,161" stroke="#ffffff" stroke-width="1"/>
+<polygon fill="none" points="230,149 237,161 223,161" stroke="#000000" stroke-width="1"/>
+<polyline fill="none" points="414,214 394,149" stroke="#000000" stroke-width="1"/>
+<polygon fill="#ffffff" points="394,149 404,158 390,162" stroke="#ffffff" stroke-width="1"/>
+<polygon fill="none" points="394,149 404,158 390,162" stroke="#000000" stroke-width="1"/>
+<polyline fill="none" points="394,78 518,78" stroke="#000000" stroke-width="1"/>
+<polygon fill="#000000" points="394,78 404,73 414,78 404,83" stroke="#000000" stroke-width="1"/>
+<polygon fill="none" points="394,78 404,73 414,78 404,83" stroke="#000000" stroke-width="1"/>
+<line fill="#000000" stroke="#000000" stroke-width="1" x1="506" x2="518" y1="85" y2="78"/>
+<line fill="#000000" stroke="#000000" stroke-width="1" x1="506" x2="518" y1="71" y2="78"/>
+<text font-family="Dialog" font-size="12" x="417" y="73">
+ data</text>
+<text font-family="Dialog" font-size="12" x="492" y="73">
+1..*</text>
+<line fill="#000000" stroke="#000000" stroke-width="1" x1="275" x2="280" y1="278" y2="278"/>
+<line fill="#000000" stroke="#000000" stroke-width="1" x1="285" x2="290" y1="278" y2="278"/>
+<line fill="#000000" stroke="#000000" stroke-width="1" x1="295" x2="300" y1="278" y2="278"/>
+<line fill="#000000" stroke="#000000" stroke-width="1" x1="305" x2="310" y1="278" y2="278"/>
+<line fill="#000000" stroke="#000000" stroke-width="1" x1="315" x2="320" y1="278" y2="278"/>
+<line fill="#000000" stroke="#000000" stroke-width="1" x1="325" x2="330" y1="278" y2="278"/>
+<line fill="#000000" stroke="#000000" stroke-width="1" x1="335" x2="340" y1="278" y2="278"/>
+<line fill="#000000" stroke="#000000" stroke-width="1" x1="345" x2="350" y1="278" y2="278"/>
+<line fill="#000000" stroke="#000000" stroke-width="1" x1="355" x2="360" y1="278" y2="278"/>
+<line fill="#000000" stroke="#000000" stroke-width="1" x1="365" x2="370" y1="278" y2="278"/>
+<line fill="#000000" stroke="#000000" stroke-width="1" x1="375" x2="380" y1="278" y2="278"/>
+<line fill="#000000" stroke="#000000" stroke-width="1" x1="385" x2="390" y1="278" y2="278"/>
+<line fill="#000000" stroke="#000000" stroke-width="1" x1="395" x2="400" y1="278" y2="278"/>
+<line fill="#000000" stroke="#000000" stroke-width="1" x1="405" x2="410" y1="278" y2="278"/>
+<line fill="#000000" stroke="#000000" stroke-width="1" x1="402" x2="414" y1="285" y2="278"/>
+<line fill="#000000" stroke="#000000" stroke-width="1" x1="402" x2="414" y1="271" y2="278"/>
+</svg>
