@@ -5,7 +5,7 @@
 using namespace std;
 using namespace cv;
 
-DOGDetectorModel::DOGDetectorModel() : m_isAllSelected(false)
+DOGDetectorModel::DOGDetectorModel() : is_atLeastOneSelected(false)
 {
   connect(this, SIGNAL(listFilesLoaded()), this, SLOT(initIsSelected()));
   connect(this, SIGNAL(listFilesLoaded()), this, SLOT(initImages()));
@@ -19,7 +19,7 @@ void DOGDetectorModel::clearAll()
   m_isSelected.clear();
   m_images.clear();
   m_detectors.clear();
-  m_isAllSelected = false;
+  is_atLeastOneSelected = false;
 }
 
 void DOGDetectorModel::setListFiles(QStringList listFiles)
@@ -56,16 +56,16 @@ bool DOGDetectorModel::getIsSelected(int i)
 
 void DOGDetectorModel::lookIsAllSelected()
 {
-  m_isAllSelected = false;
+  is_atLeastOneSelected = false;
 
   for(int i = 0; i < m_isSelected.size(); ++i)
       if(m_isSelected[i])
 	{
-	  m_isAllSelected = true;
+	  is_atLeastOneSelected = true;
 	  break;
 	}
 
-  emit isAllSelected(m_isAllSelected);
+  emit isAllSelected(is_atLeastOneSelected);
 }
 
 void DOGDetectorModel::initImages()

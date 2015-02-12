@@ -23,7 +23,7 @@ protected :
 
   QStringList m_listFiles;
   std::vector<bool> m_isSelected;
-  bool m_isAllSelected;
+  bool is_atLeastOneSelected;
   std::vector<cv::Mat> m_images;
   std::vector<DOGDetector> m_detectors;
   
