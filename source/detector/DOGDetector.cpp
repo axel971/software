@@ -4,7 +4,7 @@ using namespace std;
 using namespace cv;
 
 
-DOGDetector::DOGDetector(Mat image, int octave, int level, double sigma) : SiftDetector(image, octave, level, sigma), m_dogPyramid(DOGPyramid(image, octave, level - 1, sigma))
+DOGDetector::DOGDetector(Mat image, int octave, int level, double sigma) : SiftDetector(image, octave, level, sigma), m_dogPyramid(DOGPyramid(image, octave, level - 1, sigma)), m_gaussPyramid(m_image, m_octave, m_level, m_sigma)
 {
   CHECK_INVARIANTS();
 
@@ -29,6 +29,9 @@ void DOGDetector::operator()()
   findExtrema();
   accurateKeyPointLocalization();
   
+  assignOrientationAux(m_features[0]);
+
+  cout << getNumbersFeatures() << endl;
   
   CHECK_INVARIANTS();
 }
@@ -431,4 +434,60 @@ void DOGDetector::accurateKeyPointLocalization()
     }//end while
  
   CHECK_INVARIANTS();
+}
+
+void DOGDetector::computeMagnitudeAngle(Mat const& image, Mat& magnitude, Mat& angle) const
+{
+  Mat gradX, gradY;
+  
+  Sobel(image, gradX, CV_64F, 1, 0);
+  Sobel(image, gradY, CV_64F, 0, 1);
+
+  cartToPolar(gradX, gradY, magnitude, angle);
+
+}
+
+vector<double> DOGDetector::histogramOrientation(Feature feature)
+{
+  REQUIRE(feature.getLevel() >= 0, "");
+  REQUIRE(feature.getLevel() <= m_level, "");
+  REQUIRE(feature.getOctave() >= 0, "");
+  REQUIRE(feature.getOctave() < m_octave, "");
+
+  int nHist = 36;
+  Mat roi, img, magnitude, angle;
+  Rect rect = Rect(feature.getRow() - HIST_RADIUS, feature.getCol() - HIST_RADIUS, 2*HIST_RADIUS, 2*HIST_RADIUS);
+  vector<double> hist(nHist);
+  double  sigma = 1.5 * feature.getSigma();
+  
+  //Get the Neighboorhood
+  img = m_gaussPyramid.getImage(feature.getOctave(), feature.getLevel()); 
+  roi = img(rect);  
+
+  //Compute magnitude and angle for the Neighboorhood
+  computeMagnitudeAngle(roi, magnitude, angle);
+ 
+ 
+  //Compute the histogramm of orientation
+  for(int i = -HIST_RADIUS ; i < HIST_RADIUS; ++i)
+    for(int j = -HIST_RADIUS; j < HIST_RADIUS; ++j)
+      {
+	double w = exp(-(i*i + j*j) / (2 * sigma * sigma));
+	int bin =  round(nHist * angle.at<double>(i + HIST_RADIUS, j + HIST_RADIUS) / (2 * M_PI));
+	hist[bin] += w * magnitude.at<double>(i + HIST_RADIUS, j + HIST_RADIUS) ;
+      }
+  
+  return hist;
+}
+
+void DOGDetector::assignOrientationAux(Feature& feature)
+{
+  vector<double> hist;
+
+  m_gaussPyramid.build();
+
+  //Compute histogramm of orientation
+  hist = histogramOrientation(feature);
+
+
 }
