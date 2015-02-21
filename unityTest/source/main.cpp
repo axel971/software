@@ -4,6 +4,7 @@
 #include <cppunit/TestResultCollector.h>
 #include <cppunit/TestRunner.h>
 #include <cppunit/BriefTestProgressListener.h>
+#include <cppunit/XmlOutputter.h>
 
 int main (int argc, char* argv[])
 {
@@ -26,6 +27,12 @@ int main (int argc, char* argv[])
   // output results in compiler-format
   CPPUNIT_NS :: CompilerOutputter compileroutputter (&collectedresults, std::cerr);
   compileroutputter.write ();
+
+  // Uncomment this for XML output
+  std::ofstream file( "cppunit-report.xml" );
+  CPPUNIT_NS::XmlOutputter xml( &collectedresults, file );
+  xml.write();
+  file.close();
 
   // return 0 if tests were successful
   return collectedresults.wasSuccessful () ? 0 : 1;
