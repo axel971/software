@@ -8,6 +8,7 @@ Methodes implementees : <br>
 
 Instruction de compilation : <br>
 (Pour linux) <br> 
+Installer les librairies Qt et OpenCV <br>
 cmake -H. -Bcompile/ <br>
 cd compile <br>
 make 
