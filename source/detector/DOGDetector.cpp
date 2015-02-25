@@ -448,7 +448,7 @@ void DOGDetector::computeMagnitudeAngle(Mat const& image, Mat& magnitude, Mat& a
 
 }
 
-vector<double> DOGDetector::histogramOrientation(Feature feature)
+vector<double> DOGDetector::histogramOrientation(Feature const& feature)
 {
   int nHist = 36;
   Mat roi, img, magnitude, angle;
@@ -476,7 +476,7 @@ vector<double> DOGDetector::histogramOrientation(Feature feature)
   return hist;
 }
 
-void DOGDetector::assignOrientationAux(Feature& feature)
+vector<Feature> DOGDetector::assignOrientationAux(Feature& feature)
 {
   REQUIRE(feature.getLevel() >= 0 && feature.getLevel() <= m_level, "");
   REQUIRE(feature.getOctave() >= 0 && feature.getOctave() < m_octave, "");
@@ -487,6 +487,8 @@ void DOGDetector::assignOrientationAux(Feature& feature)
   vector<double> hist;
   vector<double>::iterator iterHist;
   int iMax;
+  double thresh;
+  vector<Feature> features;
 
   //Compute histogramm of orientation
   hist = histogramOrientation(feature);
@@ -496,13 +498,33 @@ void DOGDetector::assignOrientationAux(Feature& feature)
   iMax =  distance(hist.begin(), iterHist);
 
   //Set the orientation at the current feature
-  feature.setTheta(iMax);
+  feature.setTheta(iMax * 10);
+  
+  //Add new features if necessary
+  thresh = *iterHist * 0.8;
+
+  for(int i = 0; i < hist.size(); ++i)
+    if(hist[i] >= thresh)
+      {
+	Feature newFeature(feature);
+	newFeature.setTheta(i * 10);
+	features.push_back(newFeature);
+      }
+
+  return features;
 }
 
 void DOGDetector::assignOrientation()
 {
+  vector<Feature>features, featuresAux;
+
   m_gaussPyramid.build();
 
   for(int i = 0; i < m_features.size(); ++i)
-    assignOrientationAux(m_features[i]);
+    {
+      featuresAux = assignOrientationAux(m_features[i]);
+      features.insert(features.end(), featuresAux.begin(), featuresAux.end());
+    }
+
+  m_features.insert(m_features.end(), features.begin(), features.end());
 }

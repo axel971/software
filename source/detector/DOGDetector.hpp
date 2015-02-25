@@ -65,9 +65,9 @@ private : //private methods
   double detH(Feature const& feature);
   void accurateKeyPointLocalization();
   void computeMagnitudeAngle(cv::Mat const& image, cv::Mat& magnitude, cv::Mat& angle) const;
-  cv::vector<double> histogramOrientation(Feature feature);
+  std::vector<double> histogramOrientation(Feature const& feature);
   void assignOrientation();
-  void assignOrientationAux(Feature& feature);
+  std::vector<Feature> assignOrientationAux(Feature& feature);
 };
 
 #endif
