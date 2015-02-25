@@ -66,6 +66,10 @@ void Feature::setLevel(int level)
   m_level = level;
 }
 
+void Feature::setTheta(double tetha)
+{
+  m_theta = tetha;
+}
  
 ostream& operator << (ostream& flux, const Feature& feature)
 {

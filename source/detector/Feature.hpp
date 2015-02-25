@@ -31,6 +31,7 @@ public :
   void setRow(double row);
   void setCol(double col);
   void setSigma(double sigma);
+  void setTheta(double tetha);
 
   friend std::ostream& operator << (std::ostream& flux, const Feature& feature);
   

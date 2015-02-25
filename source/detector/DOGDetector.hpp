@@ -3,23 +3,29 @@
 
 #define INTENSITY_THRESHOLD 0.70
 #define DOG_MAX_INTERP_STEPS 5
-#define DOG_IMG_BORDER 1
+#define DOG_IMG_BORDER 8
 #define R_THRESHOLD 10
 #define DOG_IMAGE_SCALE_1 m_dogPyramid.getImage(feature.getOctave(), feature.getLevel() - 1)
 #define DOG_IMAGE_SCALE_2 m_dogPyramid.getImage(feature.getOctave(), feature.getLevel())
 #define DOG_IMAGE_SCALE_3 m_dogPyramid.getImage(feature.getOctave(), feature.getLevel() + 1)
 #define DOG_LEVEL m_level - 1
+#define HIST_RADIUS 8
+
+#ifndef M_PI
+   #define M_PI 3.14159265358979323846
+#endif
 
 #include "SiftDetector.hpp"
 #include "../imagePyramid/DOGPyramid.hpp"
 #include "../imagePyramid/GaussianPyramid.hpp"
 #include "../contract/contract.hpp"
+#include <cmath>
 
 class DOGDetector : public SiftDetector
 {
 
 private :
-
+  GaussianPyramid m_gaussPyramid;
   DOGPyramid m_dogPyramid;
   cv::Mat m_offsetLimit;
   double m_k;
@@ -54,10 +60,14 @@ private : //private methods
   cv::Mat discretizeOffset(cv::Mat const& offset) const;
   void addOffset(Feature& feature, cv::Mat const& offset, bool isDiscretize = false);
   bool checkImageBorder(Feature const& feature) ;
-  double offsetContrastReponse(double value, cv::Mat& gradian, cv::Mat& offset) const;
+  double offsetContrastReponse(double value, cv::Mat const& gradian, cv::Mat const& offset) const;
   double traceH(Feature const& feature);
   double detH(Feature const& feature);
   void accurateKeyPointLocalization();
+  void computeMagnitudeAngle(cv::Mat const& image, cv::Mat& magnitude, cv::Mat& angle) const;
+  cv::vector<double> histogramOrientation(Feature feature);
+  void assignOrientation();
+  void assignOrientationAux(Feature& feature);
 };
 
 #endif
