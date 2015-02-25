@@ -27,11 +27,10 @@ void DOGDetector::operator()()
   m_dogPyramid.build();  
   
   findExtrema();
-  accurateKeyPointLocalization();
-  
-  assignOrientationAux(m_features[0]);
+  accurateKeyPointLocalization();  
+  assignOrientation();
 
-  cout << getNumbersFeatures() << endl;
+  //cout << getNumbersFeatures() << endl;
   
   CHECK_INVARIANTS();
 }
@@ -293,6 +292,7 @@ void DOGDetector::addOffset(Feature& feature, Mat const& offset, bool isDiscreti
       feature.setLevel(feature.getLevel() + offset.at<double>(2));
       feature.setSigma(sigma * pow(m_k, offset.at<double>(2))) ;
     }
+
 }
 
 
@@ -317,7 +317,7 @@ bool DOGDetector::checkImageBorder(Feature const& feature)
   return res;
 }
 
-double DOGDetector::offsetContrastReponse(double value, Mat& gradian, Mat& offset) const
+double DOGDetector::offsetContrastReponse(double value, Mat const& gradian, Mat const& offset) const
 {
   REQUIRE(offset.rows == 3 && offset.cols == 1, "Offset must have the size 3 * 1");
   REQUIRE(gradian.rows == 3 && gradian.cols == 1, "Offset must have the size 3 * 1");
@@ -396,20 +396,20 @@ void DOGDetector::accurateKeyPointLocalization()
 	  
 	  if(checkImageBorder(*itFeature)) //Delete the feature
 	    {
-	      itFeature = m_features.erase(itFeature);
+	      i = DOG_MAX_INTERP_STEPS;
 	      break;
 	    }
 
 	  i++;
 	}//end while
       
+
       if(i == DOG_MAX_INTERP_STEPS) //You must assure the convergence of algorithme 
 	{
 	  itFeature = m_features.erase(itFeature);
 	  continue;
 	}
   
-
       //Filter low contrast responses
       if(abs(offsetContrastReponse(value, gradian, offset)) < 0.03)
 	{
@@ -430,6 +430,7 @@ void DOGDetector::accurateKeyPointLocalization()
 
       addOffset(*itFeature, offset);
 
+      
       itFeature++;
     }//end while
  
@@ -449,14 +450,10 @@ void DOGDetector::computeMagnitudeAngle(Mat const& image, Mat& magnitude, Mat& a
 
 vector<double> DOGDetector::histogramOrientation(Feature feature)
 {
-  REQUIRE(feature.getLevel() >= 0, "");
-  REQUIRE(feature.getLevel() <= m_level, "");
-  REQUIRE(feature.getOctave() >= 0, "");
-  REQUIRE(feature.getOctave() < m_octave, "");
-
   int nHist = 36;
   Mat roi, img, magnitude, angle;
-  Rect rect = Rect(feature.getRow() - HIST_RADIUS, feature.getCol() - HIST_RADIUS, 2*HIST_RADIUS, 2*HIST_RADIUS);
+  Rect rect = Rect(feature.getCol() - HIST_RADIUS, feature.getRow() - HIST_RADIUS,
+		   2 * HIST_RADIUS, 2 * HIST_RADIUS);
   vector<double> hist(nHist);
   double  sigma = 1.5 * feature.getSigma();
   
@@ -466,7 +463,6 @@ vector<double> DOGDetector::histogramOrientation(Feature feature)
 
   //Compute magnitude and angle for the Neighboorhood
   computeMagnitudeAngle(roi, magnitude, angle);
- 
  
   //Compute the histogramm of orientation
   for(int i = -HIST_RADIUS ; i < HIST_RADIUS; ++i)
@@ -482,12 +478,31 @@ vector<double> DOGDetector::histogramOrientation(Feature feature)
 
 void DOGDetector::assignOrientationAux(Feature& feature)
 {
-  vector<double> hist;
+  REQUIRE(feature.getLevel() >= 0 && feature.getLevel() <= m_level, "");
+  REQUIRE(feature.getOctave() >= 0 && feature.getOctave() < m_octave, "");
+  REQUIRE(feature.getRow() >= 0 && feature.getCol() >= 0, "");
+  REQUIRE(feature.getRow() < m_image.rows/ pow(2, feature.getOctave()), "");
+  REQUIRE(feature.getCol() < m_image.cols/ pow(2, feature.getOctave()), "");
 
-  m_gaussPyramid.build();
+  vector<double> hist;
+  vector<double>::iterator iterHist;
+  int iMax;
 
   //Compute histogramm of orientation
   hist = histogramOrientation(feature);
 
+  //Find the index of histogramm max value
+  iterHist = max_element(hist.begin(), hist.end());
+  iMax =  distance(hist.begin(), iterHist);
 
+  //Set the orientation at the current feature
+  feature.setTheta(iMax);
+}
+
+void DOGDetector::assignOrientation()
+{
+  m_gaussPyramid.build();
+
+  for(int i = 0; i < m_features.size(); ++i)
+    assignOrientationAux(m_features[i]);
 }

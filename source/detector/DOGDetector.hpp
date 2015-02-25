@@ -60,7 +60,7 @@ private : //private methods
   cv::Mat discretizeOffset(cv::Mat const& offset) const;
   void addOffset(Feature& feature, cv::Mat const& offset, bool isDiscretize = false);
   bool checkImageBorder(Feature const& feature) ;
-  double offsetContrastReponse(double value, cv::Mat& gradian, cv::Mat& offset) const;
+  double offsetContrastReponse(double value, cv::Mat const& gradian, cv::Mat const& offset) const;
   double traceH(Feature const& feature);
   double detH(Feature const& feature);
   void accurateKeyPointLocalization();
