@@ -121,7 +121,7 @@ void MainWindow::displayOverlay()
       for(int i = 0; i < features.size(); ++i)
 	{
 	  QPointF center(features[i].getCol(), features[i].getRow());
-	  painter.drawEllipse(center, 1, 1);
+	  painter.drawEllipse(center, features[i].getSigma(), features[i].getSigma());
 	}
 
       ui->displayImage->setPixmap(image);
