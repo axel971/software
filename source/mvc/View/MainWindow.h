@@ -7,7 +7,7 @@
 #include <QProgressDialog>
 #include <QPainter>
 
-#include "DOGDetectorModel.hpp"
+#include "../Model/DOGDetectorModel.hpp"
 
 namespace Ui {
 class MainWindow;

@@ -3,8 +3,8 @@
 
 #include <iostream>
 #include <QWidget>
-#include "MainWindow.h"
-#include "DOGDetectorModel.hpp"
+#include "../View/MainWindow.h"
+#include "../Model/DOGDetectorModel.hpp"
 
 class Controller : QWidget
 {

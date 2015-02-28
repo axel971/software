@@ -16,7 +16,7 @@ MainWindow::MainWindow(DOGDetectorModel *ptrModel, QWidget *parent) : m_ptrModel
 
     //Listener toward the model
     connect(m_ptrModel, SIGNAL(listFilesLoaded()), this, SLOT(setListFiles()));
-    connect(m_ptrModel, SIGNAL(isAllSelected(bool)), ui->run, SLOT(setEnabled(bool)));
+    connect(m_ptrModel, SIGNAL(atLeastOneFileIsSelected(bool)), ui->run, SLOT(setEnabled(bool)));
     connect(m_ptrModel, SIGNAL(runOff(bool)), ui->overlay, SLOT(setEnabled(bool)));
     connect(m_ptrModel, SIGNAL(runOff(bool)), ui->overlay, SLOT(setChecked(bool)));
     connect(m_ptrModel, SIGNAL(runOff()), this, SLOT(displayOverlay()));

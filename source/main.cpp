@@ -1,6 +1,6 @@
 #include <QApplication>
 #include <QtWidgets>
-#include "mvc/Controller.h"
+#include "mvc/Controller/Controller.h"
 #include "detector/DOGDetector.hpp"
 
 using namespace cv;
