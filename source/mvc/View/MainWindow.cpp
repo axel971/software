@@ -3,7 +3,7 @@
 
 using namespace std;
 
-MainWindow::MainWindow(DOGDetectorModel *ptrModel, QWidget *parent) : m_ptrModel(ptrModel), QMainWindow(parent), ui(new Ui::MainWindow), m_waitBar(parent)
+MainWindow::MainWindow(DOGDetectorModel *ptrModel, QWidget *parent) : m_ptrModel(ptrModel), QMainWindow(parent), ui(new Ui::MainWindow), m_waitBar(parent), m_paramsWidget(new ParamsWidget)
 {
     ui->setupUi(this);
 
@@ -16,6 +16,7 @@ MainWindow::MainWindow(DOGDetectorModel *ptrModel, QWidget *parent) : m_ptrModel
 
     //Listener toward the model
     connect(m_ptrModel, SIGNAL(listFilesLoaded()), this, SLOT(setListFiles()));
+    connect(m_ptrModel, SIGNAL(detectorsLoaded()), this, SLOT(constructParams()));
     connect(m_ptrModel, SIGNAL(atLeastOneFileIsSelected(bool)), ui->run, SLOT(setEnabled(bool)));
     connect(m_ptrModel, SIGNAL(runOff(bool)), ui->overlay, SLOT(setEnabled(bool)));
     connect(m_ptrModel, SIGNAL(runOff(bool)), ui->overlay, SLOT(setChecked(bool)));
@@ -28,12 +29,19 @@ MainWindow::MainWindow(DOGDetectorModel *ptrModel, QWidget *parent) : m_ptrModel
     connect(this, SIGNAL(setPathActived(QStringList)), this, SLOT(initWidget()));
     connect(ui->listFiles, SIGNAL(currentRowChanged(int)), this, SLOT(displayWindow()));
     connect(ui->listFiles, SIGNAL(currentRowChanged(int)), this, SLOT(displayOverlay()));
+    connect(this, SIGNAL(paramsConstructed()), this, SLOT(displayParams()));
     connect(ui->listFiles, SIGNAL(itemClicked(QListWidgetItem *)), this, SLOT(listFilesClicked(QListWidgetItem *)));
     connect(ui->overlay, SIGNAL(stateChanged(int)), this, SLOT(displayOverlay()));
+
+    connect(m_paramsWidget, SIGNAL(modified()), this,  SLOT(displayParams()));
 }
 
 MainWindow::~MainWindow()
 {
+
+  if(m_paramsWidget != 0)
+    delete m_paramsWidget;
+  
     delete ui;
 }
 
@@ -47,7 +55,7 @@ void MainWindow::initWidget()
   m_waitBar.setWindowModality(Qt::WindowModal); 
   m_waitBar.setRange(0, 100);
 
-
+  //ui->groupBoxParams->setStyleSheet ("border: 2px solid gray;");
 }
 
 
@@ -142,3 +150,20 @@ void MainWindow::runClickedSlot()
   emit runClicked();
 }
 
+void MainWindow::constructParams()
+{
+  int nParams = (m_ptrModel->getParams()).size();
+  
+  m_paramsWidget->build(ui->layoutParams, nParams);
+
+  ui->groupBoxParams->setLayout(ui->layoutParams);
+
+  emit paramsConstructed();
+}
+
+void MainWindow::displayParams()
+{
+  vector<ParamModel> params =  m_ptrModel->getParams();
+  
+  m_paramsWidget->setParams(params);
+}

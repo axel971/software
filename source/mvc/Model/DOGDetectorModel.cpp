@@ -35,7 +35,8 @@ void DOGDetectorModel::constructDetectors()
   for(int i = 0; i < m_listFiles.count(); ++i)
     m_detectors.push_back(DOGDetector(m_images[i], m_params[0].getValue(), 
 				      m_params[1].getValue(), m_params[2].getValue()));
-    
+
+  emit detectorsLoaded();    
 }
 
 void DOGDetectorModel::run()
