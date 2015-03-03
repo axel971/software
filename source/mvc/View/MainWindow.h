@@ -31,6 +31,8 @@ class MainWindow : public QMainWindow
         
     public slots :
 
+      void listenerFromView();
+      void listenerFromModel();
       void setPath();
       void setListFiles();
       void initWidget();
@@ -40,12 +42,13 @@ class MainWindow : public QMainWindow
       void listFilesClicked(QListWidgetItem*);
       void runClickedSlot();
       void constructParams();
-
+      
  signals:
       void setPathActived(QStringList);
       void fileClicked(int, bool);
       void runClicked();
       void paramsConstructed();
+      void loadParams();
 };
 
 #endif 

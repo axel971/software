@@ -6,34 +6,12 @@ using namespace std;
 MainWindow::MainWindow(DOGDetectorModel *ptrModel, QWidget *parent) : m_ptrModel(ptrModel), QMainWindow(parent), ui(new Ui::MainWindow), m_waitBar(parent), m_paramsWidget(new ParamsWidget)
 {
     ui->setupUi(this);
+   
+    listenerFromModel();
+    listenerFromView();
 
     //Initialisation of the widgets
     initWidget();
-    
-    //Signals send of the controller
-    connect(ui->openFiles, SIGNAL(triggered()), this, SLOT(setPath()));
-    connect(ui->run, SIGNAL(clicked()), this, SLOT(runClickedSlot()));
-
-    //Listener toward the model
-    connect(m_ptrModel, SIGNAL(listFilesLoaded()), this, SLOT(setListFiles()));
-    connect(m_ptrModel, SIGNAL(detectorsLoaded()), this, SLOT(constructParams()));
-    connect(m_ptrModel, SIGNAL(atLeastOneFileIsSelected(bool)), ui->run, SLOT(setEnabled(bool)));
-    connect(m_ptrModel, SIGNAL(runOff(bool)), ui->overlay, SLOT(setEnabled(bool)));
-    connect(m_ptrModel, SIGNAL(runOff(bool)), ui->overlay, SLOT(setChecked(bool)));
-    connect(m_ptrModel, SIGNAL(runOff()), this, SLOT(displayOverlay()));
-    //connect(m_ptrModel, SIGNAL(runOn()), &m_waitBar, SLOT(show()));
-    //connect(m_ptrModel, SIGNAL(runOff()), &m_waitBar, SLOT(cancel()));
-    //connect(m_ptrModel, SIGNAL(runChanged(int)), &m_waitBar, SLOT(setValue(int)));
-
-    //Signals send of the view
-    connect(this, SIGNAL(setPathActived(QStringList)), this, SLOT(initWidget()));
-    connect(ui->listFiles, SIGNAL(currentRowChanged(int)), this, SLOT(displayWindow()));
-    connect(ui->listFiles, SIGNAL(currentRowChanged(int)), this, SLOT(displayOverlay()));
-    connect(this, SIGNAL(paramsConstructed()), this, SLOT(displayParams()));
-    connect(ui->listFiles, SIGNAL(itemClicked(QListWidgetItem *)), this, SLOT(listFilesClicked(QListWidgetItem *)));
-    connect(ui->overlay, SIGNAL(stateChanged(int)), this, SLOT(displayOverlay()));
-
-    connect(m_paramsWidget, SIGNAL(modified()), this,  SLOT(displayParams()));
 }
 
 MainWindow::~MainWindow()
@@ -44,9 +22,41 @@ MainWindow::~MainWindow()
   
     delete ui;
 }
+void MainWindow::listenerFromModel()
+{
+    //Listener toward the model
+    connect(m_ptrModel, SIGNAL(listFilesLoaded()), this, SLOT(setListFiles()));
+    connect(m_ptrModel, SIGNAL(atLeastOneFileIsSelected(bool)), ui->run, SLOT(setEnabled(bool)));
+    connect(m_ptrModel, SIGNAL(runOff(bool)), ui->overlay, SLOT(setEnabled(bool)));
+    connect(m_ptrModel, SIGNAL(runOff(bool)), ui->overlay, SLOT(setChecked(bool)));
+    connect(m_ptrModel, SIGNAL(runOff()), this, SLOT(displayOverlay()));
+    //connect(m_ptrModel, SIGNAL(runOn()), &m_waitBar, SLOT(show()));
+    //connect(m_ptrModel, SIGNAL(runOff()), &m_waitBar, SLOT(cancel()));
+    //connect(m_ptrModel, SIGNAL(runChanged(int)), &m_waitBar, SLOT(setValue(int)));
 
+}
+
+void MainWindow::listenerFromView()
+{
+
+  //Signals send of the controller
+  connect(ui->openFiles, SIGNAL(triggered()), this, SLOT(setPath()));
+  connect(ui->run, SIGNAL(clicked()), this, SLOT(runClickedSlot()));
+    
+  //Entire Signals from the view
+  connect(this, SIGNAL(setPathActived(QStringList)), this, SLOT(initWidget()));
+  connect(ui->listFiles, SIGNAL(currentRowChanged(int)), this, SLOT(displayWindow()));
+  connect(ui->listFiles, SIGNAL(currentRowChanged(int)), this, SLOT(displayOverlay()));
+  connect(this, SIGNAL(paramsConstructed()), this, SLOT(displayParams()));
+  connect(ui->listFiles, SIGNAL(itemClicked(QListWidgetItem *)), this, SLOT(listFilesClicked(QListWidgetItem *)));
+  connect(ui->overlay, SIGNAL(stateChanged(int)), this, SLOT(displayOverlay()));
+  connect(this, SIGNAL(loadParams()), this, SLOT(constructParams()));
+  connect(m_paramsWidget, SIGNAL(modified()), this,  SLOT(displayParams()));
+
+}
 void MainWindow::initWidget()
 {
+
   //making process widget disable
   ui->run->setEnabled(false);
   ui->overlay->setEnabled(false);
@@ -55,7 +65,8 @@ void MainWindow::initWidget()
   m_waitBar.setWindowModality(Qt::WindowModal); 
   m_waitBar.setRange(0, 100);
 
-  //ui->groupBoxParams->setStyleSheet ("border: 2px solid gray;");
+  //Load the parameters
+  emit loadParams();
 }
 
 

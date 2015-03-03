@@ -117,6 +117,9 @@
         </property>
         <layout class="QVBoxLayout" name="layout">
          <item>
+          <widget class="QComboBox" name="comboBox"/>
+         </item>
+         <item>
           <layout class="QGridLayout" name="layoutParams"/>
          </item>
          <item>
