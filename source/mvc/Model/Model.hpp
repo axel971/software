@@ -2,7 +2,7 @@
 #define MODEL_HPP
 
 #include <QWidget>
-
+#include <QLineEdit>
 #include <iostream>
 #include <vector>
 #include <numeric>
@@ -30,7 +30,11 @@ public :
   QStringList getListFiles();   
   bool getIsSelected(int i);
   virtual void clearAllAttributs() = 0;
+
   virtual std::string getId();
+
+  std::vector<ParamModel> getParams();
+
 			   
 public slots :
   

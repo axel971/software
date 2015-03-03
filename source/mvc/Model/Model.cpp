@@ -46,9 +46,15 @@ bool Model::getIsSelected(int i)
  return m_isSelected[i];
 }
 
+
 virtual std::string Model::getId()
 {
   return m_id;
+
+vector<ParamModel> Model::getParams()
+{
+  return m_params;
+
 }
 
 void Model::lookIfAtLeastOneFileIsSelected()

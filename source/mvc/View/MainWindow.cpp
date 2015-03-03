@@ -3,17 +3,27 @@
 
 using namespace std;
 
-MainWindow::MainWindow(DOGDetectorModel *ptrModel, QWidget *parent) : m_ptrModel(ptrModel), QMainWindow(parent), ui(new Ui::MainWindow), m_waitBar(parent)
+MainWindow::MainWindow(DOGDetectorModel *ptrModel, QWidget *parent) : m_ptrModel(ptrModel), QMainWindow(parent), ui(new Ui::MainWindow), m_waitBar(parent), m_paramsWidget(new ParamsWidget)
 {
     ui->setupUi(this);
+   
+    listenerFromModel();
+    listenerFromView();
 
     //Initialisation of the widgets
     initWidget();
-    
-    //Signals send of the controller
-    connect(ui->openFiles, SIGNAL(triggered()), this, SLOT(setPath()));
-    connect(ui->run, SIGNAL(clicked()), this, SLOT(runClickedSlot()));
+}
 
+MainWindow::~MainWindow()
+{
+
+  if(m_paramsWidget != 0)
+    delete m_paramsWidget;
+  
+    delete ui;
+}
+void MainWindow::listenerFromModel()
+{
     //Listener toward the model
     connect(m_ptrModel, SIGNAL(listFilesLoaded()), this, SLOT(setListFiles()));
     connect(m_ptrModel, SIGNAL(atLeastOneFileIsSelected(bool)), ui->run, SLOT(setEnabled(bool)));
@@ -24,21 +34,29 @@ MainWindow::MainWindow(DOGDetectorModel *ptrModel, QWidget *parent) : m_ptrModel
     //connect(m_ptrModel, SIGNAL(runOff()), &m_waitBar, SLOT(cancel()));
     //connect(m_ptrModel, SIGNAL(runChanged(int)), &m_waitBar, SLOT(setValue(int)));
 
-    //Signals send of the view
-    connect(this, SIGNAL(setPathActived(QStringList)), this, SLOT(initWidget()));
-    connect(ui->listFiles, SIGNAL(currentRowChanged(int)), this, SLOT(displayWindow()));
-    connect(ui->listFiles, SIGNAL(currentRowChanged(int)), this, SLOT(displayOverlay()));
-    connect(ui->listFiles, SIGNAL(itemClicked(QListWidgetItem *)), this, SLOT(listFilesClicked(QListWidgetItem *)));
-    connect(ui->overlay, SIGNAL(stateChanged(int)), this, SLOT(displayOverlay()));
 }
 
-MainWindow::~MainWindow()
+void MainWindow::listenerFromView()
 {
-    delete ui;
-}
 
+  //Signals send of the controller
+  connect(ui->openFiles, SIGNAL(triggered()), this, SLOT(setPath()));
+  connect(ui->run, SIGNAL(clicked()), this, SLOT(runClickedSlot()));
+    
+  //Entire Signals from the view
+  connect(this, SIGNAL(setPathActived(QStringList)), this, SLOT(initWidget()));
+  connect(ui->listFiles, SIGNAL(currentRowChanged(int)), this, SLOT(displayWindow()));
+  connect(ui->listFiles, SIGNAL(currentRowChanged(int)), this, SLOT(displayOverlay()));
+  connect(this, SIGNAL(paramsConstructed()), this, SLOT(displayParams()));
+  connect(ui->listFiles, SIGNAL(itemClicked(QListWidgetItem *)), this, SLOT(listFilesClicked(QListWidgetItem *)));
+  connect(ui->overlay, SIGNAL(stateChanged(int)), this, SLOT(displayOverlay()));
+  connect(this, SIGNAL(loadParams()), this, SLOT(constructParams()));
+  connect(m_paramsWidget, SIGNAL(modified()), this,  SLOT(displayParams()));
+
+}
 void MainWindow::initWidget()
 {
+
   //making process widget disable
   ui->run->setEnabled(false);
   ui->overlay->setEnabled(false);
@@ -47,7 +65,8 @@ void MainWindow::initWidget()
   m_waitBar.setWindowModality(Qt::WindowModal); 
   m_waitBar.setRange(0, 100);
 
-
+  //Load the parameters
+  emit loadParams();
 }
 
 
@@ -142,3 +161,20 @@ void MainWindow::runClickedSlot()
   emit runClicked();
 }
 
+void MainWindow::constructParams()
+{
+  int nParams = (m_ptrModel->getParams()).size();
+  
+  m_paramsWidget->build(ui->layoutParams, nParams);
+
+  ui->groupBoxParams->setLayout(ui->layoutParams);
+
+  emit paramsConstructed();
+}
+
+void MainWindow::displayParams()
+{
+  vector<ParamModel> params =  m_ptrModel->getParams();
+  
+  m_paramsWidget->setParams(params);
+}
