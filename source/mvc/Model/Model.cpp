@@ -47,9 +47,10 @@ bool Model::getIsSelected(int i)
 }
 
 
-virtual std::string Model::getId()
+std::string Model::getId()
 {
   return m_id;
+}
 
 vector<ParamModel> Model::getParams()
 {

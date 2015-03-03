@@ -31,7 +31,7 @@ public :
   bool getIsSelected(int i);
   virtual void clearAllAttributs() = 0;
 
-  virtual std::string getId();
+  std::string getId();
 
   std::vector<ParamModel> getParams();
 

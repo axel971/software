@@ -23,7 +23,7 @@ vector<QString> DetectorManagerModel::getIds()
   vector<QString> ids;
 
   for(int i = 0; i < m_detectors.size(); ++i)
-    ids.push_back(m_detectors[i]->getId());
+    ids.push_back(QString::fromStdString(m_detectors[i]->getId()));
  
  return ids;    
 }
