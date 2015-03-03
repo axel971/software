@@ -46,6 +46,11 @@ bool Model::getIsSelected(int i)
  return m_isSelected[i];
 }
 
+virtual std::string Model::getId()
+{
+  return m_id;
+}
+
 void Model::lookIfAtLeastOneFileIsSelected()
 {
   m_isSelectedAtLeastOneFile = false;

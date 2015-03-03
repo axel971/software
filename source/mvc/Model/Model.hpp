@@ -30,6 +30,7 @@ public :
   QStringList getListFiles();   
   bool getIsSelected(int i);
   virtual void clearAllAttributs() = 0;
+  virtual std::string getId();
 			   
 public slots :
   

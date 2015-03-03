@@ -8,6 +8,8 @@ using namespace cv;
 DOGDetectorModel::DOGDetectorModel() : DetectorModel() 
 {
 
+  m_id = "DOGDetector";
+
   //Construct the params by default
   ParamModel level(5, "level", "int"), octave(3, "Octave", "int"), sigma(1.6, "Sigma", "double");
 
