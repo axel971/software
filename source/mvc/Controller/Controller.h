@@ -5,6 +5,7 @@
 #include <QWidget>
 #include "../View/MainWindow.h"
 #include "../Model/DOGDetectorModel.hpp"
+#include "DetectorManagerModel.hpp"
 
 class Controller : QWidget
 {
@@ -12,8 +13,8 @@ class Controller : QWidget
   Q_OBJECT
  
  private :
-
-  DOGDetectorModel m_model; 
+  DetectorManagerModel m_managerModel;
+  DetectorModel *m_model; 
   MainWindow m_view;
   
  public :
@@ -24,6 +25,7 @@ class Controller : QWidget
   public slots :
     
     void setListFiles(QStringList);
-      
+    void getModel(int i);
+    void setListIdToView();      
 };
 #endif

@@ -7,7 +7,7 @@
 #include <QProgressDialog>
 #include <QPainter>
 
-#include "../Model/DOGDetectorModel.hpp"
+#include "../Model/DetectorModel.hpp"
 #include "ParamsWidget.hpp"
 
 namespace Ui {
@@ -20,12 +20,12 @@ class MainWindow : public QMainWindow
   
  private:
     Ui::MainWindow *ui;
-    DOGDetectorModel *m_ptrModel;
+    DetectorModel *m_ptrModel;
     QProgressDialog m_waitBar;
     ParamsWidget* m_paramsWidget;
        
  public:
-    explicit MainWindow(DOGDetectorModel *ptrModel, QWidget *parent = 0);
+    explicit MainWindow(DetectorModel *ptrModel, QWidget *parent = 0);
     ~MainWindow();
 
         
@@ -42,13 +42,14 @@ class MainWindow : public QMainWindow
       void listFilesClicked(QListWidgetItem*);
       void runClickedSlot();
       void constructParams();
-      
+      void initChooseModelWidget(std::vector<QString> ids);
+
  signals:
       void setPathActived(QStringList);
       void fileClicked(int, bool);
       void runClicked();
       void paramsConstructed();
-      void loadParams();
+      void initializedView();
 };
 
 #endif 

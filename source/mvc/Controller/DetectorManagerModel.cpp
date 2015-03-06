@@ -7,6 +7,8 @@ DetectorManagerModel::DetectorManagerModel()
 
   m_detectors.push_back(new DOGDetectorModel());
 
+  for(int i = 0; i < m_detectors.size(); ++i)
+   m_ids.push_back(QString::fromStdString(m_detectors[i]->getId()));
 }
 
 
@@ -19,13 +21,7 @@ DetectorManagerModel::~DetectorManagerModel()
 
 vector<QString> DetectorManagerModel::getIds()
 {
-
-  vector<QString> ids;
-
-  for(int i = 0; i < m_detectors.size(); ++i)
-    ids.push_back(QString::fromStdString(m_detectors[i]->getId()));
- 
- return ids;    
+  return m_ids;    
 }
 
 

@@ -3,15 +3,12 @@
 
 using namespace std;
 
-MainWindow::MainWindow(DOGDetectorModel *ptrModel, QWidget *parent) : m_ptrModel(ptrModel), QMainWindow(parent), ui(new Ui::MainWindow), m_waitBar(parent), m_paramsWidget(new ParamsWidget)
+MainWindow::MainWindow(DetectorModel *ptrModel, QWidget *parent) : m_ptrModel(ptrModel), QMainWindow(parent), ui(new Ui::MainWindow), m_waitBar(parent), m_paramsWidget(new ParamsWidget)
 {
     ui->setupUi(this);
    
     listenerFromModel();
     listenerFromView();
-
-    //Initialisation of the widgets
-    initWidget();
 }
 
 MainWindow::~MainWindow()
@@ -50,7 +47,7 @@ void MainWindow::listenerFromView()
   connect(this, SIGNAL(paramsConstructed()), this, SLOT(displayParams()));
   connect(ui->listFiles, SIGNAL(itemClicked(QListWidgetItem *)), this, SLOT(listFilesClicked(QListWidgetItem *)));
   connect(ui->overlay, SIGNAL(stateChanged(int)), this, SLOT(displayOverlay()));
-  connect(this, SIGNAL(loadParams()), this, SLOT(constructParams()));
+  connect(this, SIGNAL(initializedView()), this, SLOT(constructParams()));
   connect(m_paramsWidget, SIGNAL(modified()), this,  SLOT(displayParams()));
 
 }
@@ -66,7 +63,7 @@ void MainWindow::initWidget()
   m_waitBar.setRange(0, 100);
 
   //Load the parameters
-  emit loadParams();
+  emit initializedView();
 }
 
 
@@ -177,4 +174,10 @@ void MainWindow::displayParams()
   vector<ParamModel> params =  m_ptrModel->getParams();
   
   m_paramsWidget->setParams(params);
+}
+
+void MainWindow::initChooseModelWidget(vector<QString> ids)
+{
+  for(int i = 0; i < ids.size(); ++i)
+    ui->chooseModel->addItem(ids[i]);
 }

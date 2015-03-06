@@ -11,6 +11,7 @@ class DetectorManagerModel
  private :
 
   std::vector<DetectorModel*> m_detectors;
+  std::vector<QString> m_ids;
 
  public :
 
