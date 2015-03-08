@@ -9,6 +9,8 @@ DetectorManagerModel::DetectorManagerModel()
 
   for(int i = 0; i < m_detectors.size(); ++i)
    m_ids.push_back(QString::fromStdString(m_detectors[i]->getId()));
+
+  emit dataLoaded();
 }
 
 

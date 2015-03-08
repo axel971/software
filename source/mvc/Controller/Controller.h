@@ -26,6 +26,10 @@ class Controller : QWidget
     
     void setListFiles(QStringList);
     void getModel(int i);
-    void setListIdToView();      
+  
+ signals :
+ 
+    void modelChanged();
+    void sendIdModelToView(std::vector<QString>);
 };
 #endif

@@ -20,7 +20,7 @@ class MainWindow : public QMainWindow
   
  private:
     Ui::MainWindow *ui;
-    DetectorModel *m_ptrModel;
+    DetectorModel *m_model;
     QProgressDialog m_waitBar;
     ParamsWidget* m_paramsWidget;
        
@@ -40,16 +40,16 @@ class MainWindow : public QMainWindow
       void displayOverlay();
       void displayParams();
       void listFilesClicked(QListWidgetItem*);
-      void runClickedSlot();
-      void constructParams();
-      void initChooseModelWidget(std::vector<QString> ids);
+      void constructParamsModel();
+      void setListIdModel(std::vector<QString> ids);
 
  signals:
       void setPathActived(QStringList);
       void fileClicked(int, bool);
       void runClicked();
       void paramsConstructed();
-      void initializedView();
+      void setModel(int);
+      
 };
 
 #endif 

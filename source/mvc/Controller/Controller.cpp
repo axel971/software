@@ -9,10 +9,12 @@ Controller::Controller() : m_model(m_managerModel.getModel(0)), m_view(m_model)
   connect(&m_view, SIGNAL(setPathActived(QStringList)), this, SLOT(setListFiles(QStringList)));
   connect(&m_view, SIGNAL(fileClicked(int, bool)), m_model, SLOT(setIsSelected(int, bool)));
   connect(&m_view, SIGNAL(runClicked()), m_model, SLOT(run()));   
-  connect(&m_view, SIGNAL(initializedView()), this, SLOT(setListIdToView()));
-
+  connect(this, SIGNAL(sendIdModelToView(std::vector<QString>)), &m_view, SLOT(setListIdModel(std::vector<QString>)));
+  connect(&m_view, SIGNAL(setModel(int)), this, SLOT(getModel(int)));
+  connect(this, SIGNAL(modelChanged()), &m_view, SLOT(constructParamsModel()));
+ 
   //Initialize the view
-  m_view.initWidget();
+  emit sendIdModelToView(m_managerModel.getIds());
 }
 
 
@@ -29,9 +31,8 @@ void Controller::showView()
 void Controller::getModel(int i)
 {
   m_model = m_managerModel.getModel(i);
+
+  emit modelChanged();
 }
 
-void Controller::setListIdToView()
-{
-  m_view.initChooseModelWidget(m_managerModel.getIds());
-}
+

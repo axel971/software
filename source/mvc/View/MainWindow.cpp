@@ -3,12 +3,14 @@
 
 using namespace std;
 
-MainWindow::MainWindow(DetectorModel *ptrModel, QWidget *parent) : m_ptrModel(ptrModel), QMainWindow(parent), ui(new Ui::MainWindow), m_waitBar(parent), m_paramsWidget(new ParamsWidget)
+MainWindow::MainWindow(DetectorModel *ptrModel, QWidget *parent) : m_model(ptrModel), QMainWindow(parent), ui(new Ui::MainWindow), m_waitBar(parent), m_paramsWidget(new ParamsWidget)
 {
     ui->setupUi(this);
    
     listenerFromModel();
     listenerFromView();
+
+    initWidget();
 }
 
 MainWindow::~MainWindow()
@@ -22,14 +24,14 @@ MainWindow::~MainWindow()
 void MainWindow::listenerFromModel()
 {
     //Listener toward the model
-    connect(m_ptrModel, SIGNAL(listFilesLoaded()), this, SLOT(setListFiles()));
-    connect(m_ptrModel, SIGNAL(atLeastOneFileIsSelected(bool)), ui->run, SLOT(setEnabled(bool)));
-    connect(m_ptrModel, SIGNAL(runOff(bool)), ui->overlay, SLOT(setEnabled(bool)));
-    connect(m_ptrModel, SIGNAL(runOff(bool)), ui->overlay, SLOT(setChecked(bool)));
-    connect(m_ptrModel, SIGNAL(runOff()), this, SLOT(displayOverlay()));
-    //connect(m_ptrModel, SIGNAL(runOn()), &m_waitBar, SLOT(show()));
-    //connect(m_ptrModel, SIGNAL(runOff()), &m_waitBar, SLOT(cancel()));
-    //connect(m_ptrModel, SIGNAL(runChanged(int)), &m_waitBar, SLOT(setValue(int)));
+    connect(m_model, SIGNAL(listFilesLoaded()), this, SLOT(setListFiles()));
+    connect(m_model, SIGNAL(atLeastOneFileIsSelected(bool)), ui->run, SLOT(setEnabled(bool)));
+    connect(m_model, SIGNAL(runOff(bool)), ui->overlay, SLOT(setEnabled(bool)));
+    connect(m_model, SIGNAL(runOff(bool)), ui->overlay, SLOT(setChecked(bool)));
+    connect(m_model, SIGNAL(runOff()), this, SLOT(displayOverlay()));
+    //connect(m_model, SIGNAL(runOn()), &m_waitBar, SLOT(show()));
+    //connect(m_model, SIGNAL(runOff()), &m_waitBar, SLOT(cancel()));
+    //connect(m_model, SIGNAL(runChanged(int)), &m_waitBar, SLOT(setValue(int)));
 
 }
 
@@ -38,8 +40,9 @@ void MainWindow::listenerFromView()
 
   //Signals send of the controller
   connect(ui->openFiles, SIGNAL(triggered()), this, SLOT(setPath()));
-  connect(ui->run, SIGNAL(clicked()), this, SLOT(runClickedSlot()));
-    
+  connect(ui->run, SIGNAL(clicked()), this, SIGNAL(runClicked()));
+  connect(ui->chooseModel, SIGNAL(currentIndexChanged(int)), this, SIGNAL(setModel(int)));
+
   //Entire Signals from the view
   connect(this, SIGNAL(setPathActived(QStringList)), this, SLOT(initWidget()));
   connect(ui->listFiles, SIGNAL(currentRowChanged(int)), this, SLOT(displayWindow()));
@@ -47,7 +50,6 @@ void MainWindow::listenerFromView()
   connect(this, SIGNAL(paramsConstructed()), this, SLOT(displayParams()));
   connect(ui->listFiles, SIGNAL(itemClicked(QListWidgetItem *)), this, SLOT(listFilesClicked(QListWidgetItem *)));
   connect(ui->overlay, SIGNAL(stateChanged(int)), this, SLOT(displayOverlay()));
-  connect(this, SIGNAL(initializedView()), this, SLOT(constructParams()));
   connect(m_paramsWidget, SIGNAL(modified()), this,  SLOT(displayParams()));
 
 }
@@ -61,9 +63,6 @@ void MainWindow::initWidget()
   //init progressBar
   m_waitBar.setWindowModality(Qt::WindowModal); 
   m_waitBar.setRange(0, 100);
-
-  //Load the parameters
-  emit initializedView();
 }
 
 
@@ -80,7 +79,7 @@ void MainWindow::setListFiles()
   ui->listFiles->clear(); //if m_listFile isn't empty so clear listFiles 
   
   //add item (list elements) inside the liste
-  ui->listFiles->addItems(m_ptrModel->getListFiles());
+  ui->listFiles->addItems(m_model->getListFiles());
 
   //Init the current item at the first item
   if(ui->listFiles->count()> 0)
@@ -102,7 +101,7 @@ void MainWindow::setListFiles()
 void MainWindow::displayWindow()
 {
   QStringList listFiles;
-  listFiles = m_ptrModel->getListFiles();
+  listFiles = m_model->getListFiles();
 
   int iListFiles =  ui->listFiles->currentRow();
 
@@ -120,7 +119,7 @@ void MainWindow::displayOverlay()
 {
 
 
-  QStringList listFiles = m_ptrModel->getListFiles();
+  QStringList listFiles = m_model->getListFiles();
   int iListFiles =  ui->listFiles->currentRow();
 
   if(ui->overlay->checkState() == 0)
@@ -128,7 +127,7 @@ void MainWindow::displayOverlay()
   
   else if(ui->overlay->checkState() == 2 && iListFiles >= 0)
     {
-      vector<Feature> features = m_ptrModel->getFeatures(iListFiles);
+      vector<Feature> features = m_model->getFeatures(iListFiles);
       QPixmap image =  QPixmap(listFiles.at(iListFiles).toLocal8Bit().constData());
       QPainter painter(&image);
   
@@ -153,14 +152,10 @@ void MainWindow::listFilesClicked(QListWidgetItem *ptrItem)
      emit fileClicked(ui->listFiles->row(ptrItem), false);
 }
 
-void MainWindow::runClickedSlot()
-{
-  emit runClicked();
-}
 
-void MainWindow::constructParams()
+void MainWindow::constructParamsModel()
 {
-  int nParams = (m_ptrModel->getParams()).size();
+  int nParams = (m_model->getParams()).size();
   
   m_paramsWidget->build(ui->layoutParams, nParams);
 
@@ -171,12 +166,12 @@ void MainWindow::constructParams()
 
 void MainWindow::displayParams()
 {
-  vector<ParamModel> params =  m_ptrModel->getParams();
+  vector<ParamModel> params =  m_model->getParams();
   
   m_paramsWidget->setParams(params);
 }
 
-void MainWindow::initChooseModelWidget(vector<QString> ids)
+void MainWindow::setListIdModel(vector<QString> ids)
 {
   for(int i = 0; i < ids.size(); ++i)
     ui->chooseModel->addItem(ids[i]);
