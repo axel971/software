@@ -5,14 +5,13 @@
 using namespace std;
 
 
-Model::Model() : m_isSelectedAtLeastOneFile(false)
+Model::Model() : m_countFiles(0)
 {
   m_id = "Model";
 
   connect(this, SIGNAL(listFilesLoaded()), this, SLOT(constructIsSelected()));
   connect(this, SIGNAL(listFilesSelectedIsModified()), this, SLOT(lookIfAtLeastOneFileIsSelected()));
 }
-
 
 void Model::setListFiles(QStringList listFiles)
 {
@@ -32,12 +31,20 @@ void Model::constructIsSelected()
 {
   m_isSelected.clear();
   m_isSelected = vector<bool>(m_listFiles.count(), false);
+ 
   emit listFilesSelectedIsModified();
 }
 
 void Model::setIsSelected(int i, bool value)
 {
   m_isSelected[i] = value;
+
+  //Increment the counter of files
+  if(value)
+    m_countFiles++;
+  else
+    m_countFiles--;
+
   emit listFilesSelectedIsModified();
 }
 
@@ -55,21 +62,14 @@ std::string Model::getId()
 vector<ParamModel> Model::getParams()
 {
   return m_params;
-
 }
 
 void Model::lookIfAtLeastOneFileIsSelected()
 {
-  m_isSelectedAtLeastOneFile = false;
+  bool isTrue = false;
 
-  for(int i = 0; i < m_isSelected.size(); ++i)
-      if(m_isSelected[i])
-	{
-	  m_isSelectedAtLeastOneFile = true;
-	  break;
-	}
+  if(m_countFiles > 0)
+    isTrue = true;
 
-  emit atLeastOneFileIsSelected(m_isSelectedAtLeastOneFile);
+  emit atLeastOneFileIsSelected(isTrue);
 }
-
-

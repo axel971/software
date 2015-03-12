@@ -26,7 +26,6 @@ void DOGDetectorModel::clearAllAttributs()
   m_isSelected.clear();
   m_images.clear();
   m_detectors.clear();
-  m_isSelectedAtLeastOneFile = false;
 }
 
 

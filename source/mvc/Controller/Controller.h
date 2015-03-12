@@ -24,8 +24,8 @@ class Controller : QWidget
   
   public slots :
     
-    void setListFiles(QStringList);
     void getModel(int i);
+    void selectedAllFiles(int state);
   
  signals :
  

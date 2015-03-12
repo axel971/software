@@ -49,6 +49,13 @@
        </widget>
       </item>
       <item>
+       <widget class="QCheckBox" name="selectedAllFiles">
+        <property name="text">
+         <string>Select all files</string>
+        </property>
+       </widget>
+      </item>
+      <item>
        <widget class="QPushButton" name="run">
         <property name="sizePolicy">
          <sizepolicy hsizetype="Fixed" vsizetype="Fixed">
@@ -63,7 +70,7 @@
          </size>
         </property>
         <property name="text">
-         <string>run</string>
+         <string>Run</string>
         </property>
        </widget>
       </item>
@@ -96,7 +103,7 @@
          </sizepolicy>
         </property>
         <property name="text">
-         <string>overlay</string>
+         <string>Overlay</string>
         </property>
        </widget>
       </item>
@@ -111,6 +118,11 @@
           <horstretch>0</horstretch>
           <verstretch>0</verstretch>
          </sizepolicy>
+        </property>
+        <property name="font">
+         <font>
+          <kerning>true</kerning>
+         </font>
         </property>
         <property name="title">
          <string>Parameters</string>

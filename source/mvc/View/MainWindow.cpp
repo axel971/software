@@ -51,7 +51,7 @@ void MainWindow::listenerFromView()
   connect(ui->listFiles, SIGNAL(itemClicked(QListWidgetItem *)), this, SLOT(listFilesClicked(QListWidgetItem *)));
   connect(ui->overlay, SIGNAL(stateChanged(int)), this, SLOT(displayOverlay()));
   connect(m_paramsWidget, SIGNAL(modified()), this,  SLOT(displayParams()));
-
+  connect(ui->selectedAllFiles, SIGNAL(stateChanged(int)), this, SLOT(selectAllFiles(int)));
 }
 void MainWindow::initWidget()
 {
@@ -175,4 +175,18 @@ void MainWindow::setListIdModel(vector<QString> ids)
 {
   for(int i = 0; i < ids.size(); ++i)
     ui->chooseModel->addItem(ids[i]);
+}
+
+void MainWindow::selectAllFiles(int state)
+{
+
+  //Update the checkbox on the listWidgetItem
+  for(int i = 0; i < ui->listFiles->count(); ++i)
+    {
+      if( state == 0)
+	ui->listFiles->item(i)->setCheckState(Qt::Unchecked);
+      else if(state == 2)
+	ui->listFiles->item(i)->setCheckState(Qt::Checked);
+    }
+      emit selectedAllFiles(state);
 }

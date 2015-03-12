@@ -42,6 +42,7 @@ class MainWindow : public QMainWindow
       void listFilesClicked(QListWidgetItem*);
       void constructParamsModel();
       void setListIdModel(std::vector<QString> ids);
+      void selectAllFiles(int state);
 
  signals:
       void setPathActived(QStringList);
@@ -49,7 +50,7 @@ class MainWindow : public QMainWindow
       void runClicked();
       void paramsConstructed();
       void setModel(int);
-      
+      void selectedAllFiles(int state);      
 };
 
 #endif 

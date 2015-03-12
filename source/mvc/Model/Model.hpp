@@ -18,15 +18,14 @@ protected :
 
   QStringList m_listFiles;
   std::vector<bool> m_isSelected;
-  bool m_isSelectedAtLeastOneFile;
   std::vector<ParamModel> m_params;
   std::string m_id;
+  int m_countFiles;
 
 public :
   
   Model();
   
-  void setListFiles(QStringList listFiles);
   QStringList getListFiles();   
   bool getIsSelected(int i);
   virtual void clearAllAttributs() = 0;
@@ -38,9 +37,11 @@ public :
 			   
 public slots :
   
+  void setListFiles(QStringList listFiles);
   void constructIsSelected();
   void setIsSelected(int i, bool value);
   void lookIfAtLeastOneFileIsSelected();
+  
   virtual void run() = 0;
   
  signals :
@@ -51,7 +52,6 @@ public slots :
   void fileIsProcessed(int);
   void atLeastOneFileIsSelected(bool);
   void listFilesSelectedIsModified();
-    
 };
 
 #endif
