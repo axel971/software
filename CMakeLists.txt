@@ -17,6 +17,10 @@ FIND_PACKAGE(Qt5 COMPONENTS Gui Core Widgets)
 find_package(OpenCV REQUIRED)
 include_directories( ${OpenCV_INCLUDE_DIRS} )
 
+if(CONTRACTS EQUAL USE_ASSERT)
+add_definitions(-DCONTRACTS_USE_ASSERT)
+endif()
+
 # Chercher les fichiers sources
 FILE(
     GLOB_RECURSE
