@@ -1,0 +1,141 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.1//EN" "http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd">
+<svg height="435" version="1.1" width="1210" xmlns="http://www.w3.org/2000/svg">
+<rect fill="#ffffff" height="200" stroke="#ffffff" stroke-width="1" width="367" x="14" y="221"/>
+<rect fill="none" height="200" stroke="#000000" stroke-width="1" width="367" x="14" y="221"/>
+<text font-family="Dialog" font-size="12" x="175" y="234">
++ View</text>
+<rect fill="#000000" height="1" stroke="#000000" stroke-width="1" width="367" x="14" y="244"/>
+<text font-family="Dialog" font-size="12" x="18" y="258">
+-m_model : DetectorModel*</text>
+<text font-family="Dialog" font-size="12" x="18" y="274">
+-m_paramsWidget : Integer</text>
+<rect fill="#000000" height="1" stroke="#000000" stroke-width="1" width="367" x="14" y="284"/>
+<text font-family="Dialog" font-size="12" x="18" y="298">
+&lt;&lt;signal&gt;&gt; +setPatActived( : QStringList)</text>
+<text font-family="Dialog" font-size="12" x="18" y="314">
+&lt;&lt;signal&gt;&gt; +fileClicked( : int, : bool)</text>
+<text font-family="Dialog" font-size="12" x="18" y="330">
+&lt;&lt;signal&gt;&gt; +runCliked()</text>
+<text font-family="Dialog" font-size="12" x="18" y="346">
+&lt;&lt;signal&gt;&gt; +getListIdModel()</text>
+<text font-family="Dialog" font-size="12" x="18" y="362">
+&lt;&lt;slot&gt;&gt; +listenerFromView()</text>
+<text font-family="Dialog" font-size="12" x="18" y="378">
+&lt;&lt;slot&gt;&gt; +setPath()</text>
+<text font-family="Dialog" font-size="12" x="18" y="394">
+&lt;&lt;slot&gt;&gt; +setListIdModel()</text>
+<text font-family="Dialog" font-size="12" x="18" y="410">
+&lt;&lt;signal&gt;&gt; +setModel( : int)</text>
+<rect fill="#ffffff" height="136" stroke="#ffffff" stroke-width="1" width="287" x="478" y="61"/>
+<rect fill="none" height="136" stroke="#000000" stroke-width="1" width="287" x="478" y="61"/>
+<text font-family="Dialog" font-size="12" x="583" y="74">
++ Controller</text>
+<rect fill="#000000" height="1" stroke="#000000" stroke-width="1" width="287" x="478" y="84"/>
+<text font-family="Dialog" font-size="12" x="482" y="98">
+-m_model : DetectorModel*</text>
+<rect fill="#000000" height="1" stroke="#000000" stroke-width="1" width="287" x="478" y="116"/>
+<text font-family="Dialog" font-size="12" x="482" y="130">
++showView()</text>
+<text font-family="Dialog" font-size="12" x="482" y="146">
+&lt;&lt;slot&gt;&gt; +setListFiles( : QStringList)</text>
+<text font-family="Dialog" font-size="12" x="482" y="162">
+&lt;&lt;slot&gt;&gt; +getModel(i : int)</text>
+<text font-family="Dialog" font-size="12" x="482" y="178">
+&lt;&lt;signal&gt;&gt; +modelChanged()</text>
+<rect fill="#ffffff" height="104" stroke="#ffffff" stroke-width="1" width="278" x="918" y="189"/>
+<rect fill="none" height="104" stroke="#000000" stroke-width="1" width="278" x="918" y="189"/>
+<text font-family="Dialog" font-size="12" x="977" y="202">
++ DetectorManagerModel</text>
+<rect fill="#000000" height="1" stroke="#000000" stroke-width="1" width="278" x="918" y="212"/>
+<text font-family="Dialog" font-size="12" x="922" y="226">
+-m_detectors [1..*] : DetectorModel*</text>
+<text font-family="Dialog" font-size="12" x="922" y="242">
+-m_ids [1..*] : QString</text>
+<rect fill="#000000" height="1" stroke="#000000" stroke-width="1" width="278" x="918" y="252"/>
+<text font-family="Dialog" font-size="12" x="922" y="266">
++getIds() : vector&lt;QString&gt;</text>
+<text font-family="Dialog" font-size="12" x="922" y="282">
++getModel(i : int) : DetectorModel*</text>
+<polyline fill="none" points="764,85 926,85 926,189" stroke="#000000" stroke-width="1"/>
+<polygon fill="#000000" points="764,85 774,80 784,85 774,90" stroke="#000000" stroke-width="1"/>
+<polygon fill="none" points="764,85 774,80 784,85 774,90" stroke="#000000" stroke-width="1"/>
+<line fill="#000000" stroke="#000000" stroke-width="1" x1="919" x2="926" y1="177" y2="189"/>
+<line fill="#000000" stroke="#000000" stroke-width="1" x1="933" x2="926" y1="177" y2="189"/>
+<text font-family="Dialog" font-size="12" x="866" y="65">
+ </text>
+<text font-family="Dialog" font-size="12" x="939" y="169">
+1</text>
+<text font-family="Dialog" font-size="12" x="933" y="139">
+-m_managerModel</text>
+<polyline fill="none" points="478,85 262,85 262,221" stroke="#000000" stroke-width="1"/>
+<polygon fill="#000000" points="478,85 468,90 458,85 468,80" stroke="#000000" stroke-width="1"/>
+<polygon fill="none" points="478,85 468,90 458,85 468,80" stroke="#000000" stroke-width="1"/>
+<line fill="#000000" stroke="#000000" stroke-width="1" x1="255" x2="262" y1="209" y2="221"/>
+<line fill="#000000" stroke="#000000" stroke-width="1" x1="269" x2="262" y1="209" y2="221"/>
+<text font-family="Dialog" font-size="12" x="271" y="65">
+ </text>
+<text font-family="Dialog" font-size="12" x="275" y="204">
+1</text>
+<text font-family="Dialog" font-size="12" x="266" y="181">
+-m_view</text>
+<line fill="#000000" stroke="#000000" stroke-width="1" x1="118" x2="118" y1="221" y2="216"/>
+<line fill="#000000" stroke="#000000" stroke-width="1" x1="118" x2="118" y1="211" y2="206"/>
+<line fill="#000000" stroke="#000000" stroke-width="1" x1="118" x2="118" y1="201" y2="196"/>
+<line fill="#000000" stroke="#000000" stroke-width="1" x1="118" x2="118" y1="191" y2="186"/>
+<line fill="#000000" stroke="#000000" stroke-width="1" x1="118" x2="118" y1="181" y2="176"/>
+<line fill="#000000" stroke="#000000" stroke-width="1" x1="118" x2="118" y1="171" y2="166"/>
+<line fill="#000000" stroke="#000000" stroke-width="1" x1="118" x2="118" y1="161" y2="156"/>
+<line fill="#000000" stroke="#000000" stroke-width="1" x1="118" x2="118" y1="151" y2="146"/>
+<line fill="#000000" stroke="#000000" stroke-width="1" x1="118" x2="118" y1="141" y2="136"/>
+<line fill="#000000" stroke="#000000" stroke-width="1" x1="118" x2="118" y1="131" y2="126"/>
+<line fill="#000000" stroke="#000000" stroke-width="1" x1="118" x2="118" y1="121" y2="116"/>
+<line fill="#000000" stroke="#000000" stroke-width="1" x1="118" x2="118" y1="111" y2="106"/>
+<line fill="#000000" stroke="#000000" stroke-width="1" x1="118" x2="118" y1="101" y2="96"/>
+<line fill="#000000" stroke="#000000" stroke-width="1" x1="118" x2="118" y1="91" y2="86"/>
+<line fill="#000000" stroke="#000000" stroke-width="1" x1="118" x2="118" y1="81" y2="76"/>
+<line fill="#000000" stroke="#000000" stroke-width="1" x1="118" x2="118" y1="71" y2="66"/>
+<line fill="#000000" stroke="#000000" stroke-width="1" x1="118" x2="118" y1="61" y2="56"/>
+<line fill="#000000" stroke="#000000" stroke-width="1" x1="118" x2="123" y1="53" y2="53"/>
+<line fill="#000000" stroke="#000000" stroke-width="1" x1="128" x2="133" y1="53" y2="53"/>
+<line fill="#000000" stroke="#000000" stroke-width="1" x1="138" x2="143" y1="53" y2="53"/>
+<line fill="#000000" stroke="#000000" stroke-width="1" x1="148" x2="153" y1="53" y2="53"/>
+<line fill="#000000" stroke="#000000" stroke-width="1" x1="158" x2="163" y1="53" y2="54"/>
+<line fill="#000000" stroke="#000000" stroke-width="1" x1="168" x2="173" y1="54" y2="54"/>
+<line fill="#000000" stroke="#000000" stroke-width="1" x1="178" x2="183" y1="54" y2="54"/>
+<line fill="#000000" stroke="#000000" stroke-width="1" x1="188" x2="193" y1="54" y2="54"/>
+<line fill="#000000" stroke="#000000" stroke-width="1" x1="198" x2="203" y1="54" y2="54"/>
+<line fill="#000000" stroke="#000000" stroke-width="1" x1="208" x2="213" y1="55" y2="55"/>
+<line fill="#000000" stroke="#000000" stroke-width="1" x1="218" x2="223" y1="55" y2="55"/>
+<line fill="#000000" stroke="#000000" stroke-width="1" x1="228" x2="233" y1="55" y2="55"/>
+<line fill="#000000" stroke="#000000" stroke-width="1" x1="238" x2="243" y1="55" y2="55"/>
+<line fill="#000000" stroke="#000000" stroke-width="1" x1="248" x2="253" y1="55" y2="56"/>
+<line fill="#000000" stroke="#000000" stroke-width="1" x1="258" x2="263" y1="56" y2="56"/>
+<line fill="#000000" stroke="#000000" stroke-width="1" x1="268" x2="273" y1="56" y2="56"/>
+<line fill="#000000" stroke="#000000" stroke-width="1" x1="278" x2="283" y1="56" y2="56"/>
+<line fill="#000000" stroke="#000000" stroke-width="1" x1="288" x2="293" y1="56" y2="56"/>
+<line fill="#000000" stroke="#000000" stroke-width="1" x1="298" x2="303" y1="57" y2="57"/>
+<line fill="#000000" stroke="#000000" stroke-width="1" x1="308" x2="313" y1="57" y2="57"/>
+<line fill="#000000" stroke="#000000" stroke-width="1" x1="318" x2="323" y1="57" y2="57"/>
+<line fill="#000000" stroke="#000000" stroke-width="1" x1="328" x2="333" y1="57" y2="57"/>
+<line fill="#000000" stroke="#000000" stroke-width="1" x1="338" x2="343" y1="57" y2="58"/>
+<line fill="#000000" stroke="#000000" stroke-width="1" x1="348" x2="353" y1="58" y2="58"/>
+<line fill="#000000" stroke="#000000" stroke-width="1" x1="358" x2="363" y1="58" y2="58"/>
+<line fill="#000000" stroke="#000000" stroke-width="1" x1="368" x2="373" y1="58" y2="58"/>
+<line fill="#000000" stroke="#000000" stroke-width="1" x1="378" x2="383" y1="58" y2="58"/>
+<line fill="#000000" stroke="#000000" stroke-width="1" x1="388" x2="393" y1="59" y2="59"/>
+<line fill="#000000" stroke="#000000" stroke-width="1" x1="398" x2="403" y1="59" y2="59"/>
+<line fill="#000000" stroke="#000000" stroke-width="1" x1="408" x2="413" y1="59" y2="59"/>
+<line fill="#000000" stroke="#000000" stroke-width="1" x1="418" x2="423" y1="59" y2="59"/>
+<line fill="#000000" stroke="#000000" stroke-width="1" x1="428" x2="433" y1="59" y2="60"/>
+<line fill="#000000" stroke="#000000" stroke-width="1" x1="438" x2="443" y1="60" y2="60"/>
+<line fill="#000000" stroke="#000000" stroke-width="1" x1="448" x2="453" y1="60" y2="60"/>
+<line fill="#000000" stroke="#000000" stroke-width="1" x1="458" x2="463" y1="60" y2="60"/>
+<line fill="#000000" stroke="#000000" stroke-width="1" x1="468" x2="473" y1="60" y2="60"/>
+<polygon fill="#ffffff" points="478,61 465,67 466,53" stroke="#ffffff" stroke-width="1"/>
+<polygon fill="none" points="478,61 465,67 466,53" stroke="#000000" stroke-width="1"/>
+<text font-family="Dialog" font-size="12" x="162" y="27">
+send sigal to Controller</text>
+<text font-family="Dialog" font-size="12" x="165" y="44">
+&lt;&lt;realize&gt;&gt;</text>
+</svg>
